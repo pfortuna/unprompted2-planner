@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>[un]prompted II Planner</title>
+<meta name="description" content="Unofficial, preference-driven session planner for [un]prompted II, the AI security practitioner conference (San Francisco, 27-29 October 2026). Works offline; your picks stay in your browser.">
+<meta name="author" content="Pedro Fortuna, Jscrambler">
+<style>
+/*__FONTS__*/
+/* Layout: sticky header with tabs; interests form drives scores; each slot sets Stage 1 and Stage 2 side by side. */
+:root {
+  --bg: #f2f4f6; --surface: #ffffff; --surface-2: #e9edf1; --ink: #16202a; --muted: #5a6674; --line: #d7dde3;
+  --accent: #2a43d4; --accent-soft: #e6eaff; --accent-ink: #ffffff;
+  --good: #0d7a6b; --good-soft: #ddf3ef; --warn: #a14d00; --warn-soft: #fbeedd;
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 10px; color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1319; --surface: #151c24; --surface-2: #1c2530; --ink: #e5eaef; --muted: #96a2ae; --line: #27323d;
+  --accent: #8796ff; --accent-soft: #1f2650; --accent-ink: #0e1319;
+  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e1319; --surface: #151c24; --surface-2: #1c2530; --ink: #e5eaef; --muted: #96a2ae; --line: #27323d;
+  --accent: #8796ff; --accent-soft: #1f2650; --accent-ink: #0e1319;
+  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; color-scheme: dark }
+
+* { box-sizing: border-box }
+html, body { margin: 0 }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--f-body) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface) }
+img { max-width: 100% }
+[hidden] { display: none !important }
+button, input, select, textarea { font: inherit; color: inherit }
+a { color: var(--accent) }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line) }
+header.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding-block: 12px }
+.brand { display: flex; flex-direction: column; min-width: 0 }
+.brand h1 { margin: 0; font: 700 22px/1.1 var(--f-display); letter-spacing: -0.01em }
+.brand h1 .br { font-family: var(--f-mono); font-weight: 500; color: var(--accent) }
+.brand small { color: var(--muted); font-size: 12.5px }
+nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto }
+nav.tabs button { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: 14px; display: flex; gap: 6px; align-items: baseline }
+nav.tabs button .d { font-family: var(--f-mono); font-size: 12px; color: var(--muted) }
+nav.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+nav.tabs button[aria-selected="true"] .d { color: inherit; opacity: .75 }
+.byline { font-size: 12px; color: var(--muted); width: 100% }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding-block: 14px 4px }
+.toolbar input[type=search] { flex: 1 1 220px; min-width: 0; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+.toggle { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); cursor: pointer }
+.banner { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r); display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14px }
+
+.rec { font: 500 11px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; padding: 4px 7px; border-radius: 5px; white-space: nowrap; border: 1px solid transparent }
+.r1 { background: var(--accent); color: var(--accent-ink) }
+.r2 { border-color: var(--accent); color: var(--accent) }
+.r3 { border-color: var(--line); color: var(--muted) }
+.r4 { color: var(--muted); border-color: var(--line); opacity: .8 }
+.r0 { color: var(--muted); border-color: var(--line); border-style: dashed }
+
+.day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding-block: 18px 6px }
+.day-head h2 { margin: 0; font: 700 26px/1.15 var(--f-display); text-wrap: balance }
+.day-head p { margin: 0; color: var(--muted); font-size: 14px }
+.slot { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; padding-block: 10px; border-top: 1px solid var(--line) }
+.slot .t { font: 500 13px/1.3 var(--f-mono); color: var(--muted); padding-top: 12px; font-variant-numeric: tabular-nums }
+.slot.thin { padding-block: 6px }
+.slot.thin .t { padding-top: 0 }
+.thin-row { color: var(--muted); font-size: 13.5px }
+.thin-row b { color: var(--ink); font-weight: 500 }
+.slot.dim { opacity: .35 }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
+.pair.one { grid-template-columns: minmax(0, 1fr) }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0 }
+.card.picked { border: 2px solid var(--accent); padding: 11px 13px }
+.card.unpicked { background: transparent }
+.card .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
+.stage { font: 500 11px/1 var(--f-mono); color: var(--muted); letter-spacing: .05em }
+.card h3 { margin: 0; font: 600 16px/1.3 var(--f-body); text-wrap: balance }
+.card .line { margin: 0; color: var(--muted); font-size: 14px }
+.chips { display: flex; flex-wrap: wrap; gap: 5px }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted) }
+.chip.plus { background: var(--good-soft); color: var(--good) }
+.chip.minus { background: var(--warn-soft); color: var(--warn) }
+.spk { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 13.5px }
+.spk button { border: 0; background: none; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px }
+.spk button:hover { text-decoration-color: var(--accent) }
+.spk .aff { color: var(--muted) }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 2px }
+.btn { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-weight: 500 }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent) }
+.btn.ghost { background: transparent }
+.btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent) }
+.tag { font-size: 12px; color: var(--accent); font-weight: 600 }
+.tag.sugg { color: var(--muted); font-weight: 500 }
+.clash { font-size: 12px; color: var(--warn); font-weight: 500 }
+details.more { border-top: 1px dashed var(--line); padding-top: 8px }
+details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); font-weight: 500 }
+.abs { font-size: 13.5px; margin-top: 10px; max-width: 72ch }
+.abs p { margin: 0 0 8px }
+.abs h4, .why h4 { margin: 0 0 4px; font: 600 12px/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted) }
+.why { margin-top: 8px }
+.why ul { margin: 0; padding-left: 18px; font-size: 13.5px }
+
+.ticket { border: 2px solid var(--good); background: var(--good-soft); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px }
+.ticket .lbl { font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--good) }
+.ticket h3 { margin: 0; font: 600 16px/1.3 var(--f-body) }
+.miss { margin-top: 6px; display: grid; gap: 6px }
+
+.extras { margin-block: 24px 40px; display: grid; gap: 12px }
+.extras h3 { margin: 0; font: 700 18px/1.2 var(--f-display) }
+.ws { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 14px }
+.ws.mine { border: 2px solid var(--good) }
+.ws summary { cursor: pointer; display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline }
+.ws summary b { font-weight: 600 }
+.ws .wt { font: 500 12px var(--f-mono); color: var(--muted) }
+.ws .body { font-size: 13.5px; margin-top: 8px; max-width: 75ch }
+.ws .body p { margin: 0 0 8px } .ws .body ul { margin: 0 0 8px; padding-left: 18px }
+.note { font-size: 13px; color: var(--muted) }
+
+/* interests */
+.prefs { display: grid; gap: 22px; padding-block: 18px 40px }
+.prefs section { display: grid; gap: 10px }
+.prefs h2 { margin: 0; font: 700 26px/1.15 var(--f-display) }
+.prefs h3 { margin: 0; font: 700 18px/1.2 var(--f-display) }
+.prefs p { margin: 0; max-width: 70ch }
+.presets, .roles { display: flex; flex-wrap: wrap; gap: 8px }
+.topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px }
+.topic { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; min-width: 0 }
+.topic .tl { min-width: 0 }
+.topic .tl b { display: block; font-weight: 600; font-size: 14px }
+.topic .tl span { display: block; font-size: 12.5px; color: var(--muted) }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex: none }
+.seg button { border: 0; border-left: 1px solid var(--line); background: var(--surface); padding: 5px 9px; font-size: 12.5px; cursor: pointer }
+.seg button:first-child { border-left: 0 }
+.seg button[aria-pressed="true"].v-1 { background: var(--warn-soft); color: var(--warn) }
+.seg button[aria-pressed="true"].v0 { background: var(--muted); color: var(--bg); font-weight: 600 }
+.seg button[aria-pressed="true"].v1 { background: var(--accent-soft); color: var(--accent); font-weight: 600 }
+.seg button[aria-pressed="true"].v2 { background: var(--accent); color: var(--accent-ink) }
+.checks { display: grid; gap: 6px }
+.checks label { display: flex; gap: 8px; align-items: baseline; font-size: 14px }
+.field { display: grid; gap: 4px; max-width: 520px }
+.field input, .field select { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+.count { font-size: 13.5px; color: var(--muted) }
+
+/* plan */
+.plan-day { margin-block: 18px 6px }
+.plan-day h3 { margin: 0 0 6px; font: 700 20px/1.2 var(--f-display) }
+.plan-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden }
+.plan-list li { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--line); align-items: baseline }
+.plan-list li:first-child { border-top: 0 }
+.plan-list .pt { font: 500 12.5px var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums }
+.plan-list .pn { font-size: 13px; color: var(--muted) }
+.plan-list li.w { background: var(--good-soft) }
+.plan-list li.empty { color: var(--muted); font-style: italic }
+.plan-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-block: 16px 0 }
+.copybox { width: 100%; min-height: 140px; font: 12.5px/1.45 var(--f-mono); padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+
+/* about */
+.about { padding-block: 18px 40px; display: grid; gap: 14px; max-width: 72ch }
+.about h2 { margin: 0; font: 700 26px/1.15 var(--f-display) }
+.about h3 { margin: 8px 0 0; font: 700 18px/1.2 var(--f-display) }
+.about p { margin: 0 }
+
+footer.foot { border-top: 1px solid var(--line); margin-top: 20px }
+footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px }
+
+/* speaker drawer */
+.scrim { position: fixed; inset: 0; background: rgba(10, 14, 20, .45); z-index: 40 }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(520px, 100%); background: var(--surface); z-index: 41; overflow-y: auto; border-left: 1px solid var(--line);
+  padding: calc(18px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) 20px; display: flex; flex-direction: column; gap: 12px }
+.drawer h2 { margin: 0; font: 700 24px/1.15 var(--f-display); padding-right: 70px }
+.drawer .role { color: var(--muted); font-size: 14px; margin: 0 }
+.drawer .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)) }
+.drawer h4 { margin: 6px 0 2px; font: 600 12px/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted) }
+.drawer ul { margin: 0; padding-left: 18px; font-size: 13.5px; display: grid; gap: 4px }
+.drawer p { margin: 0; font-size: 14px }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; font-size: 13.5px; z-index: 50 }
+
+@media (max-width: 760px) {
+  .pair, .topics { grid-template-columns: minmax(0, 1fr) }
+  .slot { grid-template-columns: minmax(0, 1fr); gap: 6px }
+  .slot .t { padding-top: 4px }
+  .plan-list li { grid-template-columns: minmax(0, 1fr); gap: 2px }
+  nav.tabs { margin-left: 0 }
+  .topic { flex-wrap: wrap }
+}
+@media (prefers-reduced-motion: no-preference) { .card, .btn { transition: border-color .15s, background-color .15s } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1><span class="br">[un]</span>prompted II Planner</h1>
+      <small>27-29 Oct 2026 · The Hibernia, San Francisco · unofficial</small>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+    <div class="byline">Made by <a id="authorLink" href="#" target="_blank" rel="noopener">Pedro Fortuna</a>, <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a> · your picks stay in this browser · <a href="https://github.com/pfortuna/unprompted2-planner" target="_blank" rel="noopener">Source on GitHub</a></div>
+  </div>
+</header>
+
+<main class="wrap" id="main"></main>
+
+<footer class="foot"><div class="wrap">
+  <span>Unofficial planner for <a href="https://unpromptedcon.org/agenda-10-2026/" target="_blank" rel="noopener">[un]prompted II</a>. Agenda as published on <span id="asOf"></span>; check the official site for changes.</span>
+  <span>Made by <a id="authorLink2" href="#" target="_blank" rel="noopener">Pedro Fortuna</a>, CTO and co-founder of <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a>.</span>
+  <span>Open source (MIT): <a href="https://github.com/pfortuna/unprompted2-planner" target="_blank" rel="noopener">github.com/pfortuna/unprompted2-planner</a>. Issues and corrections welcome.</span>
+</div></footer>
+<div id="overlay"></div>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  const AUTHOR = { name: "Pedro Fortuna", org: "Jscrambler", linkedin: "/*__LINKEDIN__*/" };
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const LS_KEY = "unprompted2-public-v1", LS_UI = "unprompted2-public-ui";
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const mins = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+  const span = time => time.split("–").map(mins);
+
+  ["authorLink", "authorLink2"].forEach(id => { const a = document.getElementById(id); if (AUTHOR.linkedin.startsWith("http")) a.href = AUTHOR.linkedin; else a.removeAttribute("href"); });
+  $("#asOf").textContent = DATA.asOf;
+
+  // ---------- vocabulary ----------
+  const TOPICS = [
+    ["prompt_injection", "Prompt injection", "Attacks, measurement, detection and defenses"],
+    ["agent_sandboxing", "Agent sandboxing", "Isolation, containers, VMs, egress control"],
+    ["agent_authz", "Agent permissions", "Identity, authorization, approvals, action gating"],
+    ["agent_monitoring", "Agent monitoring", "Runtime guardrails, observability, behavior"],
+    ["misalignment", "Misaligned agents", "Excessive agency, scope violations, rogue behavior"],
+    ["harness_engineering", "Harness and loop engineering", "Building agents, self-improving loops, orchestration"],
+    ["secure_dev", "Secure AI-assisted development", "Coding agents in the SDLC, AI review and fixes"],
+    ["vuln_discovery", "AI vulnerability discovery", "AI finding bugs and zero-days, code scanning"],
+    ["offensive_ai", "Offensive AI", "Exploitation, autonomous attacks, red-team agents"],
+    ["soc_ir", "SOC and incident response", "Detection, triage, threat hunting with AI"],
+    ["threat_intel", "Threat intelligence", "Real attacker use of AI, campaigns in the wild"],
+    ["model_internals", "Model internals", "Interpretability, activations, backdoors, trojans"],
+    ["evals", "Evals and benchmarks", "Measuring models and agents, methodology"],
+    ["ai_supply_chain", "AI supply chain", "Models, MCP servers, skills, extensions, provenance"],
+    ["governance", "Governance and leadership", "Risk, compliance, policy, CISO perspectives"],
+    ["crypto_privacy", "Crypto and privacy", "Cryptography, confidential computing, data protection"],
+    ["new_surfaces", "New attack surfaces", "Browsers, endpoints, robots, IoT, physical world"],
+  ];
+  const TOPIC_LABEL = Object.fromEntries(TOPICS.map(t => [t[0], t[1]]));
+  const ROLES = [["builder", "Builder", "engineers building with or securing agents"], ["defender", "Defender", "SOC, detection and response"], ["researcher", "Researcher", "offensive or academic research"], ["leader", "Leader", "CISO, program, policy"]];
+  const ROLE_LABEL = Object.fromEntries(ROLES.map(r => [r[0], r[1]]));
+  const LEVELS = { "": "No preference", intro: "Prefer accessible sessions", advanced: "Prefer advanced sessions" };
+  const FMT = [["original_research", "Favor original research and new data"], ["live_demo", "Favor live demos"], ["open_source", "Favor open-source tools and benchmarks"], ["case_study", "Favor real-world case studies"]];
+  const FMT_CHIP = { original_research: "Original research", live_demo: "Live demo", open_source: "Open source", case_study: "Case study", vendor_flavour: "Vendor product focus", debate_or_panel: "Debate or panel" };
+  const PRESETS = {
+    "Agent builder": { role: "builder", topics: { agent_sandboxing: 2, agent_authz: 2, harness_engineering: 2, secure_dev: 2, agent_monitoring: 1, prompt_injection: 1, misalignment: 1, ai_supply_chain: 1 }, fmt: { live_demo: true, open_source: true } },
+    "SOC and defender": { role: "defender", topics: { soc_ir: 2, threat_intel: 2, agent_monitoring: 1, evals: 1, prompt_injection: 1 }, fmt: { original_research: true, case_study: true } },
+    "Offensive researcher": { role: "researcher", topics: { offensive_ai: 2, vuln_discovery: 2, prompt_injection: 1, model_internals: 1, new_surfaces: 1, evals: 1 }, fmt: { original_research: true, live_demo: true } },
+    "Security leader": { role: "leader", topics: { governance: 2, threat_intel: 1, misalignment: 1, agent_authz: 1, secure_dev: 1, soc_ir: 1 }, fmt: { case_study: true } },
+    "AI safety and model research": { role: "researcher", topics: { model_internals: 2, misalignment: 2, evals: 2, prompt_injection: 1 }, fmt: { original_research: true } },
+  };
+  const REC = { 1: "Not to miss", 2: "Good fit", 3: "Maybe", 4: "Low fit" };
+
+  // ---------- state ----------
+  const emptyPrefs = () => ({ role: "", topics: {}, fmt: {}, level: "", keywords: "" });
+  let state = { prefs: emptyPrefs(), picks: {}, later: {}, tickets: {} };
+  let ui = { tab: "", q: "", hideLow: false };
+  try { const s = JSON.parse(localStorage.getItem(LS_KEY) || "null"); if (s) state = { prefs: { ...emptyPrefs(), ...(s.prefs || {}) }, picks: s.picks || {}, later: s.later || {}, tickets: s.tickets || {} }; } catch (e) {}
+  try { const u = JSON.parse(localStorage.getItem(LS_UI) || "{}"); ui.hideLow = !!u.hideLow; } catch (e) {}
+  const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
+  const saveUi = () => { try { localStorage.setItem(LS_UI, JSON.stringify({ hideLow: ui.hideLow })); } catch (e) {} };
+  // A saved plan is anything the visitor changed: interests, picks, watch-later or tickets
+  const p0 = state.prefs, nonEmpty = o => Object.keys(o || {}).length > 0;
+  const hasPlan = nonEmpty(state.picks) || nonEmpty(state.later) || nonEmpty(state.tickets) || nonEmpty(p0.topics) || nonEmpty(p0.fmt) || !!(p0.role || p0.level || p0.keywords.trim());
+  // Returning visitors open on their plan; a first visit opens on Interests, filled with the defaults (every topic Neutral)
+  ui.tab = hasPlan ? "plan" : "prefs";
+
+  // ---------- model ----------
+  const DAYS = DATA.days.map((d, i) => {
+    const n = i + 1, byTime = new Map(), vill = [], seenFixed = new Set();
+    for (const it of d.items) {
+      if (it.kind === "village") { if (!/lunch/i.test(it.title)) vill.push(it); continue; }
+      const [a, b] = span(it.time);
+      if (b < a) continue;
+      if (it.kind === "fixed") {
+        const key = it.time + "|" + it.title;
+        if (seenFixed.has(key) || (it.stage === "S2" && byTime.has(it.time))) continue;
+        seenFixed.add(key);
+      }
+      if (!byTime.has(it.time)) byTime.set(it.time, { time: it.time, a, b, items: [] });
+      byTime.get(it.time).items.push(it);
+    }
+    const slots = [...byTime.values()].sort((x, y) => x.a - y.a || x.b - y.b);
+    for (const s of slots) {
+      s.key = `D${n}-${s.time}`; s.day = n;
+      s.talks = s.items.filter(x => x.kind === "talk").sort((x, y) => x.stage.localeCompare(y.stage));
+      s.fixed = s.items.filter(x => x.kind === "fixed");
+    }
+    return { n, label: d.label, date: d.date, slots, vill, ws: DATA.workshops.filter(w => w.day === n) };
+  });
+  const TALK = {}; DAYS.forEach(d => d.slots.forEach(s => s.talks.forEach(t => { TALK[t.id] = { ...t, slot: s, day: d }; })));
+  DATA.workshops.forEach(w => { [w.a, w.b] = span(w.time); });
+
+  // ---------- scoring ----------
+  const POS_W = [1, 0.75, 0.55, 0.4];
+  function score(it) {
+    const p = state.prefs, why = [];
+    let s = 1; // a session with only Neutral topics rates Maybe
+    (it.topics || []).forEach((t, i) => {
+      const v = p.topics[t] || 0, w = POS_W[i] ?? 0.4;
+      if (v === 2) { s += 3 * w; why.push(["+", `${TOPIC_LABEL[t]} (must see)`]); }
+      else if (v === 1) { s += 1.5 * w; why.push(["+", TOPIC_LABEL[t]]); }
+      else if (v === -1) { s -= 2.5 * w; why.push(["-", `${TOPIC_LABEL[t]} (not for you)`]); }
+    });
+    const f = it.formats || {};
+    if (p.role && (it.audience || []).includes(p.role)) { s += 0.8; why.push(["+", `Aimed at ${ROLE_LABEL[p.role].toLowerCase()}s`]); }
+    for (const [k] of FMT) if (p.fmt[k] && f[k]) { s += 0.5; why.push(["+", FMT_CHIP[k]]); }
+    if (f.vendor_flavour) { s -= 1.5; why.push(["-", "Centers on the speaker's own product"]); }
+    if (p.level === "intro" && it.level === "advanced") { s -= 0.8; why.push(["-", "Advanced level"]); }
+    if (p.level === "advanced" && it.level === "intro") { s -= 0.8; why.push(["-", "Introductory level"]); }
+    const kws = p.keywords.split(",").map(x => x.trim().toLowerCase()).filter(x => x.length >= 3);
+    if (kws.length) {
+      const hay = [it.title, it.abstract, it.summary, ...(it.speakers || []).map(x => x.n + " " + x.a)].join(" ").toLowerCase();
+      for (const k of kws) if (hay.includes(k)) { s += 2.5; why.push(["+", `Mentions "${k}"`]); }
+    }
+    const r = s >= 4 ? 1 : s >= 2.3 ? 2 : s >= 0.6 ? 3 : 4;
+    return { s, r, why };
+  }
+  const SC = new Map();
+  const sc = it => { if (!SC.has(it.id)) SC.set(it.id, score(it)); return SC.get(it.id); };
+  const rescore = () => SC.clear();
+
+  const wsOf = s => DATA.workshops.find(w => w.day === s.day && state.tickets[w.id] && s.talks.length && s.a < w.b && s.b > w.a) || null;
+  function suggestion(s) {
+    if (!s.talks.length) return null;
+    return [...s.talks].sort((x, y) => sc(y).s - sc(x).s || x.stage.localeCompare(y.stage))[0].id;
+  }
+  function pickOf(s) {
+    if (wsOf(s)) return "workshop";
+    const v = state.picks[s.key];
+    return v === undefined ? suggestion(s) : v;
+  }
+
+  // ---------- render helpers ----------
+  const recChip = it => { const r = sc(it).r; return `<span class="rec r${r}">${REC[r]}</span>`; };
+  function spkHtml(list) {
+    return `<div class="spk">${list.map(s => `<span><button type="button" data-spk="${esc(s.k)}">${esc(s.n)}</button>${s.a ? ` <span class="aff">${esc(s.a)}</span>` : ""}</span>`).join("")}</div>`;
+  }
+  const paras = t => String(t || "").split(/\n\s*\n/).map(p => `<p>${esc(p.trim())}</p>`).join("");
+  function md(t) {
+    const out = []; let list = null;
+    const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\*(.+?)\*/g, "<i>$1</i>");
+    for (const raw of String(t || "").split("\n")) {
+      const l = raw.trim();
+      if (/^- /.test(l)) { (list = list || []).push(`<li>${inline(l.slice(2))}</li>`); continue; }
+      if (list) { out.push(`<ul>${list.join("")}</ul>`); list = null; }
+      if (l) out.push(`<p>${inline(l)}</p>`);
+    }
+    if (list) out.push(`<ul>${list.join("")}</ul>`);
+    return out.join("");
+  }
+  const matches = t => !ui.q || [t.title, t.summary, t.abstract, ...(t.speakers || []).map(s => s.n + " " + s.a)].join(" ").toLowerCase().includes(ui.q.toLowerCase());
+  const topicChips = it => (it.topics || []).map(t => `<span class="chip">${esc(TOPIC_LABEL[t])}</span>`).join("");
+  const whyChips = it => sc(it).why.map(([sign, l]) => `<span class="chip ${sign === "+" ? "plus" : "minus"}">${sign === "+" ? "+" : "−"} ${esc(l)}</span>`).join("");
+
+  function talkCard(t, s, picked) {
+    const isPick = picked === t.id, explicit = state.picks[s.key] !== undefined, later = !!state.later[t.id];
+    const tag = isPick ? `<span class="tag ${explicit ? "" : "sugg"}">${explicit ? "Your pick" : "Suggested"}</span>` : "";
+    const wc = whyChips(t);
+    return `<article class="card ${isPick ? "picked" : (picked && picked !== "none" ? "unpicked" : "")}">
+      <div class="row">${recChip(t)}<span class="stage">${t.stage === "S1" ? "STAGE 1" : "STAGE 2"}</span>${tag}</div>
+      <h3>${esc(t.title)}</h3>
+      ${t.speakers.length ? spkHtml(t.speakers) : ""}
+      ${t.summary ? `<p class="line">${esc(t.summary)}</p>` : ""}
+      ${wc ? `<div class="chips">${wc}</div>` : ""}
+      <div class="actions">
+        ${wsOf(s) ? `<span class="clash">Clashes with your workshop</span>` :
+          `<button type="button" class="btn ${isPick ? "primary" : ""}" data-pick="${s.key}" data-val="${t.id}" aria-pressed="${isPick}">${isPick ? "Picked" : "Pick this"}</button>`}
+        <button type="button" class="btn ghost" data-later="${t.id}" aria-pressed="${later}">${later ? "On watch-later list" : "Watch later"}</button>
+      </div>
+      <details class="more"><summary>Topics and abstract</summary>
+        <div class="chips" style="margin-top:8px">${topicChips(t)}${Object.entries(t.formats || {}).filter(([, v]) => v).map(([k]) => `<span class="chip">${esc(FMT_CHIP[k])}</span>`).join("")}${t.level ? `<span class="chip">${esc(t.level)}</span>` : ""}</div>
+        ${t.abstract ? `<div class="abs"><h4>Abstract</h4>${paras(t.abstract)}</div>` : `<p class="note">No abstract published.</p>`}
+      </details>
+    </article>`;
+  }
+
+  function slotHtml(s) {
+    if (!s.talks.length) {
+      const f = s.fixed[0]; if (!f) return "";
+      const sp = f.speakers && f.speakers.length ? ` · ${f.speakers.map(x => esc(x.n)).join(", ")}` : "";
+      return `<div class="slot thin"><div class="t">${s.time}</div><div class="thin-row"><b>${esc(f.title)}</b>${sp}</div></div>`;
+    }
+    const dim = ui.q && !s.talks.some(matches) ? " dim" : "";
+    const w = wsOf(s);
+    if (w) {
+      return `<div class="slot${dim}"><div class="t">${s.time}</div><div class="ticket"><span class="lbl">Your workshop</span><h3>${esc(w.title)}</h3>
+        <div class="note">${w.time.replace("–", " to ")}</div>
+        <details class="more"><summary>Talks you miss in this slot</summary><div class="miss pair${s.talks.length === 1 ? " one" : ""}">${s.talks.map(t => talkCard(t, s, "workshop")).join("")}</div></details></div></div>`;
+    }
+    const picked = pickOf(s), none = picked === "none";
+    const vis = s.talks.filter(t => !(ui.hideLow && sc(t).r === 4 && picked !== t.id));
+    return `<div class="slot${dim}"><div class="t">${s.time}${none ? `<div class="note" style="margin-top:6px">Free slot</div>` : ""}</div>
+      <div><div class="pair${vis.length === 1 ? " one" : ""}">${vis.map(t => talkCard(t, s, picked)).join("") || `<div class="note">Only low-fit talks here (hidden).</div>`}</div>
+      <div class="actions" style="margin-top:6px"><button type="button" class="btn ghost" data-pick="${s.key}" data-val="none" aria-pressed="${none}">${none ? "Slot left free" : "Leave this slot free"}</button>
+      ${state.picks[s.key] !== undefined ? `<button type="button" class="btn ghost" data-pick="${s.key}" data-val="__reset">Back to suggestion</button>` : ""}</div></div></div>`;
+  }
+
+  function dayHtml(d) {
+    const talks = d.slots.flatMap(s => s.talks), top = talks.filter(t => sc(t).r === 1).length;
+    return `<section>
+      <div class="toolbar">
+        <input type="search" id="q" placeholder="Search titles, speakers, abstracts" value="${esc(ui.q)}" aria-label="Search this day">
+        <label class="toggle"><input type="checkbox" id="hideLow" ${ui.hideLow ? "checked" : ""}> Hide low-fit talks</label>
+      </div>
+      <div class="day-head"><h2>${esc(d.label)}</h2><p>${talks.length} sessions · ${top} rated Not to miss for you · <button type="button" class="btn ghost" data-tab="prefs">Change interests</button></p></div>
+      ${d.slots.map(slotHtml).join("")}
+      <div class="extras">
+        <h3>Workshops this day</h3>
+        <p class="note">Two-hour hands-on sessions with their own registration. Mark the ones you hold a ticket for and their time block replaces the talks it overlaps.</p>
+        ${d.ws.map(w => `<details class="ws${state.tickets[w.id] ? " mine" : ""}"><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
+          <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button></div>
+          ${w.speakers.length ? spkHtml(w.speakers) : ""}${whyChips(w) ? `<div class="chips" style="margin-block:6px">${whyChips(w)}</div>` : ""}
+          ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
+        ${d.vill.length ? `<h3>Villages room</h3><p class="note">${d.vill.map(v => `${v.time} ${esc(v.title)}`).join(" · ")}</p>` : ""}
+      </div></section>`;
+  }
+
+  function prefsHtml() {
+    const p = state.prefs;
+    const all = Object.values(TALK), counts = [1, 2, 3, 4].map(r => all.filter(t => sc(t).r === r).length);
+    const seg = k => `<div class="seg" role="group" aria-label="${esc(TOPIC_LABEL[k])}">${[[-1, "Skip"], [0, "Neutral"], [1, "Like"], [2, "Must"]].map(([v, l]) =>
+      `<button type="button" class="v${v}" data-topic="${k}" data-v="${v}" aria-pressed="${(p.topics[k] || 0) === v}">${l}</button>`).join("")}</div>`;
+    return `<div class="prefs">
+      <section><h2>Your interests</h2>
+        <p>Every session in this planner is tagged by topic and format. Every topic starts as Neutral, which rates a session Maybe. Mark topics as Like or Must to raise the sessions that cover them, or Skip to lower them. The planner explains each rating and suggests one pick per time slot; you can override any pick.</p>
+        <p class="count">For you: ${counts[0]} Not to miss · ${counts[1]} Good fit · ${counts[2]} Maybe · ${counts[3]} Low fit</p>
+      </section>
+      <section><h3>Start from a profile</h3><div class="presets">${Object.keys(PRESETS).map(n => `<button type="button" class="btn" data-preset="${esc(n)}">${esc(n)}</button>`).join("")}<button type="button" class="btn ghost" id="clearPrefs">Reset to defaults</button></div>
+        <p class="note">A profile fills in the choices below; adjust them freely.</p></section>
+      <section><h3>Your role</h3><div class="roles">${ROLES.map(([k, l, d]) => `<button type="button" class="btn" data-role="${k}" aria-pressed="${p.role === k}" title="${esc(d)}">${l}</button>`).join("")}</div>
+        <p class="note">${p.role ? `Sessions aimed at ${esc(ROLES.find(r => r[0] === p.role)[2])} get a small boost.` : "Optional. Sessions aimed at your role get a small boost."}</p></section>
+      <section><h3>Topics</h3><div class="topics">${TOPICS.map(([k, l, d]) => `<div class="topic"><div class="tl"><b>${esc(l)}</b><span>${esc(d)}</span></div>${seg(k)}</div>`).join("")}</div></section>
+      <section><h3>Format</h3><div class="checks">
+        ${FMT.map(([k, l]) => `<label><input type="checkbox" data-fmt="${k}" ${p.fmt[k] ? "checked" : ""}> ${esc(l)}</label>`).join("")}
+      </div><p class="note">Talks centered on the speaker's own product are always rated lower.</p></section>
+      <section><h3>Level</h3><div class="field"><select id="level">${Object.entries(LEVELS).map(([k, l]) => `<option value="${k}" ${p.level === k ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></div></section>
+      <section><h3>Keywords</h3><div class="field"><input type="text" id="keywords" value="${esc(p.keywords)}" placeholder="for example: MCP, Chrome, Kubernetes, Claude Code"><span class="note">Comma-separated. A talk that mentions one in its title, abstract or speakers gets a strong boost.</span></div></section>
+      <section><div class="actions"><button type="button" class="btn primary" data-tab="d1">See my recommendations</button></div></section>
+    </div>`;
+  }
+
+  function planRows(d) {
+    const rows = [];
+    for (const s of d.slots) {
+      if (!s.talks.length) continue;
+      const p = pickOf(s);
+      if (p === "workshop") {
+        const w = wsOf(s);
+        if (!rows.some(r => r.wid === w.id)) rows.push({ w: true, wid: w.id, time: w.time, title: w.title, who: w.speakers.map(x => x.n).join(", "), stage: "Workshop" });
+        continue;
+      }
+      if (p === "none" || !TALK[p]) { rows.push({ empty: true, time: s.time, title: "Free slot" }); continue; }
+      const t = TALK[p];
+      rows.push({ time: s.time, title: t.title, who: t.speakers.map(x => x.n).join(", "), stage: t.stage === "S1" ? "Stage 1" : "Stage 2", id: t.id, r: sc(t).r });
+    }
+    return rows;
+  }
+  function planHtml() {
+    const all = DAYS.map(d => ({ d, rows: planRows(d) }));
+    const picked = all.flatMap(x => x.rows.filter(r => r.id));
+    const later = Object.keys(state.later).filter(k => state.later[k] && TALK[k]);
+    return `<section>
+      <div class="day-head"><h2>My plan</h2><p>Times are San Francisco local (PDT).</p></div>
+      <p class="count">${picked.length} talks picked · ${picked.filter(r => r.r === 1).length} rated Not to miss · ${later.length} on watch-later list</p>
+      <div class="plan-actions">
+        <button type="button" class="btn primary" id="icsPlan">Save calendar file (.ics)</button>
+        <button type="button" class="btn" id="copyPlan">Copy plan as text</button>
+        <button type="button" class="btn" id="exportPlan">Export</button>
+        <button type="button" class="btn" id="importPlan">Import</button>
+        <button type="button" class="btn ghost" id="resetPlan">Reset picks to suggestions</button>
+      </div>
+      <p class="note">Export saves your interests, picks, watch-later list and tickets so you can move them to another browser or device.</p>
+      <div id="xfer"></div><div id="resetConfirm"></div>
+      ${all.map(({ d, rows }) => `<div class="plan-day"><h3>${esc(d.label)}</h3><ul class="plan-list">
+        ${rows.map(r => r.empty ? `<li class="empty"><span class="pt">${r.time}</span><span>Free slot</span><span></span></li>` :
+          `<li class="${r.w ? "w" : ""}"><span class="pt">${r.time}</span><span><b>${esc(r.title)}</b><br><span class="pn">${esc(r.who)}</span></span><span class="pn">${r.w ? "Workshop" : `${esc(r.stage)} · ${REC[r.r]}`}<br><a href="${gcal(d, r)}" target="_blank" rel="noopener">Google Calendar</a></span></li>`).join("")}
+      </ul></div>`).join("")}
+      <div class="plan-day"><h3>Watch later</h3>${later.length ? `<ul class="plan-list">${later.map(k => { const t = TALK[k]; return `<li><span class="pt">Day ${t.day.n} ${t.slot.time.slice(0, 5)}</span><span><b>${esc(t.title)}</b><br><span class="pn">${esc(t.speakers.map(x => x.n).join(", "))}</span></span><span class="pn"></span></li>`; }).join("")}</ul>` : `<p class="note">Nothing yet. Use "Watch later" on any talk you cannot attend.</p>`}</div>
+    </section>`;
+  }
+
+  function aboutHtml() {
+    const li = AUTHOR.linkedin.startsWith("http") ? `<a href="${esc(AUTHOR.linkedin)}" target="_blank" rel="noopener">Pedro Fortuna</a>` : "Pedro Fortuna";
+    return `<div class="about">
+      <h2>About this planner</h2>
+      <p>An unofficial, open-source planner for <a href="https://unpromptedcon.org/agenda-10-2026/" target="_blank" rel="noopener">[un]prompted II</a>, the AI security practitioner conference in San Francisco, 27 to 29 October 2026. It is not affiliated with or endorsed by the organisers.</p>
+      <p>Made by ${li}, CTO and co-founder of <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a>.</p>
+      <h3>How recommendations work</h3>
+      <p>Each session was tagged with up to four topics (most central first), its format (original research, live demo, open-source release, case study, vendor product focus, debate) and its level, from the published title and abstract. Every topic starts as Neutral, which rates a session Maybe. A Must topic raises a session most, a Like topic raises it some, a Skip topic lowers it, and the first topic of a session counts more than the later ones. Format preferences, your role, level and keywords adjust the score. Talks centered on the speaker's own commercial product are always rated lower. Ratings mean "fit with what you told the planner", not quality. Tags were assigned with AI assistance and may be imperfect.</p>
+      <h3>Your data</h3>
+      <p>Everything you enter stays in this browser (local storage). Nothing is sent anywhere; the page makes no network requests. Use Export on the My plan tab to move your plan to another device.</p>
+      <h3>Sources</h3>
+      <p>Titles, speakers, affiliations and abstracts are as published on the official agenda on ${esc(DATA.asOf)}; the agenda is subject to change. Speaker bios were compiled from public sources with AI assistance and are shown only where the identity was confirmed by more than one source; they may contain mistakes. Each bio lists its sources.</p>
+      <h3>Source code</h3>
+      <p>The planner is open source under the MIT license: <a href="https://github.com/pfortuna/unprompted2-planner" target="_blank" rel="noopener">github.com/pfortuna/unprompted2-planner</a>. Found a wrong time, tag or bio? Open an issue there.</p>
+      <h3>Works offline</h3>
+      <p>The page is a single file with no external dependencies. Save it to your device and it works without a connection.</p>
+    </div>`;
+  }
+
+  // ---------- render ----------
+  function render() {
+    const tabs = [{ id: "prefs", label: "Interests", d: "" }, ...DAYS.map(d => ({ id: "d" + d.n, label: d.label.split(" ")[0].slice(0, 3), d: d.date.slice(8) + " Oct" })), { id: "plan", label: "My plan", d: "" }, { id: "about", label: "About", d: "" }];
+    $("#tabs").innerHTML = tabs.map(t => `<button type="button" role="tab" data-tab="${t.id}" aria-selected="${ui.tab === t.id}">${t.label}${t.d ? `<span class="d">${t.d}</span>` : ""}</button>`).join("");
+    const main = $("#main");
+    const focusedId = document.activeElement && document.activeElement.id;
+    if (ui.tab === "prefs") main.innerHTML = prefsHtml();
+    else if (ui.tab === "plan") main.innerHTML = planHtml();
+    else if (ui.tab === "about") main.innerHTML = aboutHtml();
+    else main.innerHTML = dayHtml(DAYS.find(x => "d" + x.n === ui.tab) || DAYS[0]);
+    if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
+  }
+
+  // ---------- speakers ----------
+  function openSpeaker(k) {
+    const b = DATA.speakers[k]; if (!b) return;
+    const links = Object.entries(b.links || {}).map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join(" · ");
+    $("#overlay").innerHTML = `<div class="scrim" data-close="1"></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(b.n)}">
+      <button type="button" class="btn ghost close" data-close="1">Close</button>
+      <h2>${esc(b.n)}</h2>${b.role ? `<p class="role">${esc(b.role)}</p>` : ""}
+      ${b.bio ? `<p>${esc(b.bio)}</p>` : `<p class="note">No bio compiled for this speaker. The affiliation shown is the one on the official agenda.</p>`}
+      <h4>At [un]prompted II</h4><ul>${b.sessions.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      ${b.work && b.work.length ? `<h4>Notable work</h4><ul>${b.work.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+      ${b.talks && b.talks.length ? `<h4>Other talks</h4><ul>${b.talks.map(t => `<li>${t.url ? `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.title)}</a>` : esc(t.title)} <span class="note">(${esc(t.venue || "")}${t.year ? ", " + t.year : ""})</span></li>`).join("")}</ul>` : ""}
+      ${links ? `<h4>Links</h4><p>${links}</p>` : ""}
+      ${b.sources && b.sources.length ? `<details><summary class="note">Sources for this bio</summary><ul>${b.sources.map(u => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a></li>`).join("")}</ul></details>` : ""}
+      ${b.bio ? `<p class="note">Compiled from public sources with AI assistance; may contain mistakes.</p>` : ""}
+    </aside>`;
+    $(".drawer .close").focus();
+  }
+  const closeDrawer = () => { $("#overlay").innerHTML = ""; };
+
+  // ---------- export ----------
+  const pad = n => String(n).padStart(2, "0");
+  function stamp(date, hm) { // PDT is UTC-7 on these dates
+    const [y, mo, da] = date.split("-").map(Number), [h, m] = hm.split(":").map(Number);
+    const t = new Date(Date.UTC(y, mo - 1, da, h + 7, m));
+    return `${t.getUTCFullYear()}${pad(t.getUTCMonth() + 1)}${pad(t.getUTCDate())}T${pad(t.getUTCHours())}${pad(t.getUTCMinutes())}00Z`;
+  }
+  function gcal(d, r) {
+    const [a, b] = r.time.split("–");
+    const q = [["action", "TEMPLATE"], ["text", r.title], ["dates", `${stamp(d.date, a)}/${stamp(d.date, b)}`], ["details", `${r.who || ""}\n${r.stage || ""}\n[un]prompted II`], ["location", "The Hibernia, 1 Jones St, San Francisco, CA 94102"]];
+    return "https://calendar.google.com/calendar/render?" + q.map(([k, v]) => k + "=" + encodeURIComponent(v)).join("&");
+  }
+  function ics() {
+    const fold = s => s.replace(/[\\;,]/g, c => "\\" + c).replace(/\n/g, "\\n");
+    const ev = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//unprompted2 public planner//EN", "CALSCALE:GREGORIAN"];
+    const now = stamp("2026-10-20", "12:00");
+    for (const d of DAYS) for (const r of planRows(d)) {
+      if (r.empty) continue;
+      const [a, b] = r.time.split("–");
+      ev.push("BEGIN:VEVENT", `UID:${d.date}-${a.replace(":", "")}-${r.id || r.wid}@unprompted2-planner`, `DTSTAMP:${now}`, `DTSTART:${stamp(d.date, a)}`, `DTEND:${stamp(d.date, b)}`,
+        `SUMMARY:${fold(r.title)}`, `DESCRIPTION:${fold((r.who ? r.who + "\n" : "") + (r.stage || ""))}`, `LOCATION:${fold("The Hibernia, 1 Jones St, San Francisco (" + (r.stage || "") + ")")}`, "END:VEVENT");
+    }
+    ev.push("END:VCALENDAR");
+    return ev.join("\r\n");
+  }
+  function planText() {
+    const L = ["[un]prompted II · my plan (times PDT)"];
+    for (const d of DAYS) { L.push("", d.label); for (const r of planRows(d)) L.push(`${r.time}  ${r.empty ? "(free)" : r.title}${r.who ? " · " + r.who : ""}${r.stage && !r.empty ? " [" + r.stage + "]" : ""}`); }
+    const later = Object.keys(state.later).filter(k => state.later[k] && TALK[k]);
+    if (later.length) { L.push("", "Watch later"); later.forEach(k => L.push("- " + TALK[k].title)); }
+    return L.join("\n");
+  }
+  function download(name, text, type) {
+    const url = URL.createObjectURL(new Blob([text], { type }));
+    const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+  function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
+  function changed() { rescore(); save(); render(); }
+
+  // ---------- events ----------
+  document.addEventListener("click", async e => {
+    const el = e.target.closest("button, .scrim"); if (!el) return;
+    const ds = el.dataset;
+    if (ds.close) return closeDrawer();
+    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); window.scrollTo(0, 0); return; }
+    if (ds.spk) return openSpeaker(ds.spk);
+    if (ds.topic) { const v = Number(ds.v); if (v) state.prefs.topics[ds.topic] = v; else delete state.prefs.topics[ds.topic]; return changed(); }
+    if (ds.role) { state.prefs.role = state.prefs.role === ds.role ? "" : ds.role; return changed(); }
+    if (ds.preset) { const p = PRESETS[ds.preset]; state.prefs = { ...emptyPrefs(), role: p.role, topics: { ...p.topics }, fmt: { ...p.fmt }, keywords: state.prefs.keywords }; toast(`Profile applied: ${ds.preset}`); return changed(); }
+    if (el.id === "clearPrefs") { state.prefs = emptyPrefs(); return changed(); }
+    if (ds.pick) {
+      const k = ds.pick, v = ds.val;
+      if (v === "__reset") delete state.picks[k]; else if (state.picks[k] === v && v === "none") delete state.picks[k]; else state.picks[k] = v;
+      return changed();
+    }
+    if (ds.later) { if (state.later[ds.later]) delete state.later[ds.later]; else state.later[ds.later] = true; return changed(); }
+    if (ds.ticket) { if (state.tickets[ds.ticket]) delete state.tickets[ds.ticket]; else state.tickets[ds.ticket] = true; return changed(); }
+    if (el.id === "icsPlan") { download("unprompted-II-plan.ics", ics(), "text/calendar"); toast("Calendar file saved"); return; }
+    if (el.id === "copyPlan") {
+      const txt = planText();
+      try { await navigator.clipboard.writeText(txt); toast("Plan copied"); }
+      catch (err) { $("#xfer").innerHTML = `<p class="note">Select the text below and copy it.</p><textarea class="copybox" id="copyText" readonly></textarea>`; const ta = $("#copyText"); ta.value = txt; ta.focus(); ta.select(); }
+      return;
+    }
+    if (el.id === "exportPlan") {
+      const code = JSON.stringify({ app: "unprompted2-public-planner", v: 1, ...state });
+      $("#xfer").innerHTML = `<p class="note">Copy this text, or save it as a file, then use Import on the other device.</p><textarea class="copybox" id="xferText" readonly></textarea><div class="plan-actions"><button type="button" class="btn primary" id="xferCopy">Copy</button><button type="button" class="btn" id="xferSave">Save as file</button></div>`;
+      const ta = $("#xferText"); ta.value = code; ta.focus(); ta.select(); return;
+    }
+    if (el.id === "xferCopy") { const ta = $("#xferText"); try { await navigator.clipboard.writeText(ta.value); toast("Copied"); } catch (err) { ta.focus(); ta.select(); toast("Select the text and copy it"); } return; }
+    if (el.id === "xferSave") { download("unprompted-II-planner-export.json", $("#xferText").value, "application/json"); return; }
+    if (el.id === "importPlan") {
+      $("#xfer").innerHTML = `<p class="note">Paste an export, or choose an exported file. This replaces your interests, picks, watch-later list and tickets.</p><textarea class="copybox" id="importText"></textarea><p><input type="file" id="importFile" accept=".json,application/json,text/plain"></p><div class="plan-actions"><button type="button" class="btn primary" id="importApply">Replace my plan</button><button type="button" class="btn ghost" id="importCancel">Cancel</button><span class="note" id="importMsg"></span></div>`;
+      $("#importText").focus(); return;
+    }
+    if (el.id === "importCancel") { $("#xfer").innerHTML = ""; return; }
+    if (el.id === "importApply") {
+      try {
+        const o = JSON.parse($("#importText").value);
+        if (!o || o.app !== "unprompted2-public-planner") throw new Error("bad");
+        state = { prefs: { ...emptyPrefs(), ...(o.prefs || {}) }, picks: o.picks || {}, later: o.later || {}, tickets: o.tickets || {} };
+        toast("Plan imported"); return changed();
+      } catch (err) { $("#importMsg").textContent = "That is not an export from this planner."; }
+      return;
+    }
+    if (el.id === "resetPlan") { $("#resetConfirm").innerHTML = `<div class="plan-actions"><span class="note">This clears your picks and watch-later list. Interests and tickets stay.</span><button type="button" class="btn primary" id="resetYes">Reset</button><button type="button" class="btn ghost" id="resetNo">Keep my picks</button></div>`; return; }
+    if (el.id === "resetYes") { state.picks = {}; state.later = {}; toast("Picks reset"); return changed(); }
+    if (el.id === "resetNo") { $("#resetConfirm").innerHTML = ""; return; }
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+  let kwTimer = null;
+  document.addEventListener("input", e => {
+    if (e.target.id === "q") { ui.q = e.target.value; render(); }
+    if (e.target.id === "keywords") { state.prefs.keywords = e.target.value; clearTimeout(kwTimer); kwTimer = setTimeout(changed, 400); }
+  });
+  document.addEventListener("change", e => {
+    const t = e.target;
+    if (t.id === "hideLow") { ui.hideLow = t.checked; saveUi(); render(); }
+    if (t.dataset && t.dataset.fmt) { if (t.checked) state.prefs.fmt[t.dataset.fmt] = true; else delete state.prefs.fmt[t.dataset.fmt]; changed(); }
+    if (t.id === "level") { state.prefs.level = t.value; changed(); }
+    if (t.id === "importFile" && t.files && t.files[0]) { const r = new FileReader(); r.onload = () => { $("#importText").value = String(r.result || ""); }; r.readAsText(t.files[0]); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
