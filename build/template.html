@@ -164,6 +164,8 @@ details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); fo
 .thin-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px }
 .slot.thin.off .thin-row b { text-decoration: line-through; color: var(--muted) }
 .btn.small { padding: 2px 8px; font-size: 12px }
+.nowbtn { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 25;
+  border: 0; border-radius: 999px; padding: 10px 16px; background: var(--accent); color: var(--accent-ink); font: 600 14px/1 var(--f-body); cursor: pointer; box-shadow: 0 4px 14px rgba(10, 14, 20, .25) }
 .nowtag { display: block; width: max-content; margin-top: 4px; font: 600 10.5px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent); padding: 3px 6px; border-radius: 4px }
 .plan-list li.now { box-shadow: inset 4px 0 0 var(--accent) }
 .plan-list li.now .pt { color: var(--accent); font-weight: 600 }
@@ -223,6 +225,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   <span>Made by <a id="authorLink2" href="#" target="_blank" rel="noopener">Pedro Fortuna</a>, CTO and co-founder of <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a>.</span>
   <span>Open source (MIT): <a href="https://github.com/pfortuna/unprompted2-planner" target="_blank" rel="noopener">github.com/pfortuna/unprompted2-planner</a>. Issues and corrections welcome.</span>
 </div></footer>
+<button type="button" id="nowBtn" class="nowbtn" hidden>Back to now</button>
 <div id="overlay"></div>
 
 <script type="application/json" id="data">/*__DATA__*/</script>
@@ -600,20 +603,40 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
   }
 
-  function jumpToNow() {
-    const n = nowSF(); let el = null;
+  // The slot (or plan row) of today that has not ended yet; null on other days, other tabs, or after the day ends
+  function nowTarget() {
+    const n = nowSF();
     if (ui.tab === "plan") {
       const day = document.querySelector(`.plan-day[data-date="${n.date}"]`);
-      if (day) el = [...day.querySelectorAll("li[data-b]")].find(li => Number(li.dataset.b) > n.min);
-    } else if (ui.tab[0] === "d") {
-      const d = DAYS.find(x => "d" + x.n === ui.tab);
-      if (d && d.date === n.date) el = [...document.querySelectorAll(".slot[data-b]")].find(x => Number(x.dataset.b) > n.min);
+      return day ? [...day.querySelectorAll("li[data-b]")].find(li => Number(li.dataset.b) > n.min) || null : null;
     }
+    if (ui.tab[0] === "d") {
+      const d = DAYS.find(x => "d" + x.n === ui.tab);
+      if (d && d.date === n.date) return [...document.querySelectorAll(".slot[data-b]")].find(x => Number(x.dataset.b) > n.min) || null;
+    }
+    return null;
+  }
+  const headerOffset = () => { const head = document.querySelector("header.top"); return head ? head.offsetHeight : 0; };
+  function jumpToNow() {
+    const el = nowTarget();
     if (!el) return false;
-    const head = document.querySelector("header.top"), off = (head ? head.offsetHeight : 0) + 12;
-    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - off);
+    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - headerOffset() - 12);
     return true;
   }
+  // "Back to now" shows only while the current slot is off screen, pointing the way to it
+  function updateNowBtn() {
+    const btn = document.getElementById("nowBtn"); if (!btn) return;
+    const el = nowTarget();
+    if (!el) { btn.hidden = true; return; }
+    const r = el.getBoundingClientRect(), below = r.top > window.innerHeight, above = r.bottom < headerOffset();
+    btn.hidden = !(below || above);
+    btn.textContent = (below ? "↓" : "↑") + " Back to now";
+  }
+  let nowBtnQueued = false;
+  const queueNowBtn = () => { if (nowBtnQueued) return; nowBtnQueued = true; (window.requestAnimationFrame || (f => setTimeout(f, 50)))(() => { nowBtnQueued = false; updateNowBtn(); }); };
+  window.addEventListener("scroll", queueNowBtn, { passive: true });
+  window.addEventListener("resize", queueNowBtn);
+  setInterval(updateNowBtn, 60000);
 
   // ---------- speakers ----------
   function openSpeaker(k) {
@@ -679,7 +702,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     const el = e.target.closest("button, .scrim"); if (!el) return;
     const ds = el.dataset;
     if (ds.close) return closeDrawer();
-    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); return; }
+    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); updateNowBtn(); return; }
+    if (el.id === "nowBtn") { jumpToNow(); updateNowBtn(); return; }
     if (ds.spk) return openSpeaker(ds.spk);
     if (ds.topic) { const v = Number(ds.v); if (v) state.prefs.topics[ds.topic] = v; else delete state.prefs.topics[ds.topic]; return changed(); }
     if (ds.role) { state.prefs.role = state.prefs.role === ds.role ? "" : ds.role; return changed(); }
@@ -740,6 +764,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
 
   render();
   jumpToNow();
+  updateNowBtn();
 })();
 </script>
 </body>
