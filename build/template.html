@@ -179,6 +179,11 @@ details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); fo
 .about h2 { margin: 0; font: 700 26px/1.15 var(--f-display) }
 .about h3 { margin: 8px 0 0; font: 700 18px/1.2 var(--f-display) }
 .about p { margin: 0 }
+.share .field { max-width: none }
+.share textarea.copybox { min-height: 84px; font: 14px/1.5 var(--f-body) }
+.sharegrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px }
+.sharegrid .btn { text-align: center; text-decoration: none; color: var(--ink); padding: 10px 12px }
+.sharegrid .btn:hover { border-color: var(--accent); color: var(--accent) }
 
 footer.foot { border-top: 1px solid var(--line); margin-top: 20px }
 footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px }
@@ -572,6 +577,49 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     </section>`;
   }
 
+  // ---------- share ----------
+  // Share links are plain links the visitor clicks; they carry only the site URL and the message, never the visitor's plan.
+  const SITE = "https://pfortuna.github.io/unprompted2-planner/";
+  const SHARE_DEFAULT = "Planning my [un]prompted II schedule with this free planner: it rates every talk for your interests, suggests a pick per slot, works offline, and keeps your plan in your browser.";
+  let shareText = SHARE_DEFAULT;
+  const enc = encodeURIComponent;
+  const NETWORKS = [
+    ["LinkedIn", () => `https://www.linkedin.com/sharing/share-offsite/?url=${enc(SITE)}`],
+    ["X", t => `https://x.com/intent/post?text=${enc(t)}&url=${enc(SITE)}`],
+    ["Bluesky", t => `https://bsky.app/intent/compose?text=${enc(t + " " + SITE)}`],
+    ["Threads", t => `https://www.threads.net/intent/post?text=${enc(t + " " + SITE)}`],
+    ["Reddit", () => `https://www.reddit.com/submit?url=${enc(SITE)}&title=${enc("[un]prompted II Planner")}`],
+    ["Hacker News", () => `https://news.ycombinator.com/submitlink?u=${enc(SITE)}&t=${enc("[un]prompted II Planner")}`],
+    ["Facebook", () => `https://www.facebook.com/sharer/sharer.php?u=${enc(SITE)}`],
+    ["WhatsApp", t => `https://wa.me/?text=${enc(t + " " + SITE)}`],
+    ["Telegram", t => `https://t.me/share/url?url=${enc(SITE)}&text=${enc(t)}`],
+    ["Email", t => `mailto:?subject=${enc("[un]prompted II Planner")}&body=${enc(t + "\n\n" + SITE)}`],
+  ];
+  function shareHtml() {
+    return `<div class="about share">
+      <h2>Share the planner</h2>
+      <p>Know someone going to [un]prompted II? Send them a link to this site. They get the planner itself and start with their own, empty plan. Your picks and interests are never included: they stay in your browser.</p>
+      <div class="field"><label for="shareText"><b>Message</b></label>
+        <textarea id="shareText" class="copybox" rows="3">${esc(shareText)}</textarea>
+        <span class="note">Used for X, Bluesky, Threads, WhatsApp, Telegram and email. LinkedIn, Reddit, Hacker News and Facebook take only the link, so paste the message yourself if you want it there.</span></div>
+      <div class="sharegrid">${NETWORKS.map(([n, f]) => `<a class="btn" data-net="${esc(n)}" href="${esc(f(shareText))}" target="_blank" rel="noopener">${esc(n)}</a>`).join("")}</div>
+      <h3>Slack, Teams, Discord, Mastodon and anywhere else</h3>
+      <div class="plan-actions">
+        <button type="button" class="btn primary" id="copyShareMsg">Copy message with link</button>
+        <button type="button" class="btn" id="copyShareLink">Copy link</button>
+        ${navigator.share ? `<button type="button" class="btn" id="nativeShare">More options…</button>` : ""}
+      </div>
+      <p class="note">Link: <a href="${SITE}">${SITE}</a></p>
+    </div>`;
+  }
+  function refreshShareLinks() {
+    document.querySelectorAll("a[data-net]").forEach(a => { const n = NETWORKS.find(x => x[0] === a.dataset.net); if (n) a.href = n[1](shareText); });
+  }
+  async function copyText(txt, okMsg) {
+    try { await navigator.clipboard.writeText(txt); toast(okMsg); }
+    catch (err) { const ta = document.getElementById("shareText"); if (ta) { ta.value = txt; ta.focus(); ta.select(); } toast("Select the text and copy it"); }
+  }
+
   function aboutHtml() {
     const li = AUTHOR.linkedin.startsWith("http") ? `<a href="${esc(AUTHOR.linkedin)}" target="_blank" rel="noopener">Pedro Fortuna</a>` : "Pedro Fortuna";
     return `<div class="about">
@@ -594,13 +642,14 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
 
   // ---------- render ----------
   function render() {
-    const tabs = [{ id: "prefs", label: "Interests", d: "" }, ...DAYS.map(d => ({ id: "d" + d.n, label: d.label.split(" ")[0].slice(0, 3), d: d.date.slice(8) + " Oct" })), { id: "plan", label: "My plan", d: "" }, { id: "about", label: "About", d: "" }];
+    const tabs = [{ id: "prefs", label: "Interests", d: "" }, ...DAYS.map(d => ({ id: "d" + d.n, label: d.label.split(" ")[0].slice(0, 3), d: d.date.slice(8) + " Oct" })), { id: "plan", label: "My plan", d: "" }, { id: "share", label: "Share", d: "" }, { id: "about", label: "About", d: "" }];
     $("#tabs").innerHTML = tabs.map(t => `<button type="button" role="tab" data-tab="${t.id}" aria-selected="${ui.tab === t.id}">${t.label}${t.d ? `<span class="d">${t.d}</span>` : ""}</button>`).join("");
     const main = $("#main");
     const focusedId = document.activeElement && document.activeElement.id;
     if (ui.tab === "prefs") main.innerHTML = prefsHtml();
     else if (ui.tab === "plan") main.innerHTML = planHtml();
     else if (ui.tab === "about") main.innerHTML = aboutHtml();
+    else if (ui.tab === "share") main.innerHTML = shareHtml();
     else main.innerHTML = dayHtml(DAYS.find(x => "d" + x.n === ui.tab) || DAYS[0]);
     if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
   }
@@ -706,6 +755,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (ds.close) return closeDrawer();
     if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); updateNowBtn(); return; }
     if (el.id === "nowBtn") { jumpToNow(); updateNowBtn(); return; }
+    if (el.id === "copyShareMsg") return copyText(shareText + " " + SITE, "Message copied");
+    if (el.id === "copyShareLink") return copyText(SITE, "Link copied");
+    if (el.id === "nativeShare") { try { await navigator.share({ title: "[un]prompted II Planner", text: shareText, url: SITE }); } catch (err) {} return; }
     if (ds.spk) return openSpeaker(ds.spk);
     if (ds.topic) { const v = Number(ds.v); if (v) state.prefs.topics[ds.topic] = v; else delete state.prefs.topics[ds.topic]; return changed(); }
     if (ds.role) { state.prefs.role = state.prefs.role === ds.role ? "" : ds.role; return changed(); }
@@ -754,6 +806,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   let kwTimer = null;
   document.addEventListener("input", e => {
     if (e.target.id === "q") { ui.q = e.target.value; render(); }
+    if (e.target.id === "shareText") { shareText = e.target.value; refreshShareLinks(); }
     if (e.target.id === "keywords") { state.prefs.keywords = e.target.value; clearTimeout(kwTimer); kwTimer = setTimeout(changed, 400); }
   });
   document.addEventListener("change", e => {
