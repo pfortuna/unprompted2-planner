@@ -29,6 +29,7 @@ The only request is the one that loads the page itself from GitHub Pages, which,
 - **Builds your plan.** Save a calendar file (.ics) with every pick, add talks one by one to Google Calendar, copy the plan as text, and keep a watch-later list for talks you cannot attend.
 - **Speaker bios** with their other talks and the public sources each bio came from.
 - **Follows the day with you.** During the conference the site opens on today's schedule, scrolled to the session running now (San Francisco time), and a "Back to now" button brings you back after you scroll away. On other days it opens on your plan.
+- **Links to a single session.** The link icon on each talk or workshop sends a link that opens the planner straight on that session, highlighted, with its abstract open. Someone who has not used the planner yet is invited to set their interests.
 - **Easy to pass on.** The Share tab has one-click links for LinkedIn, X, Bluesky, Threads, Reddit, Hacker News, Facebook, WhatsApp, Telegram and email, plus copy buttons for Slack or anywhere else. Sharing sends a link to this site and a message you can edit. Your picks and interests are never included; whoever opens the link starts with their own, empty plan.
 - **Works offline.** Fonts and data are embedded in the one file. Save the page to your device and it works on a plane.
 - **Moves with you.** Export and Import (on the My plan tab) carry your plan between browsers or devices.

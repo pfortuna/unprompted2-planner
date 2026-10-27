@@ -112,6 +112,11 @@ nav.tabs button[aria-selected="true"] .d { color: inherit; opacity: .75 }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0 }
 .card.picked { border: 2px solid var(--accent); padding: 11px 13px }
+.card.focus, details.ws.focus { outline: 3px solid var(--accent); outline-offset: 3px; box-shadow: 0 0 0 8px var(--accent-soft) }
+.btn.icon { padding: 4px 6px; line-height: 0; margin-left: auto; color: var(--muted) }
+.btn.icon:hover { color: var(--accent); border-color: var(--accent) }
+.banner.intro { justify-content: space-between }
+.banner .row { display: flex; gap: 8px; flex-wrap: wrap }
 .card.unpicked { background: transparent }
 .card .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
 .stage { font: 500 11px/1 var(--f-mono); color: var(--muted); letter-spacing: .05em }
@@ -348,8 +353,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const save = () => { if (!canSave) return; try { localStorage.setItem(LS_KEY, JSON.stringify({ v: STATE_V, ...state })); } catch (e) {} };
   const saveUi = () => { try { localStorage.setItem(LS_UI, JSON.stringify({ hideLow: ui.hideLow })); } catch (e) {} };
   // A saved plan is anything the visitor changed: interests, picks, watch-later or tickets
-  const p0 = state.prefs, nonEmpty = o => Object.keys(o || {}).length > 0;
-  const hasPlan = nonEmpty(state.picks) || nonEmpty(state.later) || nonEmpty(state.tickets) || nonEmpty(p0.topics) || nonEmpty(p0.fmt) || !!(p0.role || p0.level || p0.keywords.trim());
+  const nonEmpty = o => Object.keys(o || {}).length > 0;
+  const hasState = () => { const p0 = state.prefs; return nonEmpty(state.picks) || nonEmpty(state.later) || nonEmpty(state.tickets) || nonEmpty(p0.topics) || nonEmpty(p0.fmt) || !!(p0.role || p0.level || p0.keywords.trim()); };
+  const hasPlan = hasState();
   // On a conference day the site opens on that day (San Francisco date). On any other day returning visitors
   // open on their plan, and a first visit opens on Interests, filled with the defaults (every topic Neutral).
   const todayIdx = DATA.days.findIndex(d => d.date === nowSF().date);
@@ -463,12 +469,16 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const reasonsHtml = it => { const r = reasons(it); return r.length ? `<div class="why"><h4>Why attend</h4><ul>${r.map(x => `<li>${esc(x.t)}</li>`).join("")}</ul></div>` : ""; };
   const whyChips = it => sc(it).why.map(([sign, l]) => `<span class="chip ${sign === "+" ? "plus" : "minus"}">${sign === "+" ? "+" : "−"} ${esc(l)}</span>`).join("");
 
+  // Link to one session: <site>#talk-<id>. Opening it jumps to that session's day, highlights it and opens its abstract.
+  const LINK_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>`;
+  const linkBtn = it => `<button type="button" class="btn ghost icon" data-link="${esc(it.id)}" title="Send a link to this session" aria-label="Send a link to this session: ${esc(it.title)}">${LINK_ICON}</button>`;
   function talkCard(t, s, picked) {
     const isPick = picked === t.id, explicit = state.picks[s.key] !== undefined, later = !!state.later[t.id];
     const tag = isPick ? `<span class="tag ${explicit ? "" : "sugg"}">${explicit ? "Your pick" : "Suggested"}</span>` : "";
     const wc = whyChips(t);
-    return `<article class="card ${isPick ? "picked" : (picked && picked !== "none" ? "unpicked" : "")}">
-      <div class="row">${recChip(t)}<span class="stage">${t.stage === "S1" ? "STAGE 1" : "STAGE 2"}</span>${tag}</div>
+    const focus = ui.focus === t.id;
+    return `<article id="talk-${t.id}" class="card ${isPick ? "picked" : (picked && picked !== "none" ? "unpicked" : "")}${focus ? " focus" : ""}">
+      <div class="row">${recChip(t)}<span class="stage">${t.stage === "S1" ? "STAGE 1" : "STAGE 2"}</span>${tag}${linkBtn(t)}</div>
       <h3>${esc(t.title)}</h3>
       ${t.speakers.length ? spkHtml(t.speakers) : ""}
       ${t.summary ? `<p class="line">${esc(t.summary)}</p>` : ""}
@@ -479,7 +489,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
           `<button type="button" class="btn ${isPick ? "primary" : ""}" data-pick="${s.key}" data-val="${t.id}" aria-pressed="${isPick}">${isPick ? "Picked" : "Pick this"}</button>`}
         <button type="button" class="btn ghost" data-later="${t.id}" aria-pressed="${later}">${later ? "On watch-later list" : "Watch later"}</button>
       </div>
-      <details class="more"><summary>Topics and abstract</summary>
+      <details class="more"${focus ? " open" : ""}><summary>Topics and abstract</summary>
         <div class="chips" style="margin-top:8px">${topicChips(t)}${Object.entries(t.formats || {}).filter(([, v]) => v).map(([k]) => `<span class="chip">${esc(FMT_CHIP[k])}</span>`).join("")}${t.level ? `<span class="chip">${esc(t.level)}</span>` : ""}</div>
         ${t.abstract ? `<div class="abs"><h4>Abstract</h4>${paras(t.abstract)}</div>` : `<p class="note">No abstract published.</p>`}
       </details>
@@ -533,8 +543,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <div class="extras">
         <h3>Workshops this day</h3>
         <p class="note">Two-hour hands-on sessions with their own registration. Mark the ones you hold a ticket for and their time block replaces the talks it overlaps.</p>
-        ${d.ws.map(w => `<details class="ws${state.tickets[w.id] ? " mine" : ""}"><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
-          <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button></div>
+        ${d.ws.map(w => `<details id="talk-${w.id}" class="ws${state.tickets[w.id] ? " mine" : ""}${ui.focus === w.id ? " focus" : ""}"${ui.focus === w.id ? " open" : ""}><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
+          <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button>${linkBtn(w)}</div>
           ${w.speakers.length ? spkHtml(w.speakers) : ""}${whyChips(w) ? `<div class="chips" style="margin-block:6px">${whyChips(w)}</div>` : ""}
           ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${reasonsHtml(w)}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
         ${d.vill.length ? `<h3>Villages room</h3><p class="note">${d.vill.map(v => `${v.time} ${esc(v.title)}`).join(" · ")}</p>` : ""}
@@ -650,7 +660,15 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   }
   async function copyText(txt, okMsg) {
     try { await navigator.clipboard.writeText(txt); toast(okMsg); }
-    catch (err) { const ta = document.getElementById("shareText"); if (ta) { ta.value = txt; ta.focus(); ta.select(); } toast("Select the text and copy it"); }
+    catch (err) {
+      // Fallback for browsers that refuse the async clipboard: copy through a temporary, off-screen text area
+      const ta = document.createElement("textarea");
+      ta.value = txt; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+      toast(ok ? okMsg : "Copy failed. The link is: " + txt);
+    }
   }
 
   function aboutHtml() {
@@ -684,6 +702,10 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     else if (ui.tab === "about") main.innerHTML = aboutHtml();
     else if (ui.tab === "share") main.innerHTML = shareHtml();
     else main.innerHTML = dayHtml(DAYS.find(x => "d" + x.n === ui.tab) || DAYS[0]);
+    // Visitors with nothing saved yet (often arriving from a shared link) get an invitation to set their interests
+    if (!hasState() && ui.tab !== "prefs" && !ui.introDismissed) {
+      main.insertAdjacentHTML("afterbegin", `<div class="banner intro"><span>${ui.focus ? "Someone shared this session with you. " : ""}Want to plan your own [un]prompted II? Start by telling the planner what interests you, and it will rate every session for you.</span><span class="row"><button type="button" class="btn primary" data-tab="prefs">Set my interests</button><button type="button" class="btn ghost" id="introClose">Not now</button></span></div>`);
+    }
     if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
   }
 
@@ -786,7 +808,14 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     const el = e.target.closest("button, .scrim"); if (!el) return;
     const ds = el.dataset;
     if (ds.close) return closeDrawer();
-    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); updateNowBtn(); return; }
+    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; clearFocus(); saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); updateNowBtn(); return; }
+    if (ds.link) {
+      const it = TALK[ds.link] || DATA.workshops.find(w => w.id === ds.link); if (!it) return;
+      const url = SITE + "#talk-" + it.id;
+      if (navigator.share) { try { await navigator.share({ title: it.title, text: `${it.title} at [un]prompted II`, url }); } catch (err) {} return; }
+      return copyText(url, "Link to this session copied");
+    }
+    if (el.id === "introClose") { ui.introDismissed = true; render(); return; }
     if (el.id === "nowBtn") { jumpToNow(); updateNowBtn(); return; }
     if (el.id === "copyShareMsg") return copyText(shareText + " " + SITE, "Message copied");
     if (el.id === "copyShareLink") return copyText(SITE, "Link copied");
@@ -850,9 +879,39 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (t.id === "importFile" && t.files && t.files[0]) { const r = new FileReader(); r.onload = () => { $("#importText").value = String(r.result || ""); }; r.readAsText(t.files[0]); }
   });
 
-  render();
-  jumpToNow();
-  updateNowBtn();
+  // ---------- links to one session (#talk-<id>) ----------
+  function sessionFromHash() {
+    const m = /^#talk-([A-Za-z0-9-]+)$/.exec(location.hash || "");
+    if (!m) return null;
+    if (TALK[m[1]]) return { id: m[1], day: TALK[m[1]].day.n };
+    const w = DATA.workshops.find(x => x.id === m[1]);
+    return w ? { id: w.id, day: w.day } : null;
+  }
+  function focusSession() {
+    if (!ui.focus) return false;
+    const el = document.getElementById("talk-" + ui.focus); if (!el) return false;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - headerOffset() - 12);
+    return true;
+  }
+  // Leaving the linked session (switching tab) drops the link from the address, so a reload behaves normally
+  function clearFocus() {
+    if (!ui.focus) return;
+    ui.focus = null;
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  }
+  function openFromHash() {
+    const f = sessionFromHash(); if (!f) return false;
+    ui.focus = f.id; ui.tab = "d" + f.day; ui.q = "";
+    render(); focusSession(); updateNowBtn();
+    return true;
+  }
+  window.addEventListener("hashchange", openFromHash);
+
+  if (!openFromHash()) {
+    render();
+    jumpToNow();
+    updateNowBtn();
+  }
 })();
 </script>
 </body>
