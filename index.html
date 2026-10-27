@@ -632,6 +632,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const SHARE_DEFAULT = "Planning my [un]prompted II schedule with this free planner: it rates every talk for your interests, suggests a pick per slot, works offline, and keeps your plan in your browser.";
   let shareText = SHARE_DEFAULT;
   const enc = encodeURIComponent;
+  // Use the device share sheet only on touch devices. On desktop some share targets (such as "Copy") glue the text
+  // onto the URL and percent-encode it, so desktop copies readable text instead.
+  const NATIVE_SHARE = !!navigator.share && !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
   const NETWORKS = [
     ["LinkedIn", () => `https://www.linkedin.com/sharing/share-offsite/?url=${enc(SITE)}`],
     ["X", t => `https://x.com/intent/post?text=${enc(t)}&url=${enc(SITE)}`],
@@ -656,7 +659,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <div class="plan-actions">
         <button type="button" class="btn primary" id="copyShareMsg">Copy message with link</button>
         <button type="button" class="btn" id="copyShareLink">Copy link</button>
-        ${navigator.share ? `<button type="button" class="btn" id="nativeShare">More options…</button>` : ""}
+        ${NATIVE_SHARE ? `<button type="button" class="btn" id="nativeShare">More options…</button>` : ""}
       </div>
       <p class="note">Link: <a href="${SITE}">${SITE}</a></p>
     </div>`;
@@ -823,8 +826,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (ds.link) {
       const it = TALK[ds.link] || DATA.workshops.find(w => w.id === ds.link); if (!it) return;
       const url = SITE + "#talk-" + it.id;
-      if (navigator.share) { try { await navigator.share({ title: it.title, text: `${it.title} at [un]prompted II`, url }); } catch (err) {} return; }
-      return copyText(url, "Link to this session copied");
+      if (NATIVE_SHARE) { try { await navigator.share({ title: it.title, text: `${it.title} ([un]prompted II)`, url }); } catch (err) {} return; }
+      return copyText(`${it.title} ([un]prompted II)\n${url}`, "Link to this session copied");
     }
     if (el.id === "introClose") { ui.introDismissed = true; render(); return; }
     if (el.id === "nowBtn") { jumpToNow(); updateNowBtn(); return; }
