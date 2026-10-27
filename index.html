@@ -345,8 +345,10 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   // A saved plan is anything the visitor changed: interests, picks, watch-later or tickets
   const p0 = state.prefs, nonEmpty = o => Object.keys(o || {}).length > 0;
   const hasPlan = nonEmpty(state.picks) || nonEmpty(state.later) || nonEmpty(state.tickets) || nonEmpty(p0.topics) || nonEmpty(p0.fmt) || !!(p0.role || p0.level || p0.keywords.trim());
-  // Returning visitors open on their plan; a first visit opens on Interests, filled with the defaults (every topic Neutral)
-  ui.tab = hasPlan ? "plan" : "prefs";
+  // On a conference day the site opens on that day (San Francisco date). On any other day returning visitors
+  // open on their plan, and a first visit opens on Interests, filled with the defaults (every topic Neutral).
+  const todayIdx = DATA.days.findIndex(d => d.date === nowSF().date);
+  ui.tab = todayIdx >= 0 ? "d" + (todayIdx + 1) : hasPlan ? "plan" : "prefs";
 
   // ---------- model ----------
   const DAYS = DATA.days.map((d, i) => {

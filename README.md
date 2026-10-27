@@ -28,6 +28,7 @@ The only request is the one that loads the page itself from GitHub Pages, which,
 - **Handles workshops.** Mark the workshops you hold a ticket for, and their two-hour blocks replace the talks they overlap.
 - **Builds your plan.** Save a calendar file (.ics) with every pick, add talks one by one to Google Calendar, copy the plan as text, and keep a watch-later list for talks you cannot attend.
 - **Speaker bios** with their other talks and the public sources each bio came from.
+- **Follows the day with you.** During the conference the site opens on today's schedule, scrolled to the session running now (San Francisco time), and a "Back to now" button brings you back after you scroll away. On other days it opens on your plan.
 - **Works offline.** Fonts and data are embedded in the one file. Save the page to your device and it works on a plane.
 - **Moves with you.** Export and Import (on the My plan tab) carry your plan between browsers or devices.
 
