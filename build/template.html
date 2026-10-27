@@ -159,6 +159,10 @@ details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); fo
 .plan-list .pn { font-size: 13px; color: var(--muted) }
 .plan-list li.w { background: var(--good-soft) }
 .plan-list li.empty { color: var(--muted); font-style: italic }
+.plan-list li.fx b { font-weight: 500; color: var(--muted) }
+.thin-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px }
+.slot.thin.off .thin-row b { text-decoration: line-through; color: var(--muted) }
+.btn.small { padding: 2px 8px; font-size: 12px }
 .plan-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-block: 16px 0 }
 .copybox { width: 100%; min-height: 140px; font: 12.5px/1.45 var(--f-mono); padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
 
@@ -334,7 +338,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const sc = it => { if (!SC.has(it.id)) SC.set(it.id, score(it)); return SC.get(it.id); };
   const rescore = () => SC.clear();
 
-  const wsOf = s => DATA.workshops.find(w => w.day === s.day && state.tickets[w.id] && s.talks.length && s.a < w.b && s.b > w.a) || null;
+  const wsOf = s => DATA.workshops.find(w => w.day === s.day && state.tickets[w.id] && (s.talks.length || s.fixed.length) && s.a < w.b && s.b > w.a) || null;
   function suggestion(s) {
     if (!s.talks.length) return null;
     return [...s.talks].sort((x, y) => sc(y).s - sc(x).s || x.stage.localeCompare(y.stage))[0].id;
@@ -342,7 +346,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   function pickOf(s) {
     if (wsOf(s)) return "workshop";
     const v = state.picks[s.key];
-    return v === undefined ? suggestion(s) : v;
+    // Non-talk slots (opening, breaks, closing) are in the plan by default; "none" leaves them free
+    if (v === undefined) return s.talks.length ? suggestion(s) : "fixed";
+    return v;
   }
 
   // ---------- render helpers ----------
@@ -393,7 +399,11 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (!s.talks.length) {
       const f = s.fixed[0]; if (!f) return "";
       const sp = f.speakers && f.speakers.length ? ` · ${f.speakers.map(x => esc(x.n)).join(", ")}` : "";
-      return `<div class="slot thin"><div class="t">${s.time}</div><div class="thin-row"><b>${esc(f.title)}</b>${sp}</div></div>`;
+      const p = pickOf(s);
+      const act = p === "workshop" ? `<span class="clash">During your workshop</span>` : p === "none"
+        ? `<button type="button" class="btn ghost small" data-pick="${s.key}" data-val="__reset" aria-pressed="true">Left free · add back</button>`
+        : `<button type="button" class="btn ghost small" data-pick="${s.key}" data-val="none" aria-pressed="false">Leave this slot free</button>`;
+      return `<div class="slot thin${p === "fixed" ? "" : " off"}"><div class="t">${s.time}</div><div class="thin-row"><span><b>${esc(f.title)}</b>${sp}</span>${act}</div></div>`;
     }
     const dim = ui.q && !s.talks.some(matches) ? " dim" : "";
     const w = wsOf(s);
@@ -457,11 +467,16 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   function planRows(d) {
     const rows = [];
     for (const s of d.slots) {
-      if (!s.talks.length) continue;
+      if (!s.talks.length && !s.fixed.length) continue;
       const p = pickOf(s);
       if (p === "workshop") {
         const w = wsOf(s);
         if (!rows.some(r => r.wid === w.id)) rows.push({ w: true, wid: w.id, time: w.time, title: w.title, who: w.speakers.map(x => x.n).join(", "), stage: "Workshop" });
+        continue;
+      }
+      if (p === "fixed") {
+        const f = s.fixed[0];
+        rows.push({ fixed: true, uid: s.key.replace(/[^0-9A-Za-z]/g, ""), time: s.time, title: f.title, who: (f.speakers || []).map(x => x.n).join(", "), stage: "" });
         continue;
       }
       if (p === "none" || !TALK[p]) { rows.push({ empty: true, time: s.time, title: "Free slot" }); continue; }
@@ -488,7 +503,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <div id="xfer"></div><div id="resetConfirm"></div>
       ${all.map(({ d, rows }) => `<div class="plan-day"><h3>${esc(d.label)}</h3><ul class="plan-list">
         ${rows.map(r => r.empty ? `<li class="empty"><span class="pt">${r.time}</span><span>Free slot</span><span></span></li>` :
-          `<li class="${r.w ? "w" : ""}"><span class="pt">${r.time}</span><span><b>${esc(r.title)}</b><br><span class="pn">${esc(r.who)}</span></span><span class="pn">${r.w ? "Workshop" : `${esc(r.stage)} · ${REC[r.r]}`}<br><a href="${gcal(d, r)}" target="_blank" rel="noopener">Google Calendar</a></span></li>`).join("")}
+          `<li class="${r.w ? "w" : r.fixed ? "fx" : ""}"><span class="pt">${r.time}</span><span><b>${esc(r.title)}</b>${r.who ? `<br><span class="pn">${esc(r.who)}</span>` : ""}</span><span class="pn">${r.w ? "Workshop<br>" : r.fixed ? "" : `${esc(r.stage)} · ${REC[r.r]}<br>`}<a href="${gcal(d, r)}" target="_blank" rel="noopener">Google Calendar</a></span></li>`).join("")}
       </ul></div>`).join("")}
       <div class="plan-day"><h3>Watch later</h3>${later.length ? `<ul class="plan-list">${later.map(k => { const t = TALK[k]; return `<li><span class="pt">Day ${t.day.n} ${t.slot.time.slice(0, 5)}</span><span><b>${esc(t.title)}</b><br><span class="pn">${esc(t.speakers.map(x => x.n).join(", "))}</span></span><span class="pn"></span></li>`; }).join("")}</ul>` : `<p class="note">Nothing yet. Use "Watch later" on any talk you cannot attend.</p>`}</div>
     </section>`;
@@ -564,8 +579,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     for (const d of DAYS) for (const r of planRows(d)) {
       if (r.empty) continue;
       const [a, b] = r.time.split("–");
-      ev.push("BEGIN:VEVENT", `UID:${d.date}-${a.replace(":", "")}-${r.id || r.wid}@unprompted2-planner`, `DTSTAMP:${now}`, `DTSTART:${stamp(d.date, a)}`, `DTEND:${stamp(d.date, b)}`,
-        `SUMMARY:${fold(r.title)}`, `DESCRIPTION:${fold((r.who ? r.who + "\n" : "") + (r.stage || ""))}`, `LOCATION:${fold("The Hibernia, 1 Jones St, San Francisco (" + (r.stage || "") + ")")}`, "END:VEVENT");
+      ev.push("BEGIN:VEVENT", `UID:${d.date}-${a.replace(":", "")}-${r.id || r.wid || r.uid}@unprompted2-planner`, `DTSTAMP:${now}`, `DTSTART:${stamp(d.date, a)}`, `DTEND:${stamp(d.date, b)}`,
+        `SUMMARY:${fold(r.title)}`, `DESCRIPTION:${fold((r.who ? r.who + "\n" : "") + (r.stage || ""))}`, `LOCATION:${fold("The Hibernia, 1 Jones St, San Francisco" + (r.stage ? " (" + r.stage + ")" : ""))}`, "END:VEVENT");
     }
     ev.push("END:VCALENDAR");
     return ev.join("\r\n");
