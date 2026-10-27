@@ -164,6 +164,9 @@ details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); fo
 .thin-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px }
 .slot.thin.off .thin-row b { text-decoration: line-through; color: var(--muted) }
 .btn.small { padding: 2px 8px; font-size: 12px }
+.nowtag { display: block; width: max-content; margin-top: 4px; font: 600 10.5px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent); padding: 3px 6px; border-radius: 4px }
+.plan-list li.now { box-shadow: inset 4px 0 0 var(--accent) }
+.plan-list li.now .pt { color: var(--accent); font-weight: 600 }
 .card.fixedcard { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 7px 12px; font-size: 13.5px }
 .card.fixedcard b { font-weight: 600 }
 .plan-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-block: 16px 0 }
@@ -440,28 +443,36 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     </article>`;
   }
 
-  const slotAttrs = s => "";
+  function nowSF() {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date()).map(x => [x.type, x.value]));
+    return { date: `${parts.year}-${parts.month}-${parts.day}`, min: Number(parts.hour) * 60 + Number(parts.minute) };
+  }
+  const isNow = (date, a, b) => { const n = nowSF(); return n.date === date && a <= n.min && n.min < b; };
+  const dayDate = s => DAYS[s.day - 1].date;
+  const slotAttrs = s => ` data-a="${s.a}" data-b="${s.b}"`;
+  const nowTag = s => isNow(dayDate(s), s.a, s.b) ? `<span class="nowtag">Now</span>` : "";
   function slotHtml(s) {
     if (!s.talks.length) {
       const f = s.fixed[0]; if (!f) return "";
       const sp = f.speakers && f.speakers.length ? ` · ${f.speakers.map(x => esc(x.n)).join(", ")}` : "";
       const p = pickOf(s);
       // In the plan: same purple border as a picked talk. Left free or covered by a workshop: a plain, struck-through row.
-      if (p === "fixed") return `<div class="slot thin"${slotAttrs(s)}><div class="t">${s.time}</div><div class="card picked fixedcard"><span><b>${esc(f.title)}</b>${sp}</span><span class="row"><span class="tag">In your plan</span><button type="button" class="btn ghost small" data-pick="${s.key}" data-val="none">Leave this slot free</button></span></div></div>`;
+      if (p === "fixed") return `<div class="slot thin"${slotAttrs(s)}><div class="t">${s.time}${nowTag(s)}</div><div class="card picked fixedcard"><span><b>${esc(f.title)}</b>${sp}</span><span class="row"><span class="tag">In your plan</span><button type="button" class="btn ghost small" data-pick="${s.key}" data-val="none">Leave this slot free</button></span></div></div>`;
       const act = p === "workshop" ? `<span class="clash">During your workshop</span>`
         : `<button type="button" class="btn ghost small" data-pick="${s.key}" data-val="__reset">Add back to my plan</button>`;
-      return `<div class="slot thin off"${slotAttrs(s)}><div class="t">${s.time}</div><div class="thin-row"><span><b>${esc(f.title)}</b>${sp}</span>${act}</div></div>`;
+      return `<div class="slot thin off"${slotAttrs(s)}><div class="t">${s.time}${nowTag(s)}</div><div class="thin-row"><span><b>${esc(f.title)}</b>${sp}</span>${act}</div></div>`;
     }
     const dim = ui.q && !s.talks.some(matches) ? " dim" : "";
     const w = wsOf(s);
     if (w) {
-      return `<div class="slot${dim}"><div class="t">${s.time}</div><div class="ticket"><span class="lbl">Your workshop</span><h3>${esc(w.title)}</h3>
+      return `<div class="slot${dim}"${slotAttrs(s)}><div class="t">${s.time}${nowTag(s)}</div><div class="ticket"><span class="lbl">Your workshop</span><h3>${esc(w.title)}</h3>
         <div class="note">${w.time.replace("–", " to ")}</div>
         <details class="more"><summary>Talks you miss in this slot</summary><div class="miss pair${s.talks.length === 1 ? " one" : ""}">${s.talks.map(t => talkCard(t, s, "workshop")).join("")}</div></details></div></div>`;
     }
     const picked = pickOf(s), none = picked === "none";
     const vis = s.talks.filter(t => !(ui.hideLow && sc(t).r === 4 && picked !== t.id));
-    return `<div class="slot${dim}"><div class="t">${s.time}${none ? `<div class="note" style="margin-top:6px">Free slot</div>` : ""}</div>
+    return `<div class="slot${dim}"${slotAttrs(s)}><div class="t">${s.time}${nowTag(s)}${none ? `<div class="note" style="margin-top:6px">Free slot</div>` : ""}</div>
       <div><div class="pair${vis.length === 1 ? " one" : ""}">${vis.map(t => talkCard(t, s, picked)).join("") || `<div class="note">Only low-fit talks here (hidden).</div>`}</div>
       <div class="actions" style="margin-top:6px"><button type="button" class="btn ghost" data-pick="${s.key}" data-val="none" aria-pressed="${none}">${none ? "Slot left free" : "Leave this slot free"}</button>
       ${state.picks[s.key] !== undefined ? `<button type="button" class="btn ghost" data-pick="${s.key}" data-val="__reset">Back to suggestion</button>` : ""}</div></div></div>`;
@@ -548,9 +559,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       </div>
       <p class="note">Export saves your interests, picks, watch-later list and tickets so you can move them to another browser or device.</p>
       <div id="xfer"></div><div id="resetConfirm"></div>
-      ${all.map(({ d, rows }) => `<div class="plan-day"><h3>${esc(d.label)}</h3><ul class="plan-list">
-        ${rows.map(r => r.empty ? `<li class="empty"><span class="pt">${r.time}</span><span>Free slot</span><span></span></li>` :
-          `<li class="${r.w ? "w" : r.fixed ? "fx" : ""}"><span class="pt">${r.time}</span><span><b>${esc(r.title)}</b>${r.who ? `<br><span class="pn">${esc(r.who)}</span>` : ""}</span><span class="pn">${r.w ? "Workshop<br>" : r.fixed ? "" : `${esc(r.stage)} · ${REC[r.r]}<br>`}<a href="${gcal(d, r)}" target="_blank" rel="noopener">Google Calendar</a></span></li>`).join("")}
+      ${all.map(({ d, rows }) => `<div class="plan-day" data-date="${d.date}"><h3>${esc(d.label)}</h3><ul class="plan-list">
+        ${rows.map(r => { const [ra, rb] = span(r.time), now = isNow(d.date, ra, rb) ? " now" : "", at = ` data-a="${ra}" data-b="${rb}"`; return r.empty ? `<li class="empty${now}"${at}><span class="pt">${r.time}</span><span>Free slot</span><span></span></li>` :
+          `<li class="${r.w ? "w" : r.fixed ? "fx" : ""}${now}"${at}><span class="pt">${r.time}</span><span><b>${esc(r.title)}</b>${r.who ? `<br><span class="pn">${esc(r.who)}</span>` : ""}</span><span class="pn">${r.w ? "Workshop<br>" : r.fixed ? "" : `${esc(r.stage)} · ${REC[r.r]}<br>`}<a href="${gcal(d, r)}" target="_blank" rel="noopener">Google Calendar</a></span></li>`; }).join("")}
       </ul></div>`).join("")}
       <div class="plan-day"><h3>Watch later</h3>${later.length ? `<ul class="plan-list">${later.map(k => { const t = TALK[k]; return `<li><span class="pt">Day ${t.day.n} ${t.slot.time.slice(0, 5)}</span><span><b>${esc(t.title)}</b><br><span class="pn">${esc(t.speakers.map(x => x.n).join(", "))}</span></span><span class="pn"></span></li>`; }).join("")}</ul>` : `<p class="note">Nothing yet. Use "Watch later" on any talk you cannot attend.</p>`}</div>
     </section>`;
@@ -587,6 +598,21 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     else if (ui.tab === "about") main.innerHTML = aboutHtml();
     else main.innerHTML = dayHtml(DAYS.find(x => "d" + x.n === ui.tab) || DAYS[0]);
     if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
+  }
+
+  function jumpToNow() {
+    const n = nowSF(); let el = null;
+    if (ui.tab === "plan") {
+      const day = document.querySelector(`.plan-day[data-date="${n.date}"]`);
+      if (day) el = [...day.querySelectorAll("li[data-b]")].find(li => Number(li.dataset.b) > n.min);
+    } else if (ui.tab[0] === "d") {
+      const d = DAYS.find(x => "d" + x.n === ui.tab);
+      if (d && d.date === n.date) el = [...document.querySelectorAll(".slot[data-b]")].find(x => Number(x.dataset.b) > n.min);
+    }
+    if (!el) return false;
+    const head = document.querySelector("header.top"), off = (head ? head.offsetHeight : 0) + 12;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - off);
+    return true;
   }
 
   // ---------- speakers ----------
@@ -653,7 +679,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     const el = e.target.closest("button, .scrim"); if (!el) return;
     const ds = el.dataset;
     if (ds.close) return closeDrawer();
-    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); window.scrollTo(0, 0); return; }
+    if (ds.tab) { ui.tab = ds.tab; ui.q = ""; saveUi(); render(); if (!jumpToNow()) window.scrollTo(0, 0); return; }
     if (ds.spk) return openSpeaker(ds.spk);
     if (ds.topic) { const v = Number(ds.v); if (v) state.prefs.topics[ds.topic] = v; else delete state.prefs.topics[ds.topic]; return changed(); }
     if (ds.role) { state.prefs.role = state.prefs.role === ds.role ? "" : ds.role; return changed(); }
@@ -713,6 +739,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   });
 
   render();
+  jumpToNow();
 })();
 </script>
 </body>
