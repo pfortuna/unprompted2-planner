@@ -27,6 +27,11 @@ html = (template.replace("/*__FONTS__*/", fonts)
 for marker in ("__FONTS__", "__DATA__", "__LINKEDIN__"):
     assert marker not in html, f"placeholder {marker} left in output"
 
+# Visitors' saved plans reference these ids (talk ids, workshop ids). They must stay unique and must not be renamed.
+ids = [it["id"] for d in data["days"] for it in d["items"] if "id" in it] + [w["id"] for w in data["workshops"]]
+dupes = sorted({i for i in ids if ids.count(i) > 1})
+assert not dupes, f"duplicate ids: {dupes}"
+
 talks = sum(1 for d in data["days"] for it in d["items"] if it.get("kind") == "talk")
 missing = [it["id"] for d in data["days"] for it in d["items"] if it.get("kind") == "talk" and not it.get("topics")]
 assert not missing, f"talks without topics: {missing}"

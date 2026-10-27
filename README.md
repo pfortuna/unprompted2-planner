@@ -23,6 +23,7 @@ The only request is the one that loads the page itself from GitHub Pages, which,
 
 - **Rates every session for you.** Every topic starts as Neutral, so you get ratings straight away. Mark topics as Must, Like or Skip, choose your role, formats you favor (original research, live demos, open-source releases, case studies), a level and keywords, or start from a profile such as "Agent builder" or "Security leader".
 - **Explains each rating,** for example "+ Agent sandboxing (must see)" or "− Centers on the speaker's own product".
+- **Shows three reasons to attend each session, chosen for you.** Each session has a set of factual highlights from its abstract; the planner shows the three that best match your interests, so the list changes as you change your preferences.
 - **Suggests one pick per time slot** across the two stages. Override any pick, or leave a slot free.
 - **Handles workshops.** Mark the workshops you hold a ticket for, and their two-hour blocks replace the talks they overlap.
 - **Builds your plan.** Save a calendar file (.ics) with every pick, add talks one by one to Google Calendar, copy the plan as text, and keep a watch-later list for talks you cannot attend.
@@ -33,6 +34,8 @@ The only request is the one that loads the page itself from GitHub Pages, which,
 ## How the recommendations work
 
 Each session was tagged from its published title and abstract with up to four topics (most central first), format signals and a level. Every topic starts as Neutral, which rates a session "Maybe". A Must topic raises a session most, a Like topic raises it some, a Skip topic lowers it, and a session's first topic counts more than the rest. Role, format preferences, level and keywords adjust the score. Talks centered on the speaker's own commercial product are always rated lower.
+
+The three reasons to attend are chosen the same way: each highlight is tagged with the topics, formats and audience it speaks to, and the ones closest to your preferences come first.
 
 A rating means fit with what you told the planner, not talk quality. The tags were assigned with AI assistance and may be imperfect; corrections are welcome.
 
@@ -64,6 +67,11 @@ build/
 1. Agenda fixes (a moved talk, a wrong tag, a bio correction): edit `build/planner-data.json`. Page behavior or design: edit `build/template.html`.
 2. Run `python3 build/build.py` (Python 3, no dependencies).
 3. Commit the source change together with the regenerated `index.html`.
+
+Visitors' plans live in their browsers and reference session ids, slot times and the storage key `unprompted2-public-v1`. To keep everyone's saved plan working across updates:
+
+- Never rename the storage key or change the id of an existing talk or workshop. To move a talk, change its time and keep its id; a pick that no longer fits its slot falls back to the suggestion while the rest of the plan stays.
+- If the saved format ever has to change, bump `STATE_V` in `template.html` and migrate the stored object on load. The page never discards a plan it cannot read: it keeps a backup copy and stops saving for that visit.
 
 To try it locally, run `python3 -m http.server 8765` in the repository folder and open http://127.0.0.1:8765/, or simply open `index.html` in a browser.
 

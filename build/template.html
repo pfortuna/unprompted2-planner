@@ -106,7 +106,8 @@ details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); fo
 .abs p { margin: 0 0 8px }
 .abs h4, .why h4 { margin: 0 0 4px; font: 600 12px/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted) }
 .why { margin-top: 8px }
-.why ul { margin: 0; padding-left: 18px; font-size: 13.5px }
+.why ul { margin: 0; padding-left: 18px; font-size: 13.5px; display: grid; gap: 3px }
+.card .why { margin-top: 0 }
 
 .ticket { border: 2px solid var(--good); background: var(--good-soft); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px }
 .ticket .lbl { font: 600 11px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--good) }
@@ -225,7 +226,10 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   "use strict";
   const AUTHOR = { name: "Pedro Fortuna", org: "Jscrambler", linkedin: "/*__LINKEDIN__*/" };
   const DATA = JSON.parse(document.getElementById("data").textContent);
-  const LS_KEY = "unprompted2-public-v1", LS_UI = "unprompted2-public-ui";
+  // Storage key and format are a contract with every visitor's saved plan: never rename the key.
+  // A future format change must migrate the stored object (bump STATE_V), never discard it.
+  const LS_KEY = "unprompted2-public-v1", LS_UI = "unprompted2-public-ui", LS_BACKUP = "unprompted2-public-backup";
+  const STATE_V = 1;
   const $ = (s, el = document) => el.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const mins = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
@@ -273,9 +277,29 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const emptyPrefs = () => ({ role: "", topics: {}, fmt: {}, level: "", keywords: "" });
   let state = { prefs: emptyPrefs(), picks: {}, later: {}, tickets: {} };
   let ui = { tab: "", q: "", hideLow: false };
-  try { const s = JSON.parse(localStorage.getItem(LS_KEY) || "null"); if (s) state = { prefs: { ...emptyPrefs(), ...(s.prefs || {}) }, picks: s.picks || {}, later: s.later || {}, tickets: s.tickets || {} }; } catch (e) {}
+  // Load the saved plan. Anything unreadable or from a newer format is copied to a backup key first,
+  // and saving stays off for that visit, so a deploy can never silently overwrite a visitor's plan.
+  let canSave = true;
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) {
+      let s = null;
+      try { s = JSON.parse(raw); } catch (e) { s = null; }
+      const ok = s && typeof s === "object" && (!s.v || s.v <= STATE_V);
+      if (ok) {
+        const obj = x => (x && typeof x === "object" && !Array.isArray(x) ? x : {});
+        const pr = obj(s.prefs);
+        state = { prefs: { ...emptyPrefs(), ...pr, topics: obj(pr.topics), fmt: obj(pr.fmt), keywords: typeof pr.keywords === "string" ? pr.keywords : "" },
+          picks: obj(s.picks), later: obj(s.later), tickets: obj(s.tickets) };
+      } else {
+        try { localStorage.setItem(LS_BACKUP, raw); } catch (e) {}
+        canSave = false;
+      }
+    }
+  } catch (e) {}
   try { const u = JSON.parse(localStorage.getItem(LS_UI) || "{}"); ui.hideLow = !!u.hideLow; } catch (e) {}
-  const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
+  if (!canSave) document.getElementById("main").insertAdjacentHTML("beforebegin", `<div class="wrap"><div class="banner">This version of the planner could not read your saved plan, so it kept a backup copy and will not overwrite it. Changes you make now are not saved. Reload later, or open an issue on GitHub.</div></div>`);
+  const save = () => { if (!canSave) return; try { localStorage.setItem(LS_KEY, JSON.stringify({ v: STATE_V, ...state })); } catch (e) {} };
   const saveUi = () => { try { localStorage.setItem(LS_UI, JSON.stringify({ hideLow: ui.hideLow })); } catch (e) {} };
   // A saved plan is anything the visitor changed: interests, picks, watch-later or tickets
   const p0 = state.prefs, nonEmpty = o => Object.keys(o || {}).length > 0;
@@ -348,6 +372,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     const v = state.picks[s.key];
     // Non-talk slots (opening, breaks, closing) are in the plan by default; "none" leaves them free
     if (v === undefined) return s.talks.length ? suggestion(s) : "fixed";
+    // A saved pick that no longer belongs to this slot (the agenda moved a talk) falls back to the suggestion
+    if (v !== "none" && !s.talks.some(t => t.id === v)) return s.talks.length ? suggestion(s) : "fixed";
     return v;
   }
 
@@ -371,6 +397,22 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   }
   const matches = t => !ui.q || [t.title, t.summary, t.abstract, ...(t.speakers || []).map(s => s.n + " " + s.a)].join(" ").toLowerCase().includes(ui.q.toLowerCase());
   const topicChips = it => (it.topics || []).map(t => `<span class="chip">${esc(TOPIC_LABEL[t])}</span>`).join("");
+  // "Why attend": the 3 highlights of a session that best match this visitor's preferences.
+  // Each highlight carries the topics (tp), formats (fm) and audience (au) it speaks to; ties keep the session's own order.
+  function reasons(it) {
+    const hl = it.hl || []; if (!hl.length) return [];
+    const p = state.prefs;
+    const kws = p.keywords.split(",").map(x => x.trim().toLowerCase()).filter(x => x.length >= 3);
+    return hl.map((h, i) => {
+      let s = -0.15 * i;
+      for (const t of h.tp || []) { const v = p.topics[t] || 0; s += v === 2 ? 3 : v === 1 ? 1.5 : v === -1 ? -2 : 0; }
+      for (const f of h.fm || []) if (p.fmt[f]) s += 1;
+      if (p.role && (h.au || []).includes(p.role)) s += 0.8;
+      for (const k of kws) if (h.t.toLowerCase().includes(k)) s += 2;
+      return { t: h.t, s, i };
+    }).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, 3);
+  }
+  const reasonsHtml = it => { const r = reasons(it); return r.length ? `<div class="why"><h4>Why attend</h4><ul>${r.map(x => `<li>${esc(x.t)}</li>`).join("")}</ul></div>` : ""; };
   const whyChips = it => sc(it).why.map(([sign, l]) => `<span class="chip ${sign === "+" ? "plus" : "minus"}">${sign === "+" ? "+" : "−"} ${esc(l)}</span>`).join("");
 
   function talkCard(t, s, picked) {
@@ -382,6 +424,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <h3>${esc(t.title)}</h3>
       ${t.speakers.length ? spkHtml(t.speakers) : ""}
       ${t.summary ? `<p class="line">${esc(t.summary)}</p>` : ""}
+      ${reasonsHtml(t)}
       ${wc ? `<div class="chips">${wc}</div>` : ""}
       <div class="actions">
         ${wsOf(s) ? `<span class="clash">Clashes with your workshop</span>` :
@@ -435,7 +478,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
         ${d.ws.map(w => `<details class="ws${state.tickets[w.id] ? " mine" : ""}"><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
           <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button></div>
           ${w.speakers.length ? spkHtml(w.speakers) : ""}${whyChips(w) ? `<div class="chips" style="margin-block:6px">${whyChips(w)}</div>` : ""}
-          ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
+          ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${reasonsHtml(w)}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
         ${d.vill.length ? `<h3>Villages room</h3><p class="note">${d.vill.map(v => `${v.time} ${esc(v.title)}`).join(" · ")}</p>` : ""}
       </div></section>`;
   }
@@ -517,6 +560,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <p>Made by ${li}, CTO and co-founder of <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a>.</p>
       <h3>How recommendations work</h3>
       <p>Each session was tagged with up to four topics (most central first), its format (original research, live demo, open-source release, case study, vendor product focus, debate) and its level, from the published title and abstract. Every topic starts as Neutral, which rates a session Maybe. A Must topic raises a session most, a Like topic raises it some, a Skip topic lowers it, and the first topic of a session counts more than the later ones. Format preferences, your role, level and keywords adjust the score. Talks centered on the speaker's own commercial product are always rated lower. Ratings mean "fit with what you told the planner", not quality. Tags were assigned with AI assistance and may be imperfect.</p>
+      <p>Each session also lists three reasons to attend. They are picked for you from a set of factual highlights written from the session's abstract, each tagged with the topics and formats it speaks to, so two people can see different reasons for the same talk.</p>
       <h3>Your data</h3>
       <p>Everything you enter stays in this browser (local storage). Nothing is sent anywhere; the page makes no network requests. Use Export on the My plan tab to move your plan to another device.</p>
       <h3>Sources</h3>

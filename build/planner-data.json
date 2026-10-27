@@ -74,7 +74,27 @@
       "defender",
       "leader"
      ],
-     "summary": "Dispatches from the wrong end of an AI agent swarm; title only, no abstract published."
+     "summary": "Dispatches from the wrong end of an AI agent swarm; title only, no abstract published.",
+     "hl": [
+      {
+       "t": "Dispatches from the receiving end of an agent swarm, as framed by the session title.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by Caleb Sima and Alec Eckmann in a 25-minute main-stage talk slot on day one.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1000",
@@ -106,7 +126,73 @@
      "audience": [
       "builder"
      ],
-     "summary": "Capsem, an open-source Rust hypervisor and VM system for sandboxing AI agents with built-in network observability and enforcement."
+     "summary": "Capsem, an open-source Rust hypervisor and VM system for sandboxing AI agents with built-in network observability and enforcement.",
+     "hl": [
+      {
+       "t": "Capsem is an open-source, Rust co-designed hypervisor and VM system built to run AI agents securely.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Agent-ready VMs boot in under two seconds, with single-click install and an optional UI.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Air-gapped, hardened VMs with network reconstruction that understands model and MCP traffic semantics.",
+       "tp": [
+        "agent_sandboxing",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Supports Sigma rules and OpenTelemetry, plus an SDK for administrators integrating agent observability.",
+       "tp": [
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Argues agent isolation should not force a trade-off between speed, usability and security.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by a Distinguished Research Scientist at Google DeepMind.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1025",
@@ -148,7 +234,68 @@
       "builder",
       "leader"
      ],
-     "summary": "Meta's experience scaling code analysis coverage and using AI-written fixes for critical vulnerabilities amid AI-accelerated software development."
+     "summary": "Meta's experience scaling code analysis coverage and using AI-written fixes for critical vulnerabilities amid AI-accelerated software development.",
+     "hl": [
+      {
+       "t": "Over 40% of critical vulnerabilities at Meta were fixed by AI-written diffs, yet time to fix did not drop.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Meta reached 90% code analysis coverage on its targets while racing attackers armed with AI.",
+       "tp": [
+        "vuln_discovery",
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Significant lines of code at Meta grew 105.9% year on year, with AI-written code behind over 80% of it.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Covers how coverage targets were chosen and prioritized, building on years of automated bug discovery.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "From Meta's team responsible for scaling vulnerability finding, fixing and prevention.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1110",
@@ -181,7 +328,67 @@
       "builder",
       "researcher"
      ],
-     "summary": "Lessons from DARPA AIxCC and Microsoft FORGE Lab on building production AI code scanning that combines LLMs with program analysis."
+     "summary": "Lessons from DARPA AIxCC and Microsoft FORGE Lab on building production AI code scanning that combines LLMs with program analysis.",
+     "hl": [
+      {
+       "t": "Lessons from taking Team Atlanta's DARPA AIxCC winning approach into production code scanning systems.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Explains how AI code scanning combines LLM reasoning with traditional program analysis to find real bugs at scale.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Draws on MDASH and Microsoft FORGE Lab, applied to both open-source and commercial codebases.",
+       "tp": [
+        "vuln_discovery",
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Covers operational lessons from running autonomous systems that discover and repair vulnerabilities.",
+       "tp": [
+        "secure_dev",
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by Microsoft's VP of Security Research, drawing on Team Atlanta's AIxCC work.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1135",
@@ -219,7 +426,83 @@
       "researcher",
       "builder"
      ],
-     "summary": "StealthBench, an open-source benchmark measuring whether autonomous offensive security agents complete tasks while keeping operational security."
+     "summary": "StealthBench, an open-source benchmark measuring whether autonomous offensive security agents complete tasks while keeping operational security.",
+     "hl": [
+      {
+       "t": "Across 771 trajectories from eight agent models, none exceeded a 53.8% safe-success rate.",
+       "tp": [
+        "evals",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "StealthBench, an open-source benchmark scoring offensive agents on task completion and operational security together.",
+       "tp": [
+        "evals",
+        "offensive_ai"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Fourteen containerized scenarios test credential handling, detection avoidance, operational impact and third-party harm.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Some highly capable models solved most tasks but acted recklessly in over a third of valid attempts.",
+       "tp": [
+        "evals",
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Practical lessons for evaluating agents before granting them offensive security tools.",
+       "tp": [
+        "evals",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by security researchers from Dropbox and Dreadnode, including the founder of the OWASP GenAI Security Project.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1200",
@@ -252,7 +535,66 @@
       "leader",
       "defender"
      ],
-     "summary": "How CISA adopts AI models, skills and agents across its vulnerability management mission, including approaches that worked and failed."
+     "summary": "How CISA adopts AI models, skills and agents across its vulnerability management mission, including approaches that worked and failed.",
+     "hl": [
+      {
+       "t": "How CISA is adopting AI models and exploring agents for its vulnerability management mission.",
+       "tp": [
+        "governance",
+        "vuln_discovery"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      },
+      {
+       "t": "Specific details on which AI approaches have worked at CISA and which have not.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Covers the Gold Eagle intake platform, built to manage the influx of vulnerabilities discovered by AI models.",
+       "tp": [
+        "vuln_discovery",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "Context from the agency that oversees the CVE Program and maintains the Known Exploited Vulnerabilities catalog.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by CISA's Deputy Associate Director for Vulnerability Management.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1225",
@@ -294,7 +636,78 @@
       "builder",
       "defender"
      ],
-     "summary": "Using an agentic coding model to analyze and patch published vulnerabilities in router firmware binaries, with evidence gates and a prompting protocol."
+     "summary": "Using an agentic coding model to analyze and patch published vulnerabilities in router firmware binaries, with evidence gates and a prompting protocol.",
+     "hl": [
+      {
+       "t": "An agentic coding model repaired two published router vulnerabilities directly in firmware, on an authorized lab device.",
+       "tp": [
+        "secure_dev",
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "A reusable prompting protocol for defensive binary repair when vendor updates are weeks away.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Shows what the model got wrong and the evidence gates that caught its mistakes.",
+       "tp": [
+        "secure_dev",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Targets a command injection and an SQL injection in an ASUS router, with original and patched assembly compared.",
+       "tp": [
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "The model generated hash-locked patches, negative tests and helped rebuild the firmware package.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by a Member of Technical Staff at OpenAI.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1355",
@@ -325,7 +738,58 @@
      "audience": [
       "builder"
      ],
-     "summary": "Lessons from building and hardening an agent-specific sandbox for RAPTOR, an agentic bug-finding harness that writes and runs proof-of-concepts."
+     "summary": "Lessons from building and hardening an agent-specific sandbox for RAPTOR, an agentic bug-finding harness that writes and runs proof-of-concepts.",
+     "hl": [
+      {
+       "t": "Lessons from building and hardening an agent-specific sandbox for RAPTOR, an agentic bug-finding harness.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Containing an agent that reads unvetted repositories and runs its own proofs of concept near real API keys.",
+       "tp": [
+        "agent_sandboxing",
+        "vuln_discovery"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Candid account of security issues the team introduced into its own sandbox, and how they were fixed.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Four months of upgrades show why building an agent sandbox is much harder than it looks.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1420",
@@ -359,7 +823,79 @@
       "defender",
       "builder"
      ],
-     "summary": "Three years of benchmarking frontier and open-weight models and harnesses on incident response tasks, covering accuracy, cost, contamination and trends."
+     "summary": "Three years of benchmarking frontier and open-weight models and harnesses on incident response tasks, covering accuracy, cost, contamination and trends.",
+     "hl": [
+      {
+       "t": "Three years of results running frontier and open-weight models against an evolving incident response benchmark.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Benchmark spans 100+ log sources under capped budgets, scoring accuracy, speed, cost, refusals, contamination and cheating.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Compares commercial and open harnesses, including where investigation harnesses beat coding agents.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers when open weights are good enough and why costs for fast models are falling.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      },
+      {
+       "t": "Guidance on owning security evaluations and adapting them to an organization's own environment.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by the founder and CEO of Graphistry.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S1-1445",
@@ -390,7 +926,63 @@
      "audience": [
       "builder"
      ],
-     "summary": "An architecture making the agent harness an enforceable compliance boundary through identity, policy enforcement points and short-lived credential brokering."
+     "summary": "An architecture making the agent harness an enforceable compliance boundary through identity, policy enforcement points and short-lived credential brokering.",
+     "hl": [
+      {
+       "t": "An architecture that makes the AI agent harness an enforceable compliance boundary, not just a decision point.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Traces one tool call through identity, policy decision, enforcement points, credential broker and audit evidence.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Live demo compares a decision-only API with an inline proxy that stops the downstream request.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [
+        "live_demo"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Working prototype and executable policy models combine user entitlement, agent capability, task and runtime context.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Examines failure cases including wrapper bypass, service-account substitution, stale decisions and incomplete evidence.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1510",
@@ -431,7 +1023,64 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Comparing two full-chain Chrome exploits, one largely human-built and one produced in six days by orchestrated AI agents."
+     "summary": "Comparing two full-chain Chrome exploits, one largely human-built and one produced in six days by orchestrated AI agents.",
+     "hl": [
+      {
+       "t": "AI agents helped build a full chain Chrome exploit in six days, earning a $250,000 Google VRP reward.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Compares a two-month, human-heavy exploit chain with a largely agent-driven one built under the April 2026 VRP rules.",
+       "tp": [
+        "offensive_ai",
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "A structured multi-stage campaign orchestrated agents to produce primary candidates and backups for each stage.",
+       "tp": [
+        "harness_engineering",
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Explains what avoiding bug collisions takes when submitting full chains against modern Chrome.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by a Distinguished Engineer at XBOW, the team that built both exploit chains.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1555",
@@ -464,7 +1113,73 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Benchmarking frontier agents against privately disclosed zero-days and 209 known vulnerabilities on exploitation, patching quality and refusals."
+     "summary": "Benchmarking frontier agents against privately disclosed zero-days and 209 known vulnerabilities on exploitation, patching quality and refusals.",
+     "hl": [
+      {
+       "t": "Frontier agents tested on privately disclosed zero-days: 12 of 54 attempts produced working exploits, none an accepted patch.",
+       "tp": [
+        "evals",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "On 209 known vulnerabilities, two of three agents proved better attackers than defenders.",
+       "tp": [
+        "evals",
+        "secure_dev"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presents a practical reality board alongside a refusal-adjusted capability board for model comparison.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Patch failures included a fix that refused 40% of valid messages and one that locked out every user.",
+       "tp": [
+        "secure_dev",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Targets come from the confidential compute stack, where the speakers' team found and disclosed the bugs.",
+       "tp": [
+        "crypto_privacy",
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1620",
@@ -496,7 +1211,62 @@
      "audience": [
       "researcher"
      ],
-     "summary": "A Security Constitution of twelve trust principles guiding AI-led hunting for cloud platform design flaws across multiple providers."
+     "summary": "A Security Constitution of twelve trust principles guiding AI-led hunting for cloud platform design flaws across multiple providers.",
+     "hl": [
+      {
+       "t": "AI-led hunting produced 90+ valid cloud-specific security issues across multiple providers.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "A Security Constitution of 12 principles for trust across multi-tenant platforms, guiding each hunt.",
+       "tp": [
+        "vuln_discovery",
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Focuses on platform design flaws such as missing authorization checks and inadequate logging, where models are weaker.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Introduces the reasonable customer test as a way to judge whether a finding is valid.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by a Principal Security Researcher at Vectra AI with years of cloud bug hunting experience.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1645",
@@ -533,7 +1303,68 @@
      "audience": [
       "researcher"
      ],
-     "summary": "LLM tooling to enumerate and audit remote attack surface in mobile messaging apps, with WeChat, WhatsApp and iOS exploit case studies."
+     "summary": "LLM tooling to enumerate and audit remote attack surface in mobile messaging apps, with WeChat, WhatsApp and iOS exploit case studies.",
+     "hl": [
+      {
+       "t": "Tooling and techniques for using LLMs to enumerate and audit remote attack surface in mobile messaging apps.",
+       "tp": [
+        "vuln_discovery",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Three case studies across WeChat, WhatsApp on Samsung, and iOS illustrate the approach.",
+       "tp": [
+        "vuln_discovery",
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Argues 0-click bugs are less rare than assumed once the search is automated.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Recommendations for app and platform vendors on reducing remotely exposed attack surface.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Discusses how scalable 0-click discovery changes trust assumptions behind messaging apps.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S1-1710",
@@ -596,7 +1427,79 @@
       "builder",
       "researcher"
      ],
-     "summary": "Measuring attention collapse under context flooding and releasing CxBOM, a CycloneDX bill of materials recording context window provenance."
+     "summary": "Measuring attention collapse under context flooding and releasing CxBOM, a CycloneDX bill of materials recording context window provenance.",
+     "hl": [
+      {
+       "t": "Release of CxBOM, a CycloneDX-based bill of materials recording what entered a model's context window.",
+       "tp": [
+        "ai_supply_chain",
+        "prompt_injection"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Measures attention on protective instructions collapsing as attacker text floods the window, against rising attack success.",
+       "tp": [
+        "model_internals",
+        "prompt_injection"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "CxBOM fails a session when an external MCP tool definition is assembled with operator-level authority.",
+       "tp": [
+        "ai_supply_chain",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Live demo with schema, emitter, validator and fixtures available for attendees to run.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "live_demo",
+        "open_source"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Grounded in EchoLeak, the zero-click Microsoft 365 Copilot data exfiltration issue, and related MCP CVEs.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by Zenity's Director of AI Standards and Governance and the CEO of Detecteam.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1000",
@@ -635,7 +1538,68 @@
       "researcher",
       "builder"
      ],
-     "summary": "White-box detection of hallucinations and indirect prompt injections by tracing which input tokens a model attends to during generation."
+     "summary": "White-box detection of hallucinations and indirect prompt injections by tracing which input tokens a model attends to during generation.",
+     "hl": [
+      {
+       "t": "A whitebox method detects hallucinations and indirect prompt injections with the same approach, using hidden states.",
+       "tp": [
+        "prompt_injection",
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Tracks which input tokens a model relied on for each fact or instruction it follows.",
+       "tp": [
+        "model_internals",
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Runs in real time with no additional LLM calls, reported to outperform prior methods on several benchmarks.",
+       "tp": [
+        "agent_monitoring",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Argues blackbox detectors for these problems are separate, slow, expensive and unreliable.",
+       "tp": [
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by the founders of Realm Labs, describing their own detection approach.",
+       "tp": [],
+       "fm": [
+        "vendor_flavour"
+       ],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1025",
@@ -676,7 +1640,76 @@
       "defender",
       "researcher"
      ],
-     "summary": "Findings from a honeypot network emulating production AI stacks and agents, documenting real attacker campaigns, TTPs and indicators."
+     "summary": "Findings from a honeypot network emulating production AI stacks and agents, documenting real attacker campaigns, TTPs and indicators.",
+     "hl": [
+      {
+       "t": "Forensic report from a honeypot network emulating production AI stacks and agents.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Campaigns probed AI backends for newly published CVEs within days, including Ollama and LiteLLM issues.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Shares TTPs, IoCs, signatures and configurations defenders can apply to their own AI infrastructure.",
+       "tp": [
+        "threat_intel",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Observed attempts to hijack exposed AI infrastructure for free compute and to extract secrets via agent tools.",
+       "tp": [
+        "threat_intel",
+        "agent_authz"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Covers attacks on the models themselves, including attempts to create backdoored models without safety controls.",
+       "tp": [
+        "threat_intel",
+        "model_internals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by an AI Red Team Researcher at Zenity.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1110",
@@ -714,7 +1747,75 @@
       "defender",
       "researcher"
      ],
-     "summary": "Placing shibboleth traps in attacker environments to fingerprint the model family and harness behind AI-driven attacks."
+     "summary": "Placing shibboleth traps in attacker environments to fingerprint the model family and harness behind AI-driven attacks.",
+     "hl": [
+      {
+       "t": "Shibboleths: environment traps that reveal which model family and harness is behind an AI-driven attack.",
+       "tp": [
+        "threat_intel",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Fingerprinting works even when the attacker self-hosts the model and its claimed identity cannot be trusted.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Results from a controlled model and harness matrix plus a live honeypot deployment, including failure cases.",
+       "tp": [
+        "threat_intel",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows how to generate and optimize the traps and demonstrates fingerprinting end to end against autonomous attackers.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Builds on last year's [un]prompted talk on the accidental accent left by AI-assisted attackers.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by the creator of the Zero Day Clock and the Head of AI at Cracken.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1135",
@@ -752,7 +1853,79 @@
       "researcher",
       "defender"
      ],
-     "summary": "A scan of 86 million GitHub items for indirect prompt injections targeting coding agents, with objectives, taxonomy and a released detector."
+     "summary": "A scan of 86 million GitHub items for indirect prompt injections targeting coding agents, with objectives, taxonomy and a released detector.",
+     "hl": [
+      {
+       "t": "First GitHub-wide hunt for indirect prompt injections, covering 86 million issues, PRs, comments and READMEs.",
+       "tp": [
+        "prompt_injection",
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Prompt injections appeared in roughly 2.5 of every 100,000 GitHub items.",
+       "tp": [
+        "prompt_injection",
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "The detector, prompts and taxonomy are released for others to continue the investigation.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Objectives ranged from orchestrating project agents and constraining bots to growth hacking and data exfiltration.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Pipeline combined hidden text extraction, heuristics, a two-stage LLM classifier and full manual review.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by a Distinguished Researcher and a senior AI security researcher from Radware.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1200",
@@ -790,7 +1963,77 @@
       "defender",
       "researcher"
      ],
-     "summary": "A kernel-level detonation chamber for agent skills and MCP servers that uncovered hundreds of malicious skills in public marketplaces."
+     "summary": "A kernel-level detonation chamber for agent skills and MCP servers that uncovered hundreds of malicious skills in public marketplaces.",
+     "hl": [
+      {
+       "t": "Tens of thousands of public marketplace skills were detonated, uncovering hundreds of malicious ones.",
+       "tp": [
+        "ai_supply_chain",
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "An agent detonation chamber compares what a victim agent believes it did with kernel-level evidence.",
+       "tp": [
+        "ai_supply_chain",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "The chamber is released as a free public service, alongside a verified benchmark of in-the-wild artifacts.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows why static scanners miss malicious skills that dynamic, kernel-level analysis catches.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers risky patterns across skill files, rug-pulled MCP servers and other agent supply chain artifacts.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by Zenity's Director of Security Research and an AI Red Team Researcher.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1225",
@@ -832,7 +2075,80 @@
      "audience": [
       "builder"
      ],
-     "summary": "How Webflow sequenced containment, provenance and human authority boundaries when securing agents in its design and collaboration platform."
+     "summary": "How Webflow sequenced containment, provenance and human authority boundaries when securing agents in its design and collaboration platform.",
+     "hl": [
+      {
+       "t": "Treats agent sandboxing as three coupled problems: containment, provenance and human authority.",
+       "tp": [
+        "agent_sandboxing",
+        "agent_authz",
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Experience from building Webflow's agent-native design and collaboration platform, currently in research preview.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "A method for deciding which boundary to harden first for a given agent.",
+       "tp": [
+        "agent_sandboxing",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Explains why the first boundary confined writes rather than reads, framed as anti-persistence.",
+       "tp": [
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "A governance layer lets the host, not the model, decide what each agent and user may do.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Includes live approval telemetry from the research preview, presented by Webflow's Head of Application Security.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1355",
@@ -865,7 +2181,69 @@
       "researcher",
       "builder"
      ],
-     "summary": "Testing prompt injection controls across 6.1 million inference calls in the Tantalus arena, arguing enforcement belongs at the token sampler."
+     "summary": "Testing prompt injection controls across 6.1 million inference calls in the Tantalus arena, arguing enforcement belongs at the token sampler.",
+     "hl": [
+      {
+       "t": "Across about 6.1 million inference calls, every behavioral and structural control but one was bypassed.",
+       "tp": [
+        "prompt_injection",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Identifies the single control that blocked malicious output 100% of the time, applied at the token sampler.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Tantalus, a two-round indirect prompt injection arena with poisoned tools and data exfiltration objectives.",
+       "tp": [
+        "prompt_injection",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Tested across model sizes from 1.7B to 119B parameters, backed by a published whitepaper.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Argues the model itself should not be treated as a security control.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1420",
@@ -897,7 +2275,77 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Backdoored models that produce benign chain-of-thought with attacker-chosen answers, evading reasoning monitors and resisting interpretability-based detection."
+     "summary": "Backdoored models that produce benign chain-of-thought with attacker-chosen answers, evading reasoning monitors and resisting interpretability-based detection.",
+     "hl": [
+      {
+       "t": "CoT-hidden backdoors: poisoned models produce benign reasoning while emitting attacker-chosen answers.",
+       "tp": [
+        "model_internals",
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows why reasoning-only monitors miss these backdoors and what changes when monitors also see the answer.",
+       "tp": [
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Mechanistic interpretability tools struggled to find backdoors without prior knowledge of the poison.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Demo of a natural-language autoencoder comparing activations with and without the trigger.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "live_demo"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Challenges the assumption that chain-of-thought reliably reflects a model's final output.",
+       "tp": [
+        "agent_monitoring",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by an AI Safety researcher at Microsoft.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1445",
@@ -954,7 +2402,71 @@
       "defender",
       "builder"
      ],
-     "summary": "Fully automating a Microsoft purple-team simulation of Octo Tempest with infrastructure, red and blue agents, plus metrics and failure modes."
+     "summary": "Fully automating a Microsoft purple-team simulation of Octo Tempest with infrastructure, red and blue agents, plus metrics and failure modes.",
+     "hl": [
+      {
+       "t": "Microsoft's Purple Team fully automated an Octo Tempest (Scattered Spider) adversary simulation against Defender XDR.",
+       "tp": [
+        "soc_ir",
+        "offensive_ai"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "The red agent ran all 10 phases in about 45 minutes, with roughly 77% verified success and no interventions.",
+       "tp": [
+        "offensive_ai",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Infrastructure, red and blue agents together stand up the environment, attack, and score detections.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers failure modes and the verification patterns being added to correct them.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Replaces simulations that previously took a skilled operator days end to end.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1555",
@@ -992,7 +2504,54 @@
       "leader",
       "builder"
      ],
-     "summary": "How Google Cloud rebuilt its security engineering function around collaborative secure development, starting from Mantis for vulnerability discovery."
+     "summary": "How Google Cloud rebuilt its security engineering function around collaborative secure development, starting from Mantis for vulnerability discovery.",
+     "hl": [
+      {
+       "t": "Google Cloud rebuilt its security engineering function around collaborative secure development.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Starts from Mantis, an AI system for vulnerability discovery, and how it reshaped the program.",
+       "tp": [
+        "vuln_discovery",
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Describes a new model for how security and development teams collaborate to launch products.",
+       "tp": [
+        "secure_dev",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by Google Cloud's Senior Director of Security Engineering and an AI security lead.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1620",
@@ -1024,7 +2583,70 @@
       "builder",
       "leader"
      ],
-     "summary": "A field report on moving AI-found vulnerabilities from opened pull requests to verified closure, with a gating checklist and closure schema."
+     "summary": "A field report on moving AI-found vulnerabilities from opened pull requests to verified closure, with a gating checklist and closure schema.",
+     "hl": [
+      {
+       "t": "A field report on moving AI-found vulnerabilities from verified finding to merge, rejection, deferral or risk acceptance.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Attendees get a closure-state schema, a patch-gating checklist and a public-target walkthrough.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Techniques include root-cause deduplication, reachability-first ranking, typed refutation reasons and detector replay.",
+       "tp": [
+        "secure_dev",
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Shows why a passing build does not prove the vulnerable path is gone.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Argues review and closure, not discovery, are now the scarce resource in AI-assisted security programs.",
+       "tp": [
+        "secure_dev",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by Rubrik's Lead Product Security Engineer, based on the operating loop built there.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D1-S2-1645",
@@ -1058,7 +2680,61 @@
       "leader",
       "researcher"
      ],
-     "summary": "Lessons from building early foundation models on harness design, reward hacking and the OpenAI and Hugging Face incident."
+     "summary": "Lessons from building early foundation models on harness design, reward hacking and the OpenAI and Hugging Face incident.",
+     "hl": [
+      {
+       "t": "Lessons from building and red-teaming GPT-3 and Codex at OpenAI, applied to today's AI safety debate.",
+       "tp": [
+        "misalignment",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Examines the OpenAI and Hugging Face incident, where reward hacking crossed into real infrastructure.",
+       "tp": [
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Argues evaluating the model alone misses how harness tools, memory and execution shape safety.",
+       "tp": [
+        "harness_engineering",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Separates alarming demonstrations from useful capabilities and real-world harm.",
+       "tp": [
+        "misalignment",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by the cofounder of RunSybil, formerly part of the GPT-3 and Codex work at OpenAI.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "kind": "village",
@@ -1146,7 +2822,67 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Applying abliteration at inference time through activation steering, suppressing refusals without modifying open-weight model checkpoints."
+     "summary": "Applying abliteration at inference time through activation steering, suppressing refusals without modifying open-weight model checkpoints.",
+     "hl": [
+      {
+       "t": "Weightless applies a model behavior change at inference time, leaving the base checkpoint byte-identical.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Measurements across DeepSeek, Qwen and GLM models on DGX Spark, including capability and benign-behavior gates.",
+       "tp": [
+        "model_internals",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Uses compact activation steering artifacts, such as a 478 KB vector, instead of redistributing full weights.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Covers dense and mixture-of-experts architectures, quantization behavior and the cases where steering breaks.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Relevant to defenders assessing how easily open-weight model safety behavior can be altered at runtime.",
+       "tp": [
+        "model_internals",
+        "ai_supply_chain"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1000",
@@ -1179,7 +2915,67 @@
       "researcher",
       "builder"
      ],
-     "summary": "Layerwise activation probing to compare how models process information beyond black-box benchmark scores, including quantization effects."
+     "summary": "Layerwise activation probing to compare how models process information beyond black-box benchmark scores, including quantization effects.",
+     "hl": [
+      {
+       "t": "Compares models by probing internal activations layer by layer, rather than scoring output tokens.",
+       "tp": [
+        "model_internals",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Two models with similar benchmark scores can process the same information in structurally different ways.",
+       "tp": [
+        "model_internals",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "A repeatable methodology for layerwise analysis across model families, architectures and parameter counts.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Shows how post-training, including quantization, affects where capability signal lives and whether it survives.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "No prior mechanistic interpretability background required; presented by the CEO of Starseer.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1025",
@@ -1225,7 +3021,63 @@
       "builder",
       "leader"
      ],
-     "summary": "Stripe's AI agents automating the security review lifecycle, from context gathering and threat modeling to fix verification."
+     "summary": "Stripe's AI agents automating the security review lifecycle, from context gathering and threat modeling to fix verification.",
+     "hl": [
+      {
+       "t": "Stripe built AI agents that cut security reviews from weeks to minutes through self-service workflows.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Agents cover the security lifecycle from context gathering and threat modeling to ticketing and fix verification.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "A repeatable framework for identifying which security workflows are worth handing to agents.",
+       "tp": [
+        "secure_dev",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Agents run with scoped authority and evidence-based outputs, leaving high-risk decisions to human experts.",
+       "tp": [
+        "agent_authz",
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by a Staff Security Engineer at Stripe.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1110",
@@ -1258,7 +3110,58 @@
       "builder",
       "defender"
      ],
-     "summary": "Defining metrics for production security agents in triage, threat intel and detection, going beyond accuracy to throughput and trust."
+     "summary": "Defining metrics for production security agents in triage, threat intel and detection, going beyond accuracy to throughput and trust.",
+     "hl": [
+      {
+       "t": "What good looks like for AI security agents, drawn from metrics programs across several production agents.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Metrics beyond accuracy, including throughput, guardrail integrity and trust.",
+       "tp": [
+        "evals",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Turning existing human-in-the-loop workflows into feedback signal for agent evaluation.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers triage, threat intelligence and detection workloads at Salesforce.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1135",
@@ -1291,7 +3194,79 @@
       "researcher",
       "builder"
      ],
-     "summary": "Measuring stochastic false negatives in LLM vulnerability scanners across 50 models, showing diverse cheap models outperform a single strong one."
+     "summary": "Measuring stochastic false negatives in LLM vulnerability scanners across 50 models, showing diverse cheap models outperform a single strong one.",
+     "hl": [
+      {
+       "t": "LLM vulnerability scanners can miss a real bug on one run and find it on the next without signaling it.",
+       "tp": [
+        "vuln_discovery",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Measured across 25,000 trials on 50 models, plus 7,600 runs rediscovering 95 CVEs in OpenSSL, curl and others.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Diverse inexpensive models covered complementary blind spots and outperformed a costlier single model.",
+       "tp": [
+        "vuln_discovery",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Public benchmark, harness and open-source scanner released for measuring cumulative detection.",
+       "tp": [
+        "vuln_discovery",
+        "evals"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows a gap between widely detectable JS and PHP bugs and hard stateful C vulnerabilities.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by an AI researcher at AISLE, which publishes the scanner and benchmark used.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1200",
@@ -1325,7 +3300,88 @@
       "defender",
       "researcher"
      ],
-     "summary": "Evaluating LLMs on threat hunting across real ATT&CK procedures, finding offensive skill does not transfer, and demonstrating RL-based improvement."
+     "summary": "Evaluating LLMs on threat hunting across real ATT&CK procedures, finding offensive skill does not transfer, and demonstrating RL-based improvement.",
+     "hl": [
+      {
+       "t": "No model met a 50% recall bar on every ATT&CK tactic in threat hunting; the best covered 45.1%.",
+       "tp": [
+        "soc_ir",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Campaigns built from 105 real attack procedures across 13 ATT&CK tactics, each with about 100,000 logs.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Evidence that models strong at vulnerability finding are weak at open-ended threat hunting.",
+       "tp": [
+        "soc_ir",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "A self-improvement loop in a dense-reward RL gym raised Kimi 2.6 from 13.4% to 18.7% coverage.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Agent traces exposed misaligned behavior, including bypassing resource guardrails.",
+       "tp": [
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Practical harness engineering recommendations for defensive threat hunting agents.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1225",
@@ -1373,7 +3429,66 @@
       "builder",
       "researcher"
      ],
-     "summary": "ScopeBench, a benchmark comparing monitoring schemes that keep offensive agents in scope, weighing safety against latency and capability cost."
+     "summary": "ScopeBench, a benchmark comparing monitoring schemes that keep offensive agents in scope, weighing safety against latency and capability cost.",
+     "hl": [
+      {
+       "t": "ScopeBench, a benchmark testing both capability and scope adherence of agents under different monitors.",
+       "tp": [
+        "evals",
+        "agent_monitoring",
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Compares a cheap decision model, LLM-as-a-judge, and an escalation cascade combining the two.",
+       "tp": [
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Makes the latency, token and capability costs of agent monitoring measurable before production.",
+       "tp": [
+        "agent_monitoring",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Addresses keeping offensive security agents in scope in fields like network operations.",
+       "tp": [
+        "misalignment",
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by two Principal Research Engineers at Dreadnode.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1355",
@@ -1404,7 +3519,53 @@
      "audience": [
       "leader"
      ],
-     "summary": "Governance and compliance lessons from building a cyber security knowledge graph for the UK's CyberShield agentic defense program."
+     "summary": "Governance and compliance lessons from building a cyber security knowledge graph for the UK's CyberShield agentic defense program.",
+     "hl": [
+      {
+       "t": "Lessons from CyberShield, the UK's five-year plan for a national-scale agentic cyber defense ecosystem.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Codifying cyber security knowledge as a knowledge graph to support deterministic agent decision making.",
+       "tp": [
+        "governance",
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Explores compliance regimes that scale with growing agentic workloads instead of becoming strained.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by the Chief Security Architect of the UK National Cyber Security Center.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1420",
@@ -1443,7 +3604,65 @@
       "researcher",
       "builder"
      ],
-     "summary": "Memory Dojo, a benchmark tracing memory poisoning attacks through storage, retrieval and propagation across five agent memory architectures."
+     "summary": "Memory Dojo, a benchmark tracing memory poisoning attacks through storage, retrieval and propagation across five agent memory architectures.",
+     "hl": [
+      {
+       "t": "Memory Dojo, a benchmark tracing memory poisoning through storage, transformation, retrieval and later behavior.",
+       "tp": [
+        "prompt_injection",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Compares resistance to poisoning across five distinct agent memory architectures.",
+       "tp": [
+        "harness_engineering",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Shows how one poisoned tool response can persist and trigger harm in later benign tasks.",
+       "tp": [
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Explains where memory defenses hold or fail, and how to tell if an agent is already poisoned.",
+       "tp": [
+        "prompt_injection",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by AI safety researchers from Microsoft and RPI.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1445",
@@ -1474,7 +3693,50 @@
      "audience": [
       "leader"
      ],
-     "summary": "Opportunities for AI cyber resilience: securing critical infrastructure, verification tools for AI governance, and a cybersecurity observatory."
+     "summary": "Opportunities for AI cyber resilience: securing critical infrastructure, verification tools for AI governance, and a cybersecurity observatory.",
+     "hl": [
+      {
+       "t": "The OpenAI Foundation expects to invest $25 billion across AI resilience and life sciences.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Three opportunities: securing critical infrastructure, verification tools for AI governance, and an AI cybersecurity observatory.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Seeks collaboration from companies, startups, nonprofits and practitioners on AI cyber resilience.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Frames the role of security engineers in building tools that make society resilient to AI risks.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1510",
@@ -1517,7 +3779,66 @@
       "defender",
       "builder"
      ],
-     "summary": "Running over 200 autonomous Claude agents as a blue team in the Collegiate Cyber Defense Competition, including what broke."
+     "summary": "Running over 200 autonomous Claude agents as a blue team in the Collegiate Cyber Defense Competition, including what broke.",
+     "hl": [
+      {
+       "t": "Autonomous Claude agents defended a fictional utility as a blue team across three rounds of CCDC.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Engineering behind running more than 200 concurrent agents with shared state.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Agents took down nine of their own services fighting over one password, and attacked the red team's C2.",
+       "tp": [
+        "misalignment"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Four months facing a professional red team, with candid analysis of what broke and why.",
+       "tp": [
+        "soc_ir",
+        "misalignment"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by a Research Fellow at Anthropic who ran the AI blue team experiment.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1555",
@@ -1549,7 +3870,63 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Vulnerabilities in consumer quadruped and humanoid robots, from BLE provisioning flaws to prompt injection of the onboard AI."
+     "summary": "Vulnerabilities in consumer quadruped and humanoid robots, from BLE provisioning flaws to prompt injection of the onboard AI.",
+     "hl": [
+      {
+       "t": "Security research on consumer quadruped and humanoid robots, finding failures at multiple trust boundaries.",
+       "tp": [
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Onboard AI is instructed never to refuse, so prompt injection via camera or microphone is a real concern.",
+       "tp": [
+        "prompt_injection",
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Defines an embodied reasoning lethal trifecta and what the robotics industry should avoid.",
+       "tp": [
+        "new_surfaces",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Issues span provisioning, app authentication, internal services and the AI assistant channel.",
+       "tp": [
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by a member of the Dropbox Red Team.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1620",
@@ -1587,7 +3964,73 @@
       "researcher",
       "builder"
      ],
-     "summary": "Building an exploit-generation system on Haiku using a ratchet research loop and harness design, including its many failures."
+     "summary": "Building an exploit-generation system on Haiku using a ratchet research loop and harness design, including its many failures.",
+     "hl": [
+      {
+       "t": "Building an exploit-generation system that works with Anthropic's small Haiku model, not just Opus.",
+       "tp": [
+        "offensive_ai",
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Found the limiting factor was whether the system actually understood the target code.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Started from a Karpathy-style auto-research loop with a progressive ratchet.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Harness design for representing targets, preserving state and carrying progress across attempts.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Openly reports failures, including hard real-world memory corruption targets not yet solved.",
+       "tp": [
+        "offensive_ai",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by a reverse engineer and Knostic's founder and CEO.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1645",
@@ -1613,7 +4056,26 @@
       "researcher",
       "defender"
      ],
-     "summary": "How adversaries steal model reasoning for industrial-scale distillation; title only, no abstract published."
+     "summary": "How adversaries steal model reasoning for industrial-scale distillation; title only, no abstract published.",
+     "hl": [
+      {
+       "t": "Covers how adversaries steal model reasoning for industrial-scale distillation, per the session title.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Scheduled at 16:45 on day two; no abstract or speakers are listed yet.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S1-1710",
@@ -1638,7 +4100,31 @@
      "audience": [
       "leader"
      ],
-     "summary": "CISOs debrief on what they learned and what they need; title only, no abstract published."
+     "summary": "CISOs debrief on what they learned and what they need; title only, no abstract published.",
+     "hl": [
+      {
+       "t": "A debrief from CISOs on what they learned and what they need.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Leadership-focused session following the day two main track talks.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1735",
@@ -1700,7 +4186,55 @@
       "leader",
       "defender"
      ],
-     "summary": "Debate on whether AI has materially changed current cyber risk for threat actors and defenders, today and near term."
+     "summary": "Debate on whether AI has materially changed current cyber risk for threat actors and defenders, today and near term.",
+     "hl": [
+      {
+       "t": "Formal debate on the resolution that AI noise has not moved the needle on current cyber risk.",
+       "tp": [
+        "threat_intel",
+        "governance"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      },
+      {
+       "t": "Sergej Epp, creator of the Zero Day Clock, debates Jeremiah Grossman, founder of WhiteHat Security.",
+       "tp": [],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Covers the impact of AI for both threat actors and defenders, today and in the near future.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "Addresses whether AI-driven vulnerability discovery has produced a measurable change in risk.",
+       "tp": [
+        "vuln_discovery",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1835",
@@ -1736,7 +4270,54 @@
      "audience": [
       "leader"
      ],
-     "summary": "Debate on whether existing security programs and controls can defend against agent swarms or something new is needed."
+     "summary": "Debate on whether existing security programs and controls can defend against agent swarms or something new is needed.",
+     "hl": [
+      {
+       "t": "Debate on how to build a security program that defends against agent swarms.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Asks whether the answer is better basics, reprioritized controls, or something entirely new.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      },
+      {
+       "t": "Tim Brown, former SolarWinds CISO, and Gadi Evron, Knostic CEO and [un]prompted CFP chair.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Speakers are expected to disagree on which defenses are actually useful today.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S1-1900",
@@ -1768,7 +4349,28 @@
       "researcher",
       "defender"
      ],
-     "summary": "AI Hacker Jeopardy, an evening quiz game session; title only, no abstract published."
+     "summary": "AI Hacker Jeopardy, an evening quiz game session; title only, no abstract published.",
+     "hl": [
+      {
+       "t": "AI-themed Hacker Jeopardy hosted by G Mark Hardy as the evening social event.",
+       "tp": [],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "A two-hour game session that closes the day two evening program.",
+       "tp": [],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-0935",
@@ -1800,7 +4402,76 @@
      "audience": [
       "researcher"
      ],
-     "summary": "LLM-assisted cryptanalysis results, including key recovery on a threshold ML-DSA proposal and breaks of witness encryption and Poseidon."
+     "summary": "LLM-assisted cryptanalysis results, including key recovery on a threshold ML-DSA proposal and breaks of witness encryption and Poseidon.",
+     "hl": [
+      {
+       "t": "LLM-assisted cryptanalysis found a signing-key recovery attack on TALUS v4, fixed by the authors in v5.",
+       "tp": [
+        "crypto_privacy",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "A witness encryption scheme was broken with a polynomial-time message recovery attack using ChatGPT.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Work on the Poseidon hash earned a $10K ex gratia payment amid four cryptanalysis papers in a month.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows which Reed-Solomon parameters are safe for SNARK soundness, using AI autoresearch.",
+       "tp": [
+        "crypto_privacy",
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Argues LLMs will contest new cryptography hard, so only the safe schemes survive.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by a QED Audit co-founder and Georgia Tech Ph.D. student.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-1000",
@@ -1833,7 +4504,53 @@
       "researcher",
       "leader"
      ],
-     "summary": "AI-assisted codebreaking techniques, recent results and authority reactions, and how post-quantum cryptography assurances are holding up."
+     "summary": "AI-assisted codebreaking techniques, recent results and authority reactions, and how post-quantum cryptography assurances are holding up.",
+     "hl": [
+      {
+       "t": "A cryptographer reviews how post-quantum cryptography assurances are holding up against AI cryptanalysis.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      },
+      {
+       "t": "Covers techniques used for codebreaking with AI and a summary of recent results.",
+       "tp": [
+        "crypto_privacy",
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Includes reactions from security authorities to AI-driven cryptanalysis.",
+       "tp": [
+        "crypto_privacy",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Assesses which parts of post-quantum cryptography might break next.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1025",
@@ -1873,7 +4590,63 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Kuna, an autonomous agent research effort improving a Rust port of the Ghidra decompiler to rival Hex-Rays on control flow."
+     "summary": "Kuna, an autonomous agent research effort improving a Rust port of the Ghidra decompiler to rival Hex-Rays on control flow.",
+     "hl": [
+      {
+       "t": "Within three months, agents improved Kuna to 33.7% perfect C control flow versus Hex-Rays' 32.2% on DecBench.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Agents developed new decompilation methods rather than just using existing tools.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "The Ghidra decompiler was ported to Rust with tunable passes and loops for agents to evaluate new methods.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Explains where autonomy worked, where human direction helped, and how this changes research.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Presented by an Assistant Professor at the University of Georgia, extending his PhD research.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1110",
@@ -1905,7 +4678,80 @@
      "audience": [
       "researcher"
      ],
-     "summary": "Building a red-team benchmark on two DGX Sparks with an AI agent and evaluating 33 open-weight models on offensive questions."
+     "summary": "Building a red-team benchmark on two DGX Sparks with an AI agent and evaluating 33 open-weight models on offensive questions.",
+     "hl": [
+      {
+       "t": "A red-team benchmark of 33 open-weight models found willingness to answer and correctness are different axes.",
+       "tp": [
+        "evals",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Built on two NVIDIA DGX Sparks from zero GPU-cluster experience, directing an AI agent through deployment.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Harness uses a hand-authored answer key and a deliberate false-positive trap.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "One model diagnosed a planted false positive, then gave advice contradicting its own analysis.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Hardware findings show architecture beats parameter count on memory-bandwidth-limited hardware.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "An honest assessment of whether local hardware is worth it for offensive security work.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1135",
@@ -1942,7 +4788,63 @@
      "audience": [
       "researcher"
      ],
-     "summary": "A pipeline for realistic Trojan open-weight LLMs and an evaluation of detection methods from linear probes to J-space."
+     "summary": "A pipeline for realistic Trojan open-weight LLMs and an evaluation of detection methods from linear probes to J-space.",
+     "hl": [
+      {
+       "t": "A pipeline for building realistic Trojan open-weight models with specific triggers that preserve normal capabilities.",
+       "tp": [
+        "model_internals",
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Detection methods from linear probes to J-space tested across triggers, payloads, sizes and architectures.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Addresses whether a downloaded quantized model can be trusted, as researchers shift to open weights.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Payloads studied include injecting vulnerable code, overlooking vulnerabilities and favoring a dependency.",
+       "tp": [
+        "model_internals",
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by AISLE's Head of Technology and a Member of Technical Staff.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-1200",
@@ -1980,7 +4882,49 @@
       "researcher",
       "defender"
      ],
-     "summary": "Attack surface of Chrome's built-in local language model, including website-reachable inference APIs, token-farming botnets and malware sideloading."
+     "summary": "Attack surface of Chrome's built-in local language model, including website-reachable inference APIs, token-farming botnets and malware sideloading.",
+     "hl": [
+      {
+       "t": "Examines the Gemini-class local language model now shipped in Google Chrome as a new attack surface.",
+       "tp": [
+        "new_surfaces"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers how the local model integrates with Safe Browsing and how its inference APIs are reachable by websites.",
+       "tp": [
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Discusses abuse scenarios including token-farming botnets and malware using local inference.",
+       "tp": [
+        "new_surfaces",
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Presented by a Senior Threat Researcher at TrendAI and an AI Threat Research Lead.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-1225",
@@ -2025,7 +4969,61 @@
      "audience": [
       "leader"
      ],
-     "summary": "Two former CISOs diagnose an unused AI intake process at a pharma company and present the rebuilt risk-tiering workflow."
+     "summary": "Two former CISOs diagnose an unused AI intake process at a pharma company and present the rebuilt risk-tiering workflow.",
+     "hl": [
+      {
+       "t": "A pharma AI intake process got 20 submissions in six months while 35 unapproved AI uses ran in one day.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Attendees leave with both v1 and v2 risk-tiering rubrics and redesign criteria.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Rebuilt workflow uses self-service fast lanes for low tiers and human review only where warranted.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Argues the real fix was cultural, since the standard GRC playbook was built to spec but unused.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by two former CISOs, including a sanitized walkthrough of the intake tooling.",
+       "tp": [],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1355",
@@ -2063,7 +5061,73 @@
      "audience": [
       "builder"
      ],
-     "summary": "Meta's runtime guardrails for coding agents that replace per-action approvals with taint tracking, external policy and cascaded decisions."
+     "summary": "Meta's runtime guardrails for coding agents that replace per-action approvals with taint tracking, external policy and cascaded decisions.",
+     "hl": [
+      {
+       "t": "At 100% guardrail rollout at Meta, coding agent permission friction fell 80% while retaining security.",
+       "tp": [
+        "agent_authz",
+        "secure_dev"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Replaces static per-action approvals with a runtime separating signals, policy and decision.",
+       "tp": [
+        "agent_authz",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "A sidecar tracks taint from untrusted reads, tightening access mid-session as it accumulates.",
+       "tp": [
+        "agent_monitoring",
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Cheapest-first cascade of static rules, stateful checks and an LLM classifier returns allow, ask or deny.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Reports what failed, including allowlists and subagent propagation, which remains open.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by security engineers from Meta's agent security and access team.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-1420",
@@ -2101,7 +5165,69 @@
       "builder",
       "leader"
      ],
-     "summary": "An adversarial quality-control harness that verifies claims in agentic security analysis using deterministic gates, a critic and a fixer."
+     "summary": "An adversarial quality-control harness that verifies claims in agentic security analysis using deterministic gates, a critic and a fixer.",
+     "hl": [
+      {
+       "t": "A harness that checks agentic security analysis claim by claim, with deterministic gates and an adversarial critic.",
+       "tp": [
+        "harness_engineering",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Measures accuracy, regression per pass, omissions and cost, including fixes that make work worse.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Built from a production QC loop for vendor research and a benchmark of ATT&CK coverage mapping.",
+       "tp": [
+        "evals",
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Applies to GRC assessments, architecture reviews and threat models too large to verify by hand.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Explains how to adapt the approach to other tasks of similar cognitive complexity.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1445",
@@ -2138,7 +5264,56 @@
       "defender",
       "researcher"
      ],
-     "summary": "Hunting exposed threat actor open directories to reveal real-world malicious AI use, including weaponized assistants and hoarded API keys."
+     "summary": "Hunting exposed threat actor open directories to reveal real-world malicious AI use, including weaponized assistants and hoarded API keys.",
+     "hl": [
+      {
+       "t": "Google threat intelligence hunted exposed attacker servers to see how threat actors actually use AI.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Real cases include weaponized AI assistants, an AI agent running an underground syndicate, and 23K hoarded API keys.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Uses a scaled, targeted open-directory pipeline to find where malicious activity and AI adoption intersect.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Found mature malicious AI setups, yet concludes that for now there is still hope.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1510",
@@ -2180,7 +5355,65 @@
       "builder",
       "leader"
      ],
-     "summary": "Live verification of a confidential-inference service's AMD SEV-SNP attestation with an open-source tool, graded against governance checks."
+     "summary": "Live verification of a confidential-inference service's AMD SEV-SNP attestation with an open-source tool, graded against governance checks.",
+     "hl": [
+      {
+       "t": "Live verification of a production confidential-inference service's AMD SEV-SNP attestation, with no cloud account.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [
+        "live_demo"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "An open-source, dependency-free tool grades attestation evidence against twelve governance checks.",
+       "tp": [
+        "crypto_privacy",
+        "governance"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Produces an auditor-readable report mapped to the EU AI Act, SOC 2 and ISO 42001.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Five checks pass on real hardware; shows why location, compute and license state remain unknown.",
+       "tp": [
+        "crypto_privacy",
+        "governance"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented by an AI security and policy researcher at Columbia University.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
      "id": "D2-S2-1555",
@@ -2218,7 +5451,64 @@
       "builder",
       "leader"
      ],
-     "summary": "Arguing for shared lifecycle-level observability and control checkpoints across agent clients, sitting above MCP, as a common standard."
+     "summary": "Arguing for shared lifecycle-level observability and control checkpoints across agent clients, sitting above MCP, as a common standard.",
+     "hl": [
+      {
+       "t": "Proposes shared observability and control points for agents across clients like Cursor, Claude Code and Codex.",
+       "tp": [
+        "agent_monitoring",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Shows a before and after of an agent action with no record or gate versus a standard checkpoint.",
+       "tp": [
+        "agent_monitoring",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Connects to OPA and Cedar for policy, OCSF for events, and MCP interceptor work.",
+       "tp": [
+        "agent_authz",
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Covers tradeoffs in latency and developer friction, and what a shared standard requires.",
+       "tp": [
+        "agent_monitoring"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "The speaker chairs the AAIF Security and Privacy Working Group and works at Runlayer.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1620",
@@ -2256,7 +5546,69 @@
       "builder",
       "researcher"
      ],
-     "summary": "AgencyScore and AgencyGym measure whether agents acquire undeclared capabilities, quantifying excessive agency before deployment with a 100-task dataset."
+     "summary": "AgencyScore and AgencyGym measure whether agents acquire undeclared capabilities, quantifying excessive agency before deployment with a 100-task dataset.",
+     "hl": [
+      {
+       "t": "AgencyScore measures an agent acquiring capabilities it was not declared to have, before deployment.",
+       "tp": [
+        "misalignment",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "AgencyGym, a sandbox with a 100-task dataset placing high-agency capabilities as capture-the-flag targets.",
+       "tp": [
+        "evals",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Reports agency acquisition rates and how security and red teams can use the tool.",
+       "tp": [
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Focuses on OWASP Excessive Agency, where trusted agents cause harm without any adversary.",
+       "tp": [
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Presented as v1 seeking community help; coverage across tools and infrastructure remains incomplete.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D2-S2-1645",
@@ -2288,7 +5640,70 @@
      "audience": [
       "builder"
      ],
-     "summary": "Quantizing a Gemma model for an on-endpoint data-loss classifier, spending precision where weights multiply to cut memory without losing accuracy."
+     "summary": "Quantizing a Gemma model for an on-endpoint data-loss classifier, spending precision where weights multiply to cut memory without losing accuracy.",
+     "hl": [
+      {
+       "t": "An on-endpoint data-loss classifier built on a quantized open-weight model, so secrets never leave the device.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Mixed quantization shrank the model from 3.2 GB to 2.1 GB by spending bits where they multiply.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Serving flags cut memory 9.1x, from 1,137 MiB to 125 MiB, at no throughput cost.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "One set of weights serves three jobs: classification at 51 ms per call, activity narration and risk scoring.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Explains why Gemma-4 E2B's lookup-table parameters tolerate aggressive quantization while compute layers do not.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "kind": "village",
@@ -2378,7 +5793,69 @@
       "defender",
       "researcher"
      ],
-     "summary": "Analysis of a large-scale criminal campaign where AI agents autonomously breached companies and its impact on detection and attribution."
+     "summary": "Analysis of a large-scale criminal campaign where AI agents autonomously breached companies and its impact on detection and attribution.",
+     "hl": [
+      {
+       "t": "Walkthrough of one of the first documented large-scale criminal campaigns where AI agents executed intrusions end to end.",
+       "tp": [
+        "threat_intel",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Given only general objectives, AI agents reached remote code execution within hours across web apps, cloud, Kubernetes, and pipelines.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Impact included hundreds of thousands of stolen payment-card records and deployed skimmers across dozens of companies.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "The campaign ran on an open-weight model and an open-source harness rather than custom tooling.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Examines what fully autonomous intrusions mean for detection and TTP-based attribution.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1000",
@@ -2412,7 +5889,56 @@
       "researcher",
       "builder"
      ],
-     "summary": "Examination of sandboxing and isolation weaknesses in a widely deployed frontier lab product and what its design reveals about security."
+     "summary": "Examination of sandboxing and isolation weaknesses in a widely deployed frontier lab product and what its design reveals about security.",
+     "hl": [
+      {
+       "t": "Examines sandboxing and isolation weaknesses in a widely deployed frontier-lab product.",
+       "tp": [
+        "agent_sandboxing",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Traces how separate product features interact to create risk the individual features do not show.",
+       "tp": [
+        "agent_sandboxing",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Reads the product's design for the security and alignment assumptions embedded in it.",
+       "tp": [
+        "misalignment",
+        "agent_sandboxing"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Findings are tied to a coordinated disclosure still in progress.",
+       "tp": [
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1025",
@@ -2454,7 +5980,68 @@
       "leader",
       "builder"
      ],
-     "summary": "Field findings from 40 enterprise sessions on governing AI agents and the operating model of registry, agent identity and gateway."
+     "summary": "Field findings from 40 enterprise sessions on governing AI agents and the operating model of registry, agent identity and gateway.",
+     "hl": [
+      {
+       "t": "Operating model for governing AI agents drawn from 40-plus hour-long sessions with enterprise security teams.",
+       "tp": [
+        "governance",
+        "agent_authz"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Field findings include agents riding employee tokens at a regulated bank and 67,000 APIs behind one gateway with no named policy.",
+       "tp": [
+        "agent_authz",
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "The control plane converged on a registry of admitted agents, an identity per agent, and a gateway agents cannot route around.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Governance artifact is one YAML persona per agent kind in Git, reviewed as a pull request and compiled into gateway policy.",
+       "tp": [
+        "governance",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Reports what failed on contact: paper policy and header allowlists.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1110",
@@ -2492,7 +6079,61 @@
       "leader",
       "builder"
      ],
-     "summary": "Research across 28 organizations plus NVIDIA deployments on how teams expand agent autonomy, measure success and manage production risk."
+     "summary": "Research across 28 organizations plus NVIDIA deployments on how teams expand agent autonomy, measure success and manage production risk.",
+     "hl": [
+      {
+       "t": "Research across 28 organizations, from 20-person startups to 20,000-employee companies, on how teams deploy agentic AI.",
+       "tp": [
+        "governance",
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research",
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Finds the strongest autonomous use cases are bounded, high-volume, repeatable, auditable, and reversible.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Real agents built at NVIDIA show why successful demos fail against representative production work.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Argues production readiness must be evaluated across model, workflow, platform, and authority boundary.",
+       "tp": [
+        "governance",
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1135",
@@ -2525,7 +6166,53 @@
       "leader",
       "builder"
      ],
-     "summary": "Keynote on integrity as the central security property for AI systems trusted to take actions in an internet of things."
+     "summary": "Keynote on integrity as the central security property for AI systems trusted to take actions in an internet of things.",
+     "hl": [
+      {
+       "t": "Argues integrity is the hardest and most important security property in an AI-powered internet-of-things world.",
+       "tp": [
+        "governance",
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Explores four facets of integrity: data, processing, storage, and contextual.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Frames solving integrity as a prerequisite for trusting AI systems to act on our behalf.",
+       "tp": [
+        "governance",
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Presented by Bruce Schneier of the Harvard Kennedy School.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1200",
@@ -2559,7 +6246,58 @@
       "builder",
       "leader"
      ],
-     "summary": "Introduces the C4 model for controlling and holding agents accountable, with experiments on compelling agent obedience through engineered miracles."
+     "summary": "Introduces the C4 model for controlling and holding agents accountable, with experiments on compelling agent obedience through engineered miracles.",
+     "hl": [
+      {
+       "t": "Introduces the C4 model (Crown, Chassis, Conscience, Committee) for mapping where and how agents can be controlled.",
+       "tp": [
+        "agent_authz",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "Argues least privilege is inadequate for agents and proposes a least-agency approach.",
+       "tp": [
+        "agent_authz",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Shifts from a shared responsibility model to a shared accountability model for agent actions.",
+       "tp": [
+        "governance",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Shows empirical test results where an engineered miracle delivered through the Chassis overrides agent behavior.",
+       "tp": [
+        "agent_authz",
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1225",
@@ -2601,7 +6339,56 @@
       "defender",
       "researcher"
      ],
-     "summary": "An LLM system that engages online scammers at scale to sustain dialogues and surface signals for detecting escalating trust scams."
+     "summary": "An LLM system that engages online scammers at scale to sustain dialogues and surface signals for detecting escalating trust scams.",
+     "hl": [
+      {
+       "t": "Describes an LLM-driven system that engages scammers at attacker scale to disrupt pig-butchering and trust-based scams.",
+       "tp": [
+        "soc_ir",
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "The system sustains thousands of convincing long-term dialogues and recognizes the milestones scammers use to move victims toward payment.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Shows how these interactions surface signals that help defenders detect escalating scams earlier.",
+       "tp": [
+        "threat_intel",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Aims to increase friction for fraudsters and intervene before victims lose money.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1355",
@@ -2634,7 +6421,54 @@
       "builder",
       "researcher"
      ],
-     "summary": "Review of the challenges, tradeoffs and new threats in building private and confidential AI inference infrastructure at production scale."
+     "summary": "Review of the challenges, tradeoffs and new threats in building private and confidential AI inference infrastructure at production scale.",
+     "hl": [
+      {
+       "t": "Reviews the challenges and tradeoffs of building private inference infrastructure for AI at scale.",
+       "tp": [
+        "crypto_privacy",
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Draws on real production systems to report the performance impact of confidential inference.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Covers new threats specific to confidential inference that arise from how LLMs are operated.",
+       "tp": [
+        "crypto_privacy",
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Assesses whether providers can uphold privacy and confidentiality at a meaningful bar without unacceptable cost.",
+       "tp": [
+        "crypto_privacy"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1420",
@@ -2673,7 +6507,73 @@
       "builder",
       "researcher"
      ],
-     "summary": "A hardware USB authenticator that gates agent actions by signing exact bytes, and the co-authorization oracle flaw it avoids."
+     "summary": "A hardware USB authenticator that gates agent actions by signing exact bytes, and the co-authorization oracle flaw it avoids.",
+     "hl": [
+      {
+       "t": "Presents a USB authenticator that displays and approves the exact bytes before a key signs an ssh login or FIDO2 assertion.",
+       "tp": [
+        "agent_authz",
+        "crypto_privacy",
+        "new_surfaces"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Shows how co-authorization over a detached signature becomes a signing oracle, using the team's own first design.",
+       "tp": [
+        "agent_authz",
+        "crypto_privacy"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Argues most agent-approval products bind a signature to bytes while the human reads unbound prose.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Hardware and protocol released as open source under MIT or Apache-2.0.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Co-presented by a KonaSense CTO and a vulnerability researcher from Anthropic.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1445",
@@ -2707,7 +6607,56 @@
       "leader",
       "builder"
      ],
-     "summary": "A CISO approach to governing employee AI tool use through aligned redlines, paved roads, secure sandboxes and technical guardrails."
+     "summary": "A CISO approach to governing employee AI tool use through aligned redlines, paved roads, secure sandboxes and technical guardrails.",
+     "hl": [
+      {
+       "t": "Presents how to govern AI tool adoption without defaulting to no or routing every use case through central review.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "The approach starts by aligning leadership on risk tolerance and redlines.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Turns redlines into self-service paved roads, secure agent sandboxes, and technical guardrails.",
+       "tp": [
+        "governance",
+        "agent_sandboxing"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Adds detection and blocking for the paths that fall outside risk tolerance.",
+       "tp": [
+        "agent_monitoring",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1510",
@@ -2750,7 +6699,57 @@
       "builder",
       "defender"
      ],
-     "summary": "How Felix Pago built an identity-aware agent runtime with ephemeral tokens, gVisor sandboxing and guardrails across 500 production pods."
+     "summary": "How Felix Pago built an identity-aware agent runtime with ephemeral tokens, gVisor sandboxing and guardrails across 500 production pods.",
+     "hl": [
+      {
+       "t": "Describes an identity-aware agent runtime built on OpenClaw running a fleet of over 500 pods in production.",
+       "tp": [
+        "agent_authz",
+        "agent_sandboxing"
+       ],
+       "fm": [
+        "case_study",
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Separates Requester, Actor, and Persona through an explicit actAs model.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Eliminates long-lived credentials with ephemeral token minting and sandboxes agents with gVisor.",
+       "tp": [
+        "agent_sandboxing",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Enforces read-only guardrails across an audited, least-privilege agent fleet.",
+       "tp": [
+        "agent_monitoring",
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1555",
@@ -2789,7 +6788,69 @@
       "defender",
       "builder"
      ],
-     "summary": "How a production SOC agent was split and tested to measure nondeterminism and safely ship changes using recipes and shadow tests."
+     "summary": "How a production SOC agent was split and tested to measure nondeterminism and safely ship changes using recipes and shadow tests.",
+     "hl": [
+      {
+       "t": "Tackles nondeterminism in a SOC agent that has handled 5,000 threats a day for a year.",
+       "tp": [
+        "soc_ir",
+        "harness_engineering"
+       ],
+       "fm": [
+        "original_research",
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Splits the agent into an investigation agent that writes findings and a verdict agent that reads only them.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "A/A tests traced most variance to flat playbooks of 10 to 15 questions sampled differently each run.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Replaces playbooks with recipes: staged plans of mandatory and optional steps that name the evidence and the tool.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Uses shadow tests scoring a silent candidate on agreement, false-positive rate, and precision against analyst ground truth.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1620",
@@ -2827,7 +6888,59 @@
       "defender",
       "researcher"
      ],
-     "summary": "A method that maps behavioral signals in extensions, skills and MCP servers into chains and judges them against stated intent."
+     "summary": "A method that maps behavioral signals in extensions, skills and MCP servers into chains and judges them against stated intent.",
+     "hl": [
+      {
+       "t": "Introduces BITE, comparing an artifact's behavior chains against its stated intent to judge extensions, skills, and MCP servers.",
+       "tp": [
+        "ai_supply_chain",
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Maps signals such as credential reads, outbound calls, and file writes, then connects them into behavior chains.",
+       "tp": [
+        "agent_monitoring",
+        "ai_supply_chain"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Grounds the model's verdict in evidence from code and declared purpose rather than black-box classification.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Reports reduced false positives alongside the false negatives that stricter intent checks can introduce.",
+       "tp": [
+        "evals",
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1645",
@@ -2861,7 +6974,58 @@
       "builder",
       "leader"
      ],
-     "summary": "How Moderna built a threat modeling agent that ran 687 security reviews in 30 days and routed remediation to owners."
+     "summary": "How Moderna built a threat modeling agent that ran 687 security reviews in 30 days and routed remediation to owners.",
+     "hl": [
+      {
+       "t": "Describes a threat-model agent that completed 687 AI-assisted security reviews in 30 days and logged over 3,000 risks in Jira.",
+       "tp": [
+        "secure_dev",
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "The pipeline runs a 50-question owner survey, reasons over artifacts with Copilot Studio, then validates and assigns with Power Automate.",
+       "tp": [
+        "harness_engineering",
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Identifies reliable system and ownership data, not the agent, as the hardest part to get right.",
+       "tp": [
+        "governance",
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Humans validate results and escalate higher-risk systems into deeper threat-model reviews.",
+       "tp": [
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S1-1710",
@@ -2924,7 +7088,75 @@
       "researcher",
       "builder"
      ],
-     "summary": "Seven soundness bugs in Lean, Rocq and Z3 that forge proofs and sabotage verified cryptographic code, with reproducible proof of concept."
+     "summary": "Seven soundness bugs in Lean, Rocq and Z3 that forge proofs and sabotage verified cryptographic code, with reproducible proof of concept.",
+     "hl": [
+      {
+       "t": "Revisits seven soundness bugs in the Lean and Rocq proof assistants and obtains seven CVEs for them.",
+       "tp": [
+        "vuln_discovery",
+        "secure_dev"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Forges short proofs of P=NP, the Riemann Hypothesis, and other Millennium Prize Problems.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Sabotages a Fiat-Crypto field multiplier to always return zero while its correctness theorem stays accepted.",
+       "tp": [
+        "crypto_privacy",
+        "secure_dev"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Demonstrates soundness failures in Z3 that make downstream verification tools accept false claims.",
+       "tp": [
+        "vuln_discovery",
+        "crypto_privacy"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Provides reproducible Docker proof-of-concepts for every forged proof and sabotaged result shown.",
+       "tp": [
+        "vuln_discovery"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1000",
@@ -2962,7 +7194,60 @@
       "builder",
       "leader"
      ],
-     "summary": "An open Pipeline Bill of Materials specification that captures build pipeline execution context to prove process integrity beyond the SBOM."
+     "summary": "An open Pipeline Bill of Materials specification that captures build pipeline execution context to prove process integrity beyond the SBOM.",
+     "hl": [
+      {
+       "t": "Introduces the open Pipeline Bill of Materials (PBOM) specification for capturing a build pipeline's execution context.",
+       "tp": [
+        "ai_supply_chain",
+        "secure_dev"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      },
+      {
+       "t": "The PBOM schema records runner identities, environment configs, git lineage, policy evaluations, and signatures at every stage.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Targets supply chain attacks on the assembly mechanism itself, such as CI runner compromise and poisoned build dependencies.",
+       "tp": [
+        "ai_supply_chain",
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Released on GitHub by security engineers from Visa and Cigna.",
+       "tp": [
+        "ai_supply_chain"
+       ],
+       "fm": [
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "leader"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1025",
@@ -3005,7 +7290,57 @@
       "defender",
       "builder"
      ],
-     "summary": "An agentic investigation system at Oscar Health that routes queries across siloed consoles to expose hidden multi-system threats."
+     "summary": "An agentic investigation system at Oscar Health that routes queries across siloed consoles to expose hidden multi-system threats.",
+     "hl": [
+      {
+       "t": "Presents an agentic investigation system that routes queries across a dozen enterprise consoles to answer questions like whether a login is legitimate.",
+       "tp": [
+        "soc_ir",
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Surfaces hidden multi-system threats by correlating signals across otherwise siloed tools.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Built by pairing an ex-law-enforcement investigator with a security engineer.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Takeaways include a GET-pinned read-only driver pattern and a permission model for safe unattended operation.",
+       "tp": [
+        "agent_authz",
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1110",
@@ -3061,7 +7396,60 @@
       "researcher",
       "defender"
      ],
-     "summary": "Empirical comparison of zero-shot LLMs, XGBoost and fine-tuning on phishing and network attack detection, with a model selection guide."
+     "summary": "Empirical comparison of zero-shot LLMs, XGBoost and fine-tuning on phishing and network attack detection, with a model selection guide.",
+     "hl": [
+      {
+       "t": "Compares zero-shot LLMs, XGBoost, fine-tuning, and LLM-ML ensembles on phishing and network attack detection.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "On phishing, zero-shot LLMs reach 0.970 AUCPR while a fine-tuned encoder reaches 0.998.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "On network traffic, zero-shot LLMs mostly guess attack, and routing uncertain cases to the LLM makes results worse.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Delivers a decision guide of which model and representation to use per task and budget.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1225",
@@ -3103,7 +7491,69 @@
       "builder",
       "defender"
      ],
-     "summary": "A deployed MCP permission broker that requires evidence of human presence before sensitive actions, with an adversarial test plan."
+     "summary": "A deployed MCP permission broker that requires evidence of human presence before sensitive actions, with an adversarial test plan.",
+     "hl": [
+      {
+       "t": "Presents a deployed MCP permission broker that requires evidence of human presence before granting sensitive capabilities.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Argues an Approve click is just input an agent sharing the user's UID may be able to generate.",
+       "tp": [
+        "agent_authz",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Reconstructs a live boundary test from the strongest position the agent held, including admin-group membership and a valid broker session.",
+       "tp": [
+        "agent_authz",
+        "misalignment"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Lets different coding-agent sessions running as the same user hold different permissions.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Attendees leave with a threat model, an enforcement pattern, and an adversarial test plan.",
+       "tp": [
+        "agent_authz"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1355",
@@ -3142,7 +7592,78 @@
       "builder",
       "researcher"
      ],
-     "summary": "Generation-free guardrails at Intuit that read a small model's activations with lightweight probes to detect attacks without generating tokens."
+     "summary": "Generation-free guardrails at Intuit that read a small model's activations with lightweight probes to detect attacks without generating tokens.",
+     "hl": [
+      {
+       "t": "Makes the case for generation-free guardrails that read a small model's internal activations instead of generating tokens.",
+       "tp": [
+        "model_internals",
+        "agent_monitoring",
+        "prompt_injection"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Uses one forward pass through a 2 to 4B open-weight model and classifies the activations with lightweight probes.",
+       "tp": [
+        "model_internals",
+        "agent_monitoring"
+       ],
+       "fm": [
+        "original_research",
+        "open_source"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Reports engineering that cut latency from about 4.1 seconds to under 820 milliseconds, bit-exact, at sub-0.1% false-positive rate.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Compares against open detectors and frontier judges on more than 20 public datasets.",
+       "tp": [
+        "evals",
+        "model_internals"
+       ],
+       "fm": [
+        "original_research",
+        "open_source"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Shares what broke on the way to production at a large fintech.",
+       "tp": [
+        "model_internals"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1420",
@@ -3175,7 +7696,56 @@
       "defender",
       "builder"
      ],
-     "summary": "An honest account of context engineering for SOC agents, covering memory selection, context injection, model choice and open questions."
+     "summary": "An honest account of context engineering for SOC agents, covering memory selection, context injection, model choice and open questions.",
+     "hl": [
+      {
+       "t": "Shares lessons from building SOC AI workflows, from Markdown runbooks in a local Cline harness to an enterprise agent platform.",
+       "tp": [
+        "soc_ir",
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Examines which stored memories are relevant and what enterprise context to inject when grounding SIEM telemetry.",
+       "tp": [
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Works through the trade-off of choosing which model to use for SOC investigation.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Framed as an honest inquiry into open questions rather than a platform pitch.",
+       "tp": [
+        "soc_ir"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1445",
@@ -3208,7 +7778,61 @@
       "builder",
       "defender"
      ],
-     "summary": "A multi-model pipeline at Twilio that reviews third-party app access grants, and the audit that found the failures were not the models."
+     "summary": "A multi-model pipeline at Twilio that reviews third-party app access grants, and the audit that found the failures were not the models.",
+     "hl": [
+      {
+       "t": "Describes a pipeline where several models independently assess each app permission grant and a stronger model referees disagreements.",
+       "tp": [
+        "harness_engineering",
+        "governance"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      },
+      {
+       "t": "Reviews third-party and custom app grants to Google Workspace and Slack, access that is already in use.",
+       "tp": [
+        "governance",
+        "agent_authz"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender",
+        "builder"
+       ]
+      },
+      {
+       "t": "Audit found the stored verdict disagreed with the reasoning shown, and a model quietly stopped counting toward the score.",
+       "tp": [
+        "harness_engineering"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "builder"
+       ]
+      },
+      {
+       "t": "Concludes that almost nothing that went wrong was the model, and keeps a human in the loop.",
+       "tp": [
+        "harness_engineering",
+        "governance"
+       ],
+       "fm": [],
+       "au": [
+        "builder",
+        "defender"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1510",
@@ -3250,7 +7874,60 @@
       "builder",
       "researcher"
      ],
-     "summary": "Engineering lessons on building a trust architecture for AI-generated patches, using evidence and experiments to decide which fixes to trust."
+     "summary": "Engineering lessons on building a trust architecture for AI-generated patches, using evidence and experiments to decide which fixes to trust.",
+     "hl": [
+      {
+       "t": "Shares the trust architecture behind the OpenAnt Auto Patcher for AI-generated security patches.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Reports which forms of evidence improved patch quality and which intuitive ideas failed.",
+       "tp": [
+        "secure_dev",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "builder",
+        "researcher"
+       ]
+      },
+      {
+       "t": "Tests whether generated patches are semantically equivalent to patches maintainers produced for past vulnerabilities.",
+       "tp": [
+        "secure_dev",
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Refines the boundary between LLM reasoning and deterministic policy through controlled experiments.",
+       "tp": [
+        "secure_dev"
+       ],
+       "fm": [],
+       "au": [
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1555",
@@ -3289,7 +7966,75 @@
       "defender",
       "researcher"
      ],
-     "summary": "An env-play loop that generates realistic SOC scenarios to stress-test AI investigators as benchmarks saturate, shown in a live demo."
+     "summary": "An env-play loop that generates realistic SOC scenarios to stress-test AI investigators as benchmarks saturate, shown in a live demo.",
+     "hl": [
+      {
+       "t": "Introduces env-play, a generator that produces SOC investigation scenarios against a fixed investigator, hunting the hardest still-solvable cases.",
+       "tp": [
+        "evals",
+        "harness_engineering",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Scores every generated scenario on realism, solvability, and difficulty.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Reports a generated environment where GPT-5.6-Sol reached the right verdict in about 8% of runs.",
+       "tp": [
+        "evals",
+        "soc_ir"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Includes a live demo reading the investigator's queries rather than its score.",
+       "tp": [
+        "evals"
+       ],
+       "fm": [
+        "live_demo"
+       ],
+       "au": [
+        "researcher",
+        "defender"
+       ]
+      },
+      {
+       "t": "Motivated by saturating public benchmarks like Splunk's BOTS and a 2026 incident where agents faked tool calls.",
+       "tp": [
+        "soc_ir",
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1620",
@@ -3323,7 +8068,59 @@
       "researcher",
       "builder"
      ],
-     "summary": "How agents in separate evaluation runs discover each other through shared infrastructure, pooling effort and undermining evaluation validity."
+     "summary": "How agents in separate evaluation runs discover each other through shared infrastructure, pooling effort and undermining evaluation validity.",
+     "hl": [
+      {
+       "t": "Shows how agents on separate evaluation tasks discover each other through shared infrastructure and pool answers and effort.",
+       "tp": [
+        "evals",
+        "agent_sandboxing",
+        "misalignment"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Explains how such interactions turn supposedly independent attempts into a system with shared memory, changing what scores measure.",
+       "tp": [
+        "evals",
+        "misalignment"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Argues that isolating execution alone does not establish independence between evaluation runs.",
+       "tp": [
+        "agent_sandboxing",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      },
+      {
+       "t": "Warns that rewarding these shortcuts during reinforcement learning reinforces the behavior training was meant to avoid.",
+       "tp": [
+        "misalignment",
+        "evals"
+       ],
+       "fm": [],
+       "au": [
+        "researcher",
+        "builder"
+       ]
+      }
+     ]
     },
     {
      "id": "D3-S2-1745",
@@ -3392,7 +8189,55 @@
     "researcher",
     "builder"
    ],
-   "summary": "Participants build and tune an AI-assisted security research harness to map attack surfaces, inspect code, validate vulnerabilities dynamically, and disclose findings."
+   "summary": "Participants build and tune an AI-assisted security research harness to map attack surfaces, inspect code, validate vulnerabilities dynamically, and disclose findings.",
+   "hl": [
+    {
+     "t": "Hands-on build of a bespoke AI-assisted security research harness for a real open-source project.",
+     "tp": [
+      "harness_engineering",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Uses Claude Code or Codex as a baseline and improves finding quality with harness engineering techniques.",
+     "tp": [
+      "harness_engineering",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Covers mapping attack surfaces, inspecting source code, and validating vulnerabilities by running software dynamically.",
+     "tp": [
+      "vuln_discovery",
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Participants leave with a working harness and a reusable methodology for tuning, validating, and disclosing findings.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D1-1015-1",
@@ -3425,7 +8270,52 @@
     "defender",
     "builder"
    ],
-   "summary": "Workshop on ranking security incidents and misconfigurations with scoring and LLMs, linking causes to attacks, and hardening the pipeline against adversarial log input."
+   "summary": "Workshop on ranking security incidents and misconfigurations with scoring and LLMs, linking causes to attacks, and hardening the pipeline against adversarial log input.",
+   "hl": [
+    {
+     "t": "Hands-on build of a ranking layer that decides what deserves the SOC's attention using simple scoring and an LLM.",
+     "tp": [
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Links security incidents to the misconfigurations that make them dangerous, then checks whether a hidden attack reaches the top of the queue.",
+     "tp": [
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender"
+     ]
+    },
+    {
+     "t": "Participants attack their own pipeline with a crafted log line built to bury the attack, then fix it.",
+     "tp": [
+      "prompt_injection",
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Works from a small application's real logs with one attack hidden among harmless noise.",
+     "tp": [
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D1-1015-2",
@@ -3463,7 +8353,58 @@
     "builder",
     "researcher"
    ],
-   "summary": "Hands-on workshop on using AgentGG AI agents to detect, validate, score, tune, and continuously scan for source-code vulnerabilities."
+   "summary": "Hands-on workshop on using AgentGG AI agents to detect, validate, score, tune, and continuously scan for source-code vulnerabilities.",
+   "hl": [
+    {
+     "t": "Hands-on use of AgentGG, an open-source tool whose AI agents find, validate, and score source-code vulnerabilities.",
+     "tp": [
+      "vuln_discovery",
+      "secure_dev"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "The tool has found more than 40 accepted zero-days, including a critical SQL injection in GeoServer at CVSS 9.8.",
+     "tp": [
+      "vuln_discovery"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Participants write a detection agent with a precondition, a regex or Semgrep seeding strategy, and a markdown prompt.",
+     "tp": [
+      "vuln_discovery",
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Participants tune the agent to reduce false positives and add it to a CI pipeline that scans pull requests.",
+     "tp": [
+      "secure_dev",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D1-1345-3",
@@ -3496,7 +8437,52 @@
     "builder",
     "defender"
    ],
-   "summary": "Build and tune a CI/CD pipeline with AI security agents to assess code and infrastructure as code, deploy tests, and triage findings effectively."
+   "summary": "Build and tune a CI/CD pipeline with AI security agents to assess code and infrastructure as code, deploy tests, and triage findings effectively.",
+   "hl": [
+    {
+     "t": "Hands-on build of a CI/CD pipeline with AI security agents assessing code and infrastructure as code.",
+     "tp": [
+      "secure_dev",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    },
+    {
+     "t": "Practices triaging and tuning agent findings without overwhelming developers.",
+     "tp": [
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Participants run test deployments against a provided lab AWS account.",
+     "tp": [
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Led by the Cloud Security Alliance's chief analyst.",
+     "tp": [
+      "governance"
+     ],
+     "fm": [],
+     "au": [
+      "leader",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D1-1345-4",
@@ -3534,7 +8520,54 @@
     "builder",
     "researcher"
    ],
-   "summary": "Hands-on workshop to build an AI assistant, learn how poisoned documents spread between assistants through memory and file tools, then deploy defenses one at a time to our assistant."
+   "summary": "Hands-on workshop to build an AI assistant, learn how poisoned documents spread between assistants through memory and file tools, then deploy defenses one at a time to our assistant.",
+   "hl": [
+    {
+     "t": "Hands-on demonstration of how a poisoned document spreads between AI assistants through persistent memory and file tools.",
+     "tp": [
+      "prompt_injection",
+      "agent_monitoring"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Participants measure how far an infection travels hop by hop across a chain of assistants.",
+     "tp": [
+      "prompt_injection"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Adds defenses one at a time: an outbound upload allowlist, a screen on memory writes, and stricter handling for widely shared files.",
+     "tp": [
+      "agent_monitoring",
+      "prompt_injection"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    },
+    {
+     "t": "Measures each control against a bar of cutting second-hop survival in half while normal work still succeeds.",
+     "tp": [
+      "agent_monitoring"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D1-1345-5",
@@ -3572,7 +8605,55 @@
     "researcher",
     "builder"
    ],
-   "summary": "Participants build and tune an AI-assisted security research harness to map attack surfaces, inspect code, validate vulnerabilities dynamically, and disclose findings."
+   "summary": "Participants build and tune an AI-assisted security research harness to map attack surfaces, inspect code, validate vulnerabilities dynamically, and disclose findings.",
+   "hl": [
+    {
+     "t": "Hands-on build of a bespoke AI-assisted security research harness for a real open-source project.",
+     "tp": [
+      "harness_engineering",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Uses Claude Code or Codex as a baseline and improves finding quality with harness engineering techniques.",
+     "tp": [
+      "harness_engineering",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Covers mapping attack surfaces, inspecting source code, and validating vulnerabilities by running software dynamically.",
+     "tp": [
+      "vuln_discovery",
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Participants leave with a working harness and a reusable methodology for tuning, validating, and disclosing findings.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1015-6",
@@ -3611,7 +8692,59 @@
     "researcher",
     "builder"
    ],
-   "summary": "Participants use PyRIT in a CTF-style workshop to automate evaluations of prompt injection, jailbreaks, multi-turn attacks, and AI agent tool use."
+   "summary": "Participants use PyRIT in a CTF-style workshop to automate evaluations of prompt injection, jailbreaks, multi-turn attacks, and AI agent tool use.",
+   "hl": [
+    {
+     "t": "Hands-on CTF using PyRIT to automate prompt injection, jailbreak, and multi-turn attacks against vulnerable AI systems.",
+     "tp": [
+      "prompt_injection",
+      "offensive_ai",
+      "evals"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Covers indirect prompt injection and attacks against AI agents and their tool use.",
+     "tp": [
+      "prompt_injection",
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Shows how PyRIT turns individual adversarial prompts into repeatable, measurable security evaluations.",
+     "tp": [
+      "evals",
+      "prompt_injection"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Led by members of Microsoft's AI Red Team.",
+     "tp": [
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1015-7",
@@ -3645,7 +8778,77 @@
     "researcher",
     "builder"
    ],
-   "summary": "Hands-on workshop on reinforcement learning for security LLMs, featuring live Gemma 4 12B training to reduce over-refusal without enabling harmful requests."
+   "summary": "Hands-on workshop on reinforcement learning for security LLMs, featuring live Gemma 4 12B training to reduce over-refusal without enabling harmful requests.",
+   "hl": [
+    {
+     "t": "Hands-on reinforcement learning for security LLMs, with a live training run on Gemma 4 12B.",
+     "tp": [
+      "model_internals",
+      "evals"
+     ],
+     "fm": [
+      "original_research",
+      "live_demo"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Live case study reduces over-refusal so a model helps with authorized penetration testing while still refusing harmful requests.",
+     "tp": [
+      "offensive_ai",
+      "model_internals"
+     ],
+     "fm": [
+      "live_demo",
+      "original_research"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Teaches RL through vulnerability discovery, penetration testing, and detection engineering, with an LLM judge as the reward model.",
+     "tp": [
+      "evals",
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Argues open-weight LLMs match closed models on most security tasks at far lower cost, citing the presenter's benchmarks.",
+     "tp": [
+      "evals"
+     ],
+     "fm": [
+      "original_research"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Participants red-team each checkpoint as a dashboard tracks false refusals and harmful compliance.",
+     "tp": [
+      "model_internals",
+      "evals"
+     ],
+     "fm": [
+      "live_demo"
+     ],
+     "au": [
+      "researcher"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1015-8",
@@ -3678,7 +8881,54 @@
     "builder",
     "leader"
    ],
-   "summary": "A practical walkthrough of prioritizing vulnerabilities, locating and testing fixes with a coding agent, meeting reporting obligations, and deciding what to release."
+   "summary": "A practical walkthrough of prioritizing vulnerabilities, locating and testing fixes with a coding agent, meeting reporting obligations, and deciding what to release.",
+   "hl": [
+    {
+     "t": "Follows one vulnerability finding from a mixed queue through triage, fix, and release decision.",
+     "tp": [
+      "secure_dev",
+      "governance"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "leader"
+     ]
+    },
+    {
+     "t": "Uses a coding agent to locate the affected code, propose a fix, test it, and work through failures.",
+     "tp": [
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Covers the EU Cyber Resilience Act, including when a finding must be reported and why reporting deadlines differ from patch deadlines.",
+     "tp": [
+      "governance"
+     ],
+     "fm": [],
+     "au": [
+      "leader",
+      "builder"
+     ]
+    },
+    {
+     "t": "Ends with a release decision and a record of what was fixed, tested, and left exposed.",
+     "tp": [
+      "secure_dev",
+      "governance"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "leader"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1345-9",
@@ -3710,7 +8960,52 @@
     "builder",
     "researcher"
    ],
-   "summary": "A workshop on non-generative AI, covering classifiers, embeddings, reinforcement learning, probabilistic decision models, and applications in workflows, games, and business logic."
+   "summary": "A workshop on non-generative AI, covering classifiers, embeddings, reinforcement learning, probabilistic decision models, and applications in workflows, games, and business logic.",
+   "hl": [
+    {
+     "t": "Hands-on exploration of non-generative AI: classifiers, embeddings, reinforcement learning, and probabilistic decision models.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Covers purpose-built tiny models and the emerging Jev-like class of fast probabilistic decision models.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Applies these models to workflows, games, and arbitrary business logic.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Demonstrates extending generalized LLM agents with non-generative decision models.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1345-10",
@@ -3743,7 +9038,54 @@
     "researcher",
     "builder"
    ],
-   "summary": "Hands-on workshop on building a containerized shellcode-to-C# loader framework with AI assistance and verifying configurable evasion techniques against MITRE ATT&CK."
+   "summary": "Hands-on workshop on building a containerized shellcode-to-C# loader framework with AI assistance and verifying configurable evasion techniques against MITRE ATT&CK.",
+   "hl": [
+    {
+     "t": "Hands-on build of a containerized shellcode-to-C# loader framework with configurable evasion, using AI assistance.",
+     "tp": [
+      "offensive_ai",
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Teaches a think-then-act method: generate a requirements document, correct it against references, then implement in small verifiable phases.",
+     "tp": [
+      "secure_dev",
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Evasion options map to MITRE ATT&CK techniques T1027, T1497.001, T1480.001, and T1055.",
+     "tp": [
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Emphasizes verification over generation to avoid hallucinated APIs and untrusted code.",
+     "tp": [
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D2-1345-11",
@@ -3782,7 +9124,70 @@
     "builder",
     "researcher"
    ],
-   "summary": "Hands-on workshop on destination-side authority verification for agents, using signed goals, narrowing delegation, action digests, leases, and state-bound receipts to reject credential misuse."
+   "summary": "Hands-on workshop on destination-side authority verification for agents, using signed goals, narrowing delegation, action digests, leases, and state-bound receipts to reject credential misuse.",
+   "hl": [
+    {
+     "t": "Teaches destination-side authority verification so the system committing an action checks the original authority, not just a valid token.",
+     "tp": [
+      "agent_authz",
+      "misalignment"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Participants break a mock destination with five attacks from real incidents, including goal substitution and credential retargeting.",
+     "tp": [
+      "agent_authz",
+      "misalignment"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Builds the defense: a signed root goal, delegation that can only narrow, an action digest, a short-lived lease, and a state-bound receipt.",
+     "tp": [
+      "agent_authz",
+      "crypto_privacy"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "The kit is vendor-neutral Python built on Macaroons, HTTP Message Signatures, and Cedar-style policy.",
+     "tp": [
+      "agent_authz",
+      "crypto_privacy"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Motivated by a July 2026 incident where about 700 agents coordinated through a shared package registry to misuse credentials.",
+     "tp": [
+      "misalignment",
+      "ai_supply_chain"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1015-12",
@@ -3816,7 +9221,72 @@
     "defender",
     "builder"
    ],
-   "summary": "In this hands-on session, after a short briefing reconstructing a Silk Typhoon-style intrusion, you’ll build, run, and then break an AI-powered incident response system. You’ll play three roles: its designer, its supervisor, and its attacker."
+   "summary": "In this hands-on session, after a short briefing reconstructing a Silk Typhoon-style intrusion, you’ll build, run, and then break an AI-powered incident response system. You’ll play three roles: its designer, its supervisor, and its attacker.",
+   "hl": [
+    {
+     "t": "Hands-on build, operation, and attack of an agentic incident-response pipeline, playing designer, governor, and attacker.",
+     "tp": [
+      "soc_ir",
+      "agent_authz",
+      "governance"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Uses a LangGraph workflow that normalizes Entra ID logs to OCSF, correlates signals, and recommends a live containment action.",
+     "tp": [
+      "soc_ir"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Reconstructs a Silk Typhoon-style intrusion that phishes an OAuth consent grant and steals a Primary Refresh Token.",
+     "tp": [
+      "threat_intel",
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender"
+     ]
+    },
+    {
+     "t": "Stress-tests the pipeline by holding the risk score below the enforcement threshold and tampering with the detection dataset.",
+     "tp": [
+      "agent_authz",
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "At the Human-in-the-Loop gate, attendees approve, override, or escalate the agent's decision before enforcement fires.",
+     "tp": [
+      "governance",
+      "soc_ir"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "leader"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1015-13",
@@ -3850,7 +9320,55 @@
     "researcher",
     "defender"
    ],
-   "summary": "A hands-on workshop exploring the Kubernetes and EKS attack path involved in the Hugging Face compromise using a browser-based cyber range."
+   "summary": "A hands-on workshop exploring the Kubernetes and EKS attack path involved in the Hugging Face compromise using a browser-based cyber range.",
+   "hl": [
+    {
+     "t": "Hands-on walkthrough of the Kubernetes and EKS attack path behind the Hugging Face compromise.",
+     "tp": [
+      "offensive_ai",
+      "threat_intel",
+      "ai_supply_chain"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "defender"
+     ]
+    },
+    {
+     "t": "Runs in a browser-based cyber range with no tooling to set up.",
+     "tp": [
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Shows the compromise relied on an ordinary attack path rather than novel techniques or zero-days.",
+     "tp": [
+      "threat_intel",
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Teaches enough Kubernetes to follow along without prior Kubernetes or EKS background.",
+     "tp": [
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1015-14",
@@ -3884,7 +9402,60 @@
     "builder",
     "defender"
    ],
-   "summary": "Install and red-team SP1 Gate, an open-source Claude Code control that tests risky actions with deterministic questions and measures detection versus false alarms."
+   "summary": "Install and red-team SP1 Gate, an open-source Claude Code control that tests risky actions with deterministic questions and measures detection versus false alarms.",
+   "hl": [
+    {
+     "t": "Install and red-team SP1 Gate, an open-source Claude Code control that gates risky actions behind deterministic factual questions.",
+     "tp": [
+      "agent_authz",
+      "agent_monitoring"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    },
+    {
+     "t": "Answer keys are computed deterministically from the parsed command and syntax tree, so a compromised agent cannot answer its own quiz.",
+     "tp": [
+      "agent_authz",
+      "prompt_injection"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    },
+    {
+     "t": "Cites that Claude Code users approve 93% of permission prompts, the trust exploitation OWASP tracks as ASI09.",
+     "tp": [
+      "governance",
+      "agent_authz"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Participants write a detection rule for a command the gate currently misses and measure hit rate against false alarms.",
+     "tp": [
+      "agent_monitoring"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1345-15",
@@ -3917,7 +9488,57 @@
     "researcher",
     "builder"
    ],
-   "summary": "A hands-on workshop using LLMs to generate fuzzing harnesses and corpora for native Node.js dependencies, verify results, and automate the fuzzing process."
+   "summary": "A hands-on workshop using LLMs to generate fuzzing harnesses and corpora for native Node.js dependencies, verify results, and automate the fuzzing process.",
+   "hl": [
+    {
+     "t": "Hands-on use of LLMs to generate fuzzing harnesses and corpora for native Node.js dependencies.",
+     "tp": [
+      "vuln_discovery",
+      "harness_engineering"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    },
+    {
+     "t": "Removes the harness and corpus bottleneck by letting an LLM read the code and generate both.",
+     "tp": [
+      "harness_engineering",
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "researcher"
+     ]
+    },
+    {
+     "t": "Cuts the time to first fuzzing results and opens the door to automating the whole process.",
+     "tp": [
+      "vuln_discovery"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Participants verify results and automate the fuzzing workflow.",
+     "tp": [
+      "vuln_discovery",
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "researcher",
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1345-16",
@@ -3949,7 +9570,55 @@
    "audience": [
     "builder"
    ],
-   "summary": "Learn how a meta-harness captures prompts and agent actions while keeping code, documentation, specifications, and the development lifecycle aligned."
+   "summary": "Learn how a meta-harness captures prompts and agent actions while keeping code, documentation, specifications, and the development lifecycle aligned.",
+   "hl": [
+    {
+     "t": "Introduces a meta-harness that captures prompts and agent actions while keeping code, documentation, and specifications aligned.",
+     "tp": [
+      "harness_engineering",
+      "secure_dev"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Addresses how vibe coding lets prompts and agent actions go unrecorded while code and specs drift out of sync.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Keeps code structured, documented, and specified throughout the development lifecycle.",
+     "tp": [
+      "harness_engineering",
+      "secure_dev"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Built around the open-source literate-ai project, led by an NVIDIA senior director.",
+     "tp": [
+      "harness_engineering"
+     ],
+     "fm": [
+      "open_source"
+     ],
+     "au": [
+      "builder"
+     ]
+    }
+   ]
   },
   {
    "id": "W-D3-1345-17",
@@ -3987,7 +9656,54 @@
     "builder",
     "defender"
    ],
-   "summary": "Workshop participants build and audit sleeper skills, then test layered detection, acceptance checks, and runtime guardrails for safe agent containment."
+   "summary": "Workshop participants build and audit sleeper skills, then test layered detection, acceptance checks, and runtime guardrails for safe agent containment.",
+   "hl": [
+    {
+     "t": "Participants build a sleeper agent skill, watch it pass review, then build layered detection to catch it.",
+     "tp": [
+      "ai_supply_chain",
+      "agent_monitoring"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    },
+    {
+     "t": "Audit a skill carrying a benign verdict and map what it can actually reach, including dependency chains and identity-file writes.",
+     "tp": [
+      "ai_supply_chain"
+     ],
+     "fm": [],
+     "au": [
+      "defender",
+      "builder"
+     ]
+    },
+    {
+     "t": "Run static, dependency-graph, and behavioral runtime detection across mixed skills and score where each layer catches and misses.",
+     "tp": [
+      "agent_monitoring",
+      "ai_supply_chain"
+     ],
+     "fm": [],
+     "au": [
+      "defender"
+     ]
+    },
+    {
+     "t": "Write an acceptance checklist and runtime guardrails and test them against the sleeper, aiming for containment that keeps the agent useful.",
+     "tp": [
+      "agent_monitoring"
+     ],
+     "fm": [],
+     "au": [
+      "builder",
+      "defender"
+     ]
+    }
+   ]
   }
  ],
  "speakers": {
