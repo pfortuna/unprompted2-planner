@@ -45,7 +45,7 @@
 :root {
   --bg: #f2f4f6; --surface: #ffffff; --surface-2: #e9edf1; --ink: #16202a; --muted: #5a6674; --line: #d7dde3;
   --accent: #2a43d4; --accent-soft: #e6eaff; --accent-ink: #ffffff;
-  --good: #0d7a6b; --good-soft: #ddf3ef; --warn: #a14d00; --warn-soft: #fbeedd;
+  --good: #0d7a6b; --good-soft: #ddf3ef; --warn: #a14d00; --warn-soft: #fbeedd; --spot: #b45309; --spot-soft: #fdecd3;
   --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -55,11 +55,11 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0e1319; --surface: #151c24; --surface-2: #1c2530; --ink: #e5eaef; --muted: #96a2ae; --line: #27323d;
   --accent: #8796ff; --accent-soft: #1f2650; --accent-ink: #0e1319;
-  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; color-scheme: dark } }
+  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; --spot: #f5b544; --spot-soft: #3a2a0e; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0e1319; --surface: #151c24; --surface-2: #1c2530; --ink: #e5eaef; --muted: #96a2ae; --line: #27323d;
   --accent: #8796ff; --accent-soft: #1f2650; --accent-ink: #0e1319;
-  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; color-scheme: dark }
+  --good: #43c6b0; --good-soft: #12302b; --warn: #f0a35c; --warn-soft: #33240f; --spot: #f5b544; --spot-soft: #3a2a0e; color-scheme: dark }
 
 * { box-sizing: border-box }
 html, body { margin: 0 }
@@ -112,7 +112,12 @@ nav.tabs button[aria-selected="true"] .d { color: inherit; opacity: .75 }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0 }
 .card.picked { border: 2px solid var(--accent); padding: 11px 13px }
-.card.focus, details.ws.focus { outline: 3px solid var(--accent); outline-offset: 3px; box-shadow: 0 0 0 8px var(--accent-soft) }
+/* A shared session is spotlighted in amber, never in the purple that means "picked" */
+.card.focus, details.ws.focus { outline: 3px solid var(--spot); outline-offset: 3px; box-shadow: 0 0 0 8px var(--spot-soft) }
+.sharedtag { font: 600 11px/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--spot); background: var(--spot-soft); padding: 4px 7px; border-radius: 5px }
+.introbar:empty { display: none }
+.introbar { padding-bottom: 12px }
+.introbar .banner { margin-top: 0 }
 .btn.icon { padding: 4px 6px; line-height: 0; margin-left: auto; color: var(--muted) }
 .btn.icon:hover { color: var(--accent); border-color: var(--accent) }
 .banner.intro { justify-content: space-between }
@@ -259,6 +264,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     <nav class="tabs" role="tablist" id="tabs"></nav>
     <div class="byline">Made by <a id="authorLink" href="#" target="_blank" rel="noopener">Pedro Fortuna</a>, <a href="https://jscrambler.com" target="_blank" rel="noopener">Jscrambler</a> · your picks stay in this browser · <a href="https://github.com/pfortuna/unprompted2-planner" target="_blank" rel="noopener">Source on GitHub</a></div>
   </div>
+  <div class="wrap introbar" id="introBar"></div>
 </header>
 
 <main class="wrap" id="main"></main>
@@ -478,7 +484,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     const wc = whyChips(t);
     const focus = ui.focus === t.id;
     return `<article id="talk-${t.id}" class="card ${isPick ? "picked" : (picked && picked !== "none" ? "unpicked" : "")}${focus ? " focus" : ""}">
-      <div class="row">${recChip(t)}<span class="stage">${t.stage === "S1" ? "STAGE 1" : "STAGE 2"}</span>${tag}${linkBtn(t)}</div>
+      <div class="row">${recChip(t)}<span class="stage">${t.stage === "S1" ? "STAGE 1" : "STAGE 2"}</span>${tag}${focus ? `<span class="sharedtag">Shared with you</span>` : ""}${linkBtn(t)}</div>
       <h3>${esc(t.title)}</h3>
       ${t.speakers.length ? spkHtml(t.speakers) : ""}
       ${t.summary ? `<p class="line">${esc(t.summary)}</p>` : ""}
@@ -543,7 +549,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <div class="extras">
         <h3>Workshops this day</h3>
         <p class="note">Two-hour hands-on sessions with their own registration. Mark the ones you hold a ticket for and their time block replaces the talks it overlaps.</p>
-        ${d.ws.map(w => `<details id="talk-${w.id}" class="ws${state.tickets[w.id] ? " mine" : ""}${ui.focus === w.id ? " focus" : ""}"${ui.focus === w.id ? " open" : ""}><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
+        ${d.ws.map(w => `<details id="talk-${w.id}" class="ws${state.tickets[w.id] ? " mine" : ""}${ui.focus === w.id ? " focus" : ""}"${ui.focus === w.id ? " open" : ""}><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${ui.focus === w.id ? `<span class="sharedtag">Shared with you</span>` : ""}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
           <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button>${linkBtn(w)}</div>
           ${w.speakers.length ? spkHtml(w.speakers) : ""}${whyChips(w) ? `<div class="chips" style="margin-block:6px">${whyChips(w)}</div>` : ""}
           ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${reasonsHtml(w)}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
@@ -702,10 +708,11 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     else if (ui.tab === "about") main.innerHTML = aboutHtml();
     else if (ui.tab === "share") main.innerHTML = shareHtml();
     else main.innerHTML = dayHtml(DAYS.find(x => "d" + x.n === ui.tab) || DAYS[0]);
-    // Visitors with nothing saved yet (often arriving from a shared link) get an invitation to set their interests
-    if (!hasState() && ui.tab !== "prefs" && !ui.introDismissed) {
-      main.insertAdjacentHTML("afterbegin", `<div class="banner intro"><span>${ui.focus ? "Someone shared this session with you. " : ""}Want to plan your own [un]prompted II? Start by telling the planner what interests you, and it will rate every session for you.</span><span class="row"><button type="button" class="btn primary" data-tab="prefs">Set my interests</button><button type="button" class="btn ghost" id="introClose">Not now</button></span></div>`);
-    }
+    // Visitors with nothing saved yet (often arriving from a shared link) get an invitation to set their interests.
+    // It lives in the sticky header so it stays visible after the page scrolls to a shared session.
+    const showIntro = !hasState() && ui.tab !== "prefs" && !ui.introDismissed;
+    $("#introBar").innerHTML = showIntro ? `<div class="banner intro"><span>${ui.focus ? "Someone shared a session with you. " : ""}Want to plan your own [un]prompted II? Tell the planner what interests you and it will rate every session for you.</span><span class="row"><button type="button" class="btn primary" data-tab="prefs">Set my interests</button><button type="button" class="btn ghost" id="introClose">Not now</button></span></div>` : "";
+    syncScrollPadding();
     if (focusedId === "q" || focusedId === "keywords") { const el = document.getElementById(focusedId); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
   }
 
@@ -723,6 +730,10 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     return null;
   }
   const headerOffset = () => { const head = document.querySelector("header.top"); return head ? head.offsetHeight : 0; };
+  // Tell the browser how tall the sticky header is, so any jump to an anchor (including the browser's own jump
+  // to #talk-<id> after load) stops below it instead of hiding the target under it
+  const syncScrollPadding = () => { document.documentElement.style.scrollPaddingTop = (headerOffset() + 12) + "px"; };
+  window.addEventListener("resize", syncScrollPadding);
   function jumpToNow() {
     const el = nowTarget();
     if (!el) return false;
@@ -906,6 +917,8 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     return true;
   }
   window.addEventListener("hashchange", openFromHash);
+  // The browser's own fragment scroll runs after this script; place the shared session again once loading ends
+  window.addEventListener("load", () => { if (ui.focus) focusSession(); });
 
   if (!openFromHash()) {
     render();
