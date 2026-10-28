@@ -11484,6 +11484,62 @@
    "n": "Michael Brown",
    "sessions": [
     "Day 1 Stage 2 16:45–17:10: What Evaluating Early Foundation Model Capabilities Teaches Us About AI Safety Hype vs. Reality"
+   ],
+   "role": "Head of Research, RunSybil",
+   "bio": "Michael D. Brown is Head of Research at RunSybil, where he works on an automated, AI-driven offensive security platform. Before RunSybil he was a Principal Security Engineer at Trail of Bits and one of the engineering leads of Buttercup, the cyber reasoning system that placed 2nd overall in the DARPA and ARPA-H AI Cyber Challenge (AIxCC). His research over the past decade has applied AI and machine learning to software security and to assuring the safety and security of AI systems. He studied security-oriented software analysis and transformation at Georgia Tech (M.S. in Computer Science, Ph.D. ABD) and holds a B.S. in Computer Science from the University of Cincinnati. Before moving into security research he served eight years on active duty in the U.S. Army as a UH-60M pilot and Aviation Mission Survivability Officer.",
+   "work": [
+    "Engineering lead on Trail of Bits' Buttercup, 2nd place overall in the DARPA and ARPA-H AI Cyber Challenge (AIxCC), later released as open source",
+    "Research on software debloating and on the security impact of compiler optimizations (Georgia Tech)",
+    "Research on graph-based machine learning for software analysis and on software supply chain security tooling",
+    "Talk on reproducing AIxCC-level results for about $600 with commodity AI (DAYCON XX, 2026)"
+   ],
+   "talks": [
+    {
+     "title": "Is the AIxCC already obsolete? or: How I reproduced the results of an $30 million grand challenge for $600 with commodity AI",
+     "venue": "DAYCON XX",
+     "year": 2026,
+     "url": "https://drive.google.com/file/d/1pYN0TTjDZ2HJyTyECKmWmrYBkY39aFWK/view?usp=drive_link"
+    },
+    {
+     "title": "Buckle Up, Buttercup: Our Experience Competing in the AIxCC",
+     "venue": "DEF CON 33 AIxCC Stage",
+     "year": 2025,
+     "url": "https://aicyberchallenge.com/def-con-33/"
+    },
+    {
+     "title": "Using Graph-Based Machine Learning Algorithms for Software Analysis",
+     "venue": "ITEA 9th Cybersecurity Workshop",
+     "year": 2023,
+     "url": "https://docs.google.com/presentation/d/1NvZ5fCAygcG8T2NLJzuvXci909FUcvtS/edit?usp=sharing&ouid=103939766041893573589&rtpof=true&sd=true"
+    },
+    {
+     "title": "Automated Tools for Securing the Software Supply Chain",
+     "venue": "ITEA 8th Cybersecurity Workshop",
+     "year": 2022,
+     "url": "https://docs.google.com/presentation/d/1UkNYPSyi354nGCJjscIzgig8op0bpJ_q/edit?usp=sharing&ouid=103939766041893573589&rtpof=true&sd=true"
+    },
+    {
+     "title": "The Impact of Compiler-Based Performance Optimizations on Security",
+     "venue": "Georgia Tech IISP Cybersecurity Lecture Series",
+     "year": 2020,
+     "url": "https://smartech.gatech.edu/bitstream/handle/1853/62459/brown_videostream.html?sequence=2&isAllowed=y"
+    },
+    {
+     "title": "Improving Security Through Software Debloating",
+     "venue": "Georgia Tech IISP Cybersecurity Lecture Series",
+     "year": 2019,
+     "url": "https://smartech.gatech.edu/bitstream/handle/1853/60928/brown_videostream.html?sequence=2&isAllowed=y"
+    }
+   ],
+   "links": {
+    "website": "https://sites.google.com/view/michaeldbrown/"
+   },
+   "sources": [
+    "https://unpromptedcon.org/agenda-10-2026/",
+    "https://sites.google.com/view/michaeldbrown/",
+    "https://sites.google.com/view/michaeldbrown/invited-talks",
+    "https://blog.trailofbits.com/authors/michael-brown/",
+    "https://blog.trailofbits.com/2024/08/09/trail-of-bits-buttercup-heads-to-darpas-aixcc/"
    ]
   },
   "Matt Suiche": {
@@ -11765,12 +11821,61 @@
    "n": "Ryan Austin",
    "sessions": [
     "Day 2 Stage 1 14:45–15:10: PHPocalypse: Finding, Exploiting, and Disclosing php2shell"
+   ],
+   "role": "Security researcher, Calif",
+   "bio": "Ryan Austin is a Florida-based security researcher at Calif, a security research firm. He discovered and reported php2shell, the pair of critical PHP engine vulnerabilities (CVE-2026-109618 and CVE-2026-109619) that Calif first identified on August 1, 2026 and reported to the PHP project on August 11, and he wrote the exploit code that demonstrated their severity. The flaws affect PHP versions back to 5.4 and were patched in an out-of-band release on October 21, 2026.",
+   "work": [
+    "Discovered and reported php2shell (CVE-2026-109618 and CVE-2026-109619), critical unauthenticated PHP engine flaws",
+    "Wrote the php2shell exploit code used to demonstrate impact during coordinated disclosure with OpenAI, Wiz and the PHP Foundation"
+   ],
+   "talks": [],
+   "links": {},
+   "sources": [
+    "https://unpromptedcon.org/agenda-10-2026/",
+    "https://vnexpress.net/mot-tuan-hack-ca-the-gioi-5136727.html",
+    "https://www.thedrum.com/opinion/b2b-influencer-of-the-week-his-brain-was-mushed",
+    "https://www.varonis.com/blog/php2shell?hsLang=en",
+    "https://labs.cloudsecurityalliance.org/research/csa-research-note-php2shell-pre-disclosure-exploitation-2026/"
    ]
   },
   "Thai Duong": {
    "n": "Thai Duong",
    "sessions": [
     "Day 2 Stage 1 14:45–15:10: PHPocalypse: Finding, Exploiting, and Disclosing php2shell"
+   ],
+   "role": "CEO, Calif",
+   "bio": "Thai Duong is CEO of Calif, a security research firm focused on AI security, red teaming and security engineering. He spent 12 years at Google as a security and cryptography lead, where his team created the Google Tink cryptography library and Project Wycheproof. He is best known for co-discovering, with Juliano Rizzo, the SSL/TLS attacks BEAST and CRIME and for contributing to POODLE, and the two shared a Pwnie Award for Best Server-Side Bug. In 2026 Calif found and disclosed php2shell, critical PHP engine vulnerabilities discovered by his colleague Ryan Austin, and Duong has written publicly about the disclosure, including that publishing an early demo video was a mistake. Calif also demonstrated an untethered iPhone 18 Pro jailbreak at Hexacon 2026 in Paris.",
+   "work": [
+    "Co-discoverer of the BEAST and CRIME attacks on SSL/TLS and contributor to POODLE",
+    "Practical Padding Oracle Attacks (with Juliano Rizzo), including the ASP.NET padding oracle and the POET tool",
+    "Led teams at Google that created Google Tink and Project Wycheproof",
+    "Leads Calif, which disclosed php2shell (CVE-2026-109618 and CVE-2026-109619) in coordination with OpenAI, Wiz and the PHP Foundation"
+   ],
+   "talks": [
+    {
+     "title": "Practical Padding Oracle Attacks",
+     "venue": "USENIX WOOT 2010",
+     "year": 2010,
+     "url": "https://usenix.org/conference/woot10/practical-padding-oracle-attacks"
+    },
+    {
+     "title": "iPhone 18 jailbreak demonstration (with Bruce Dang)",
+     "venue": "Hexacon 2026, Paris",
+     "year": 2026,
+     "url": null
+    }
+   ],
+   "links": {
+    "linkedin": "https://linkedin.com/in/thaidn",
+    "website": "https://vnhacker.substack.com",
+    "x": "https://x.com/XorNinja"
+   },
+   "sources": [
+    "https://unpromptedcon.org/agenda-10-2026/",
+    "https://vnhacker.substack.com/about",
+    "https://vnexpress.net/mot-tuan-hack-ca-the-gioi-5136727.html",
+    "https://usenix.org/conference/woot10/practical-padding-oracle-attacks",
+    "https://pwnies.com/practical-padding-oracle-attacks/"
    ]
   },
   "Yernat Yestekov": {
@@ -14233,6 +14338,37 @@
    "n": "Gary Lopez",
    "sessions": [
     "Workshop Day 2 · 4:00p-6:00p: Agents Attacking Agents: A Hands-On CTF in Red Teaming Agentic Systems"
+   ],
+   "role": "Founder, Tinycode",
+   "bio": "Gary Lopez is the founder of Tinycode, a venture-backed startup that helps organizations build and deploy safe and secure AI systems. He previously spent four years at Microsoft, most recently as a Principal Offensive AI Scientist on the Microsoft AI Red Team. There he created PyRIT (Python Risk Identification Toolkit), the team's open-source red teaming automation framework, and he is first author of the 2024 paper describing it. Before Microsoft he worked at Booz Allen Hamilton on reverse engineering, malware analysis and critical infrastructure security, including SCADA, ICS and DCS systems. He has co-taught the \"AI Red Teaming in Practice\" training at Black Hat USA and NDC Security.",
+   "work": [
+    "Creator of PyRIT (Python Risk Identification Toolkit), Microsoft's open-source framework for red teaming generative AI systems",
+    "First author, \"PyRIT: A Framework for Security Risk Identification and Red Teaming in Generative AI Systems\" (2024)",
+    "Founder of Tinycode, an AI security startup"
+   ],
+   "talks": [
+    {
+     "title": "AI Red Teaming in Practice (training)",
+     "venue": "Black Hat USA 2024",
+     "year": 2024,
+     "url": "https://blackhat.com/us-24/speakers/Gary-Lopez.html"
+    },
+    {
+     "title": "AI Red Teaming in Practice (workshop)",
+     "venue": "NDC Security 2025",
+     "year": 2025,
+     "url": null
+    }
+   ],
+   "links": {
+    "github": "https://github.com/Azure/PyRIT"
+   },
+   "sources": [
+    "https://unpromptedcon.org/workshops/",
+    "https://www.rsaconference.com/experts/gary-lopez",
+    "https://blackhat.com/us-24/speakers/Gary-Lopez.html",
+    "https://aitopics.org/doc/arxivorg:C5721577",
+    "https://sra.io/blog/ai-vs-ai-red-teaming-with-pyrit/"
    ]
   },
   "Ismael Valenzuela": {
