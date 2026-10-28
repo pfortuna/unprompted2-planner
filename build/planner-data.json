@@ -1,5 +1,5 @@
 {
- "asOf": "24 October 2026",
+ "asOf": "28 October 2026",
  "days": [
   {
    "label": "Tuesday 27 October 2026",
@@ -55,17 +55,18 @@
        "a": ""
       }
      ],
-     "abstract": "",
+     "abstract": "One attack path is an investigation. Several at once make for a very different afternoon. An AI adversary worked its way through our systems at machine speed. We’ll share what that pressure looked like from the defender’s seat, what caught us off guard, and what it took\n\nto contain it.",
      "kind": "talk",
      "topics": [
       "threat_intel",
+      "soc_ir",
       "offensive_ai"
      ],
      "formats": {
       "original_research": false,
       "live_demo": false,
       "open_source": false,
-      "case_study": false,
+      "case_study": true,
       "vendor_flavour": false,
       "debate_or_panel": false
      },
@@ -74,12 +75,25 @@
       "defender",
       "leader"
      ],
-     "summary": "Dispatches from the wrong end of an AI agent swarm; title only, no abstract published.",
+     "summary": "Defenders recount an AI adversary moving through their systems at machine speed, and what containing it took.",
      "hl": [
       {
-       "t": "Dispatches from the receiving end of an agent swarm, as framed by the session title.",
+       "t": "A first-hand account of an AI adversary working through an organization's systems at machine speed.",
        "tp": [
-        "threat_intel"
+        "threat_intel",
+        "soc_ir"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Covers what several simultaneous attack paths look like from the defender's seat.",
+       "tp": [
+        "soc_ir"
        ],
        "fm": [],
        "au": [
@@ -87,12 +101,24 @@
        ]
       },
       {
-       "t": "Presented by Caleb Sima and Alec Eckmann in a 25-minute main-stage talk slot on day one.",
-       "tp": [],
-       "fm": [],
+       "t": "Shares what caught the defenders off guard and what it took to contain the intrusion.",
+       "tp": [
+        "soc_ir",
+        "threat_intel"
+       ],
+       "fm": [
+        "case_study"
+       ],
        "au": [
+        "defender",
         "leader"
        ]
+      },
+      {
+       "t": "Opens the conference's first morning on Stage 1.",
+       "tp": [],
+       "fm": [],
+       "au": []
       }
      ]
     },
@@ -2351,10 +2377,98 @@
      "id": "D1-S2-1445",
      "stage": "S2",
      "time": "14:45–15:10",
-     "title": "TBD",
-     "speakers": [],
-     "abstract": "",
-     "kind": "fixed"
+     "title": "Inside Cairn – Open Windows Into AI Attacks",
+     "speakers": [
+      {
+       "n": "Erlend Oftedal",
+       "k": "Erlend Oftedal",
+       "a": ""
+      }
+     ],
+     "abstract": "Attackers are pointing autonomous agents at targets, and many forget to password-protect the control panel.\n\nWe found over 20 exposed panels for Cairn, an AI harness that takes a target and a goal and runs agents until it gets there. They show real operations end to end: target selection, the literal task prompts, every step the agents took, and the outcome. The criminal clusters ran over 1,600 attack projects against 1100 e-commerce sites at about $5 each, and around 10% succeeded, typically within a day.\n\nWe walk through what the attackers did, the tooling, and the exploit chains the agents built from small bugs.",
+     "kind": "talk",
+     "topics": [
+      "threat_intel",
+      "offensive_ai",
+      "harness_engineering"
+     ],
+     "formats": {
+      "original_research": true,
+      "live_demo": false,
+      "open_source": false,
+      "case_study": false,
+      "vendor_flavour": false,
+      "debate_or_panel": false
+     },
+     "level": "intermediate",
+     "audience": [
+      "defender",
+      "researcher"
+     ],
+     "summary": "Exposed control panels of Cairn, an AI attack harness, reveal real autonomous campaigns against e-commerce sites end to end.",
+     "hl": [
+      {
+       "t": "Over 20 exposed control panels for Cairn, an AI attack harness, show real criminal operations end to end.",
+       "tp": [
+        "threat_intel",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Criminal clusters ran over 1,600 attack projects against about 1,100 e-commerce sites at roughly $5 each.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "Around 10% of the agent-run attacks succeeded, typically within a day.",
+       "tp": [
+        "threat_intel",
+        "offensive_ai"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Shows the literal task prompts and every step the agents took, from target selection to outcome.",
+       "tp": [
+        "threat_intel",
+        "harness_engineering"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Walks through the exploit chains the agents built out of small bugs.",
+       "tp": [
+        "offensive_ai",
+        "vuln_discovery"
+       ],
+       "fm": [],
+       "au": [
+        "researcher"
+       ]
+      }
+     ]
     },
     {
      "id": "D1-S2-1510",
@@ -2649,22 +2763,22 @@
      ]
     },
     {
-     "id": "D1-S2-1645",
+     "id": "D1-S2-1645-r1",
      "stage": "S2",
      "time": "16:45–17:10",
-     "title": "What Building Early Foundation Models Teaches Us About AI Safety Hype vs. Reality",
+     "title": "What Evaluating Early Foundation Model Capabilities Teaches Us About AI Safety Hype vs. Reality",
      "speakers": [
       {
-       "n": "Ari Herbert-Voss",
-       "k": "Ari Herbert-Voss",
-       "a": "Cofounder, RunSybil"
+       "n": "Michael Brown",
+       "k": "Michael Brown",
+       "a": "Head of Research, RunSybil"
       }
      ],
-     "abstract": "The HuggingFace incident has become a lightning rod for the industry, raising urgent questions about what autonomous AI means for security leaders and practitioners. But amid the uncertainty, there is a surprising amount of clarity gleaned from the early years of model development. Drawing on my experience building and red-teaming GPT-3 and Codex at OpenAI, I’ll explore the gap between alarming demonstrations, useful capabilities, and real-world harm, and why evaluating the model alone misses much of the story. A central theme is the harness: the tools, memory, feedback, and execution environment that turn a model into an agent. I’ll examine how those choices shape performance and safety, then connect those lessons to the OpenAI–Hugging Face incident: what happens when reward hacking crosses from an evaluation into real infrastructure. The goal is to distinguish what deserves serious concern, what demands better evidence, and what actually makes deployed systems safer.",
+     "abstract": "Frontier AI models are improving fast, but their ability to solve challenging security problems on their own depends heavily on the harness around them: the tools, workflows, and structure that turn models into agents. This session traces how automated agentic security systems have evolved, what trends are shaping effective designs today, and what will set the best harnesses apart in the future.",
      "kind": "talk",
      "topics": [
-      "misalignment",
       "harness_engineering",
+      "offensive_ai",
       "evals"
      ],
      "formats": {
@@ -2677,82 +2791,72 @@
      },
      "level": "intermediate",
      "audience": [
-      "leader",
-      "researcher"
+      "researcher",
+      "builder"
      ],
-     "summary": "Lessons from building early foundation models on harness design, reward hacking and the OpenAI and Hugging Face incident.",
+     "summary": "How automated agentic security systems evolved, and why the harness around a model decides what it can do.",
      "hl": [
       {
-       "t": "Lessons from building and red-teaming GPT-3 and Codex at OpenAI, applied to today's AI safety debate.",
+       "t": "Argues that a frontier model's ability to solve hard security problems depends heavily on the harness around it.",
        "tp": [
-        "misalignment",
-        "evals"
+        "harness_engineering"
        ],
        "fm": [],
        "au": [
-        "leader",
+        "builder"
+       ]
+      },
+      {
+       "t": "Traces how automated agentic security systems have evolved since early foundation models.",
+       "tp": [
+        "harness_engineering",
+        "offensive_ai"
+       ],
+       "fm": [],
+       "au": [
         "researcher"
        ]
       },
       {
-       "t": "Examines the OpenAI and Hugging Face incident, where reward hacking crossed into real infrastructure.",
+       "t": "Covers the design trends shaping effective security agent harnesses today.",
        "tp": [
-        "misalignment"
+        "harness_engineering"
        ],
        "fm": [],
        "au": [
-        "leader",
-        "researcher"
+        "builder"
        ]
       },
       {
-       "t": "Argues evaluating the model alone misses how harness tools, memory and execution shape safety.",
+       "t": "Looks ahead at what will set the best harnesses apart.",
        "tp": [
         "harness_engineering",
         "evals"
        ],
        "fm": [],
        "au": [
-        "builder",
-        "researcher"
+        "builder"
        ]
-      },
-      {
-       "t": "Separates alarming demonstrations from useful capabilities and real-world harm.",
-       "tp": [
-        "misalignment",
-        "governance"
-       ],
-       "fm": [],
-       "au": [
-        "leader"
-       ]
-      },
-      {
-       "t": "Presented by the cofounder of RunSybil, formerly part of the GPT-3 and Codex work at OpenAI.",
-       "tp": [],
-       "fm": [],
-       "au": []
       }
      ]
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "09:35–12:25",
-     "title": "CTF"
+     "title": "CTF kickoff",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "12:25–13:30",
-     "title": "Lunch break"
+     "title": "Lunch break",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "13:30–17:35",
-     "title": "CTF"
+     "title": "CTF round 1",
+     "kind": "village"
     }
    ]
   },
@@ -3000,7 +3104,7 @@
       {
        "n": "Namita Prakash",
        "k": "Namita Prakash",
-       "a": ""
+       "a": "Software Engineer, Stripe"
       }
      ],
      "abstract": "Security reviews often create a chronic bottleneck, leaving developers waiting while specialists manually gather context. To eliminate this friction, we built AI agents at Stripe that manage the end-to-end security lifecycle – from initial context gathering and threat modeling to ticket creation, risk tracking, and fix verification.\n\nWith scoped authority and evidence-based outputs so human experts can focus on complex, high-risk architectural decisions. This transitions manual prep to self-service workflows cut our reviews from weeks to minutes.\n\nIn this talk, we’ll share practical deployment lessons and a repeatable framework for identifying agent-worthy security workflows that enhance, rather than replace, expert human judgment.\n\nYou’ll leave with a repeatable framework for identifying agent-worthy security problems and designing loops that enhance expert judgment. This helps security teams from managing a queue to focusing on higher-order safety challenges.",
@@ -3665,75 +3769,92 @@
      ]
     },
     {
-     "id": "D2-S1-1445",
+     "id": "D2-S1-1445-r1",
      "stage": "S1",
      "time": "14:45–15:10",
-     "title": "Building the Defender’s Advantage: Technical Solutions for AI Cyber Resilience",
+     "title": "PHPocalypse: Finding, Exploiting, and Disclosing php2shell",
      "speakers": [
       {
-       "n": "Kamile Lukosiute",
-       "k": "Kamile Lukosiute",
-       "a": "Cyber Resilience Program Officer, OpenAI Foundation"
+       "n": "Ryan Austin",
+       "k": "Ryan Austin",
+       "a": ""
+      },
+      {
+       "n": "Thai Duong",
+       "k": "Thai Duong",
+       "a": ""
       }
      ],
-     "abstract": "AI offers defenders powerful advantages, but realizing them requires new technologies to be developed, deployed, and integrated. Security engineers have a critical role in building the tools that make society resilient to AI’s risks. This talk explores three opportunities: securing critical infrastructure; developing verification tools that make AI governance workable; and building an AI cybersecurity observatory. These are starting points for a broader agenda. The OpenAI Foundation expects to invest $25 billion across AI resilience and life sciences in the years ahead and seeks collaboration from companies, startups, nonprofits, and practitioners.",
+     "abstract": "What does AI miss, and how do experienced vulnerability researchers fill the gaps? Through the story of php2shell, we show how deep knowledge of a target and exploitation techniques helps human researchers guide AI, uncover vulnerabilities, and turn crashes into working exploits.\n\nThen comes the inevitable question: how do you disclosure when a vulnerability affects an enormous ecosystem? We share the difficult decisions, mistakes, and lessons from our attempt. We don’t think the process worked particularly well, and we don’t have a tidy answer for how to do it better.",
      "kind": "talk",
      "topics": [
+      "vuln_discovery",
+      "offensive_ai",
       "governance"
      ],
      "formats": {
       "original_research": false,
       "live_demo": false,
       "open_source": false,
-      "case_study": false,
+      "case_study": true,
       "vendor_flavour": false,
       "debate_or_panel": false
      },
-     "level": "intro",
+     "level": "advanced",
      "audience": [
+      "researcher",
       "leader"
      ],
-     "summary": "Opportunities for AI cyber resilience: securing critical infrastructure, verification tools for AI governance, and a cybersecurity observatory.",
+     "summary": "How experienced researchers guided AI to find and exploit php2shell, and the hard lessons of disclosing it ecosystem-wide.",
      "hl": [
       {
-       "t": "The OpenAI Foundation expects to invest $25 billion across AI resilience and life sciences.",
+       "t": "Shows where AI misses vulnerabilities and how experienced researchers fill the gaps.",
        "tp": [
-        "governance"
+        "vuln_discovery",
+        "offensive_ai"
        ],
-       "fm": [],
+       "fm": [
+        "case_study"
+       ],
        "au": [
-        "leader"
+        "researcher"
        ]
       },
       {
-       "t": "Three opportunities: securing critical infrastructure, verification tools for AI governance, and an AI cybersecurity observatory.",
+       "t": "Tells the story of php2shell, from guiding AI toward the bug to turning crashes into working exploits.",
        "tp": [
-        "governance"
+        "vuln_discovery",
+        "offensive_ai"
+       ],
+       "fm": [
+        "case_study"
+       ],
+       "au": [
+        "researcher"
+       ]
+      },
+      {
+       "t": "Discusses how to disclose a vulnerability that affects an enormous software ecosystem.",
+       "tp": [
+        "governance",
+        "vuln_discovery"
        ],
        "fm": [],
        "au": [
         "leader",
-        "builder"
+        "researcher"
        ]
       },
       {
-       "t": "Seeks collaboration from companies, startups, nonprofits and practitioners on AI cyber resilience.",
+       "t": "Candid about the difficult decisions and mistakes of the disclosure, without claiming a tidy answer.",
        "tp": [
         "governance"
        ],
-       "fm": [],
+       "fm": [
+        "case_study"
+       ],
        "au": [
         "leader"
-       ]
-      },
-      {
-       "t": "Frames the role of security engineers in building tools that make society resilient to AI risks.",
-       "tp": [
-        "governance"
-       ],
-       "fm": [],
-       "au": [
-        "builder"
        ]
       }
      ]
@@ -3929,27 +4050,32 @@
      ]
     },
     {
-     "id": "D2-S1-1620",
+     "id": "D2-S1-1620-tbd",
      "stage": "S1",
      "time": "16:20–16:45",
-     "title": "Auto-Exploiter by Use of a Ratchet Loop, Code Understanding, and… Haiku",
+     "title": "TBD",
+     "speakers": [],
+     "abstract": "",
+     "kind": "fixed"
+    },
+    {
+     "id": "D2-S1-1645",
+     "stage": "S1",
+     "time": "16:45–17:10",
+     "title": "Stolen Thoughts: How Adversaries Steal Reasoning for Industrial-Scale Distillation",
      "speakers": [
       {
-       "n": "John Cartwright",
-       "k": "John Cartwright",
-       "a": "Reverse engineer"
-      },
-      {
-       "n": "Gadi Evron",
-       "k": "Gadi Evron",
-       "a": "Founder and CEO, Knostic"
+       "n": "Joachim Schaeffer",
+       "k": "Joachim Schaeffer",
+       "a": "R40 Research"
       }
      ],
-     "abstract": "We built an exploit-generation system using Anthropic’s Haiku model.\n\nOur first approach was a Karpathy-style auto-research loop with a progressive ratchet, using Opus. It was only with Opus 4.7 that the model started producing useful results.\n\nThat led to a second insight: the limiting factor was whether the system actually understood code. And with Opus, the engineering problem became too easy.\n\nMaking the system work with Haiku became our badge of honor: endless failure.\n\nHaiku tends to favor fast responses, avoid extended reasoning, and avoid tool use.\n\nWe focused on the harness again: how it represents the target, preserves state, reasons about code paths, tracks vulnerability conditions, and carries exploitation progress across attempts.\n\nThe hardest cases still fail. We have not yet achieved full exploitation of difficult real-world memory corruption targets (Baron Samedit and libwebp) with mitigations.\n\nWe made real progress, and we’re here to share our many failures.",
+     "abstract": "Frontier providers hide reasoning traces as encrypted blobs to protect intellectual property. We found that replaying a trace to a compatible, less-protected model recovers it in plaintext. Providers confirmed the attack and deployed mitigations.\n\nAuditing 315,320 public blobs exposed credentials and private data in hundreds of trajectories. Recovered traces aid distillation, reveal model reasoning, and measurably boosted performance on harmful biological, chemical, and radiological queries. Short fragments also made some open-weight models mimic source models, suggesting prior training exposure.\n\nCISA later warned that state-backed actors used this attack for industrial-scale distillation. A month after disclosure, cloud aggregators remained exposed: encryption is only as strong as the weakest endpoint.",
      "kind": "talk",
      "topics": [
+      "model_internals",
       "offensive_ai",
-      "harness_engineering"
+      "threat_intel"
      ],
      "formats": {
       "original_research": true,
@@ -3964,26 +4090,25 @@
       "researcher",
       "builder"
      ],
-     "summary": "Building an exploit-generation system on Haiku using a ratchet research loop and harness design, including its many failures.",
+     "summary": "Replaying encrypted reasoning traces to a less-protected model recovers them in plaintext, an attack later used for distillation.",
      "hl": [
       {
-       "t": "Building an exploit-generation system that works with Anthropic's small Haiku model, not just Opus.",
+       "t": "Replaying an encrypted reasoning trace to a compatible, less-protected model recovers it in plaintext.",
        "tp": [
         "offensive_ai",
-        "harness_engineering"
+        "model_internals"
        ],
        "fm": [
         "original_research"
        ],
        "au": [
-        "researcher",
-        "builder"
+        "researcher"
        ]
       },
       {
-       "t": "Found the limiting factor was whether the system actually understood the target code.",
+       "t": "Model providers confirmed the attack and deployed mitigations.",
        "tp": [
-        "harness_engineering"
+        "offensive_ai"
        ],
        "fm": [
         "original_research"
@@ -3993,87 +4118,51 @@
        ]
       },
       {
-       "t": "Started from a Karpathy-style auto-research loop with a progressive ratchet.",
+       "t": "An audit of 315,320 public blobs exposed credentials and private data in hundreds of agent trajectories.",
        "tp": [
-        "harness_engineering"
+        "threat_intel",
+        "ai_supply_chain"
        ],
-       "fm": [],
+       "fm": [
+        "original_research"
+       ],
        "au": [
-        "builder",
-        "researcher"
+        "defender"
        ]
       },
       {
-       "t": "Harness design for representing targets, preserving state and carrying progress across attempts.",
+       "t": "Recovered traces aided distillation and measurably raised performance on harmful biological, chemical and radiological queries.",
        "tp": [
-        "harness_engineering"
+        "model_internals",
+        "misalignment"
        ],
-       "fm": [],
-       "au": [
-        "builder"
-       ]
-      },
-      {
-       "t": "Openly reports failures, including hard real-world memory corruption targets not yet solved.",
-       "tp": [
-        "offensive_ai",
-        "evals"
+       "fm": [
+        "original_research"
        ],
-       "fm": [],
        "au": [
         "researcher"
        ]
       },
       {
-       "t": "Presented by a reverse engineer and Knostic's founder and CEO.",
-       "tp": [],
-       "fm": [],
-       "au": []
-      }
-     ]
-    },
-    {
-     "id": "D2-S1-1645",
-     "stage": "S1",
-     "time": "16:45–17:10",
-     "title": "Stolen Thoughts: How Adversaries Steal Reasoning for Industrial-Scale Distillation",
-     "speakers": [],
-     "abstract": "",
-     "kind": "talk",
-     "topics": [
-      "threat_intel"
-     ],
-     "formats": {
-      "original_research": false,
-      "live_demo": false,
-      "open_source": false,
-      "case_study": false,
-      "vendor_flavour": false,
-      "debate_or_panel": false
-     },
-     "level": "intermediate",
-     "audience": [
-      "researcher",
-      "defender"
-     ],
-     "summary": "How adversaries steal model reasoning for industrial-scale distillation; title only, no abstract published.",
-     "hl": [
-      {
-       "t": "Covers how adversaries steal model reasoning for industrial-scale distillation, per the session title.",
+       "t": "CISA later warned that state-backed actors used this attack for industrial-scale distillation.",
        "tp": [
         "threat_intel"
        ],
        "fm": [],
        "au": [
-        "researcher",
+        "leader",
         "defender"
        ]
       },
       {
-       "t": "Scheduled at 16:45 on day two; no abstract or speakers are listed yet.",
-       "tp": [],
+       "t": "A month after disclosure, cloud aggregators remained exposed.",
+       "tp": [
+        "ai_supply_chain"
+       ],
        "fm": [],
-       "au": []
+       "au": [
+        "builder"
+       ]
       }
      ]
     },
@@ -4081,7 +4170,7 @@
      "id": "D2-S1-1710",
      "stage": "S1",
      "time": "17:10–17:35",
-     "title": "CISOs debrief: What we learned, what we need",
+     "title": "CISOs Debrief: What We Learned, What We Need",
      "speakers": [],
      "abstract": "",
      "kind": "talk",
@@ -4244,7 +4333,7 @@
      "speakers": [
       {
        "n": "Tim Brown",
-       "k": "Tim Browm",
+       "k": "Tim Brown",
        "a": "CISO-in-Residence, Team 8. Former CISO, SolarWinds."
       },
       {
@@ -4320,9 +4409,71 @@
      ]
     },
     {
+     "id": "D2-S1-1900-2",
+     "stage": "S1",
+     "time": "19:00–19:25",
+     "title": "Debate: Too big to jail: Do human attackers also get misalignment and act rogue?",
+     "speakers": [
+      {
+       "n": "Katie Moussouris",
+       "k": "Katie Moussouris",
+       "a": ""
+      },
+      {
+       "n": "Stefano Zanero",
+       "k": "Stefano Zanero",
+       "a": ""
+      }
+     ],
+     "abstract": "",
+     "kind": "talk",
+     "topics": [
+      "misalignment",
+      "offensive_ai",
+      "governance"
+     ],
+     "formats": {
+      "original_research": false,
+      "live_demo": false,
+      "open_source": false,
+      "case_study": false,
+      "vendor_flavour": false,
+      "debate_or_panel": true
+     },
+     "level": "intro",
+     "audience": [
+      "leader",
+      "researcher"
+     ],
+     "summary": "Evening debate on whether human attackers also show misalignment and go rogue.",
+     "hl": [
+      {
+       "t": "A debate on whether human attackers also show misalignment and act rogue.",
+       "tp": [
+        "misalignment",
+        "offensive_ai"
+       ],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": [
+        "leader"
+       ]
+      },
+      {
+       "t": "Part of the evening program, right before AI Hacker Jeopardy.",
+       "tp": [],
+       "fm": [
+        "debate_or_panel"
+       ],
+       "au": []
+      }
+     ]
+    },
+    {
      "id": "D2-S1-1900",
      "stage": "S1",
-     "time": "19:00–21:00",
+     "time": "19:25–21:00",
      "title": "AI Hacker Jeopardy",
      "speakers": [
       {
@@ -4863,7 +5014,7 @@
        "a": "AI Threat Research Lead"
       }
      ],
-     "abstract": "With the inclusion of a Gemini-class local language model in Google Chrome, endpoints finally have a local model and inference engine deployed at scale. With all the possibilities that this brings comes also new attack surfaces.\n\nIn this talk, the audience will learn about how Chrome’s local model details, its integration into Safe Browsing, how the local inference APIs are reachable by any website and how that could be abused for new traffic monetization schemes through a token-farming botnet, and how malware could sideload the local model and use local inference to power itself as it worms through a network.\n\nYou will walk away",
+     "abstract": "With the inclusion of a Gemini-class local language model in Google Chrome, endpoints finally have a local model and inference engine deployed at scale. With all the possibilities that this brings comes also new attack surfaces.\n\nIn this talk, the audience will learn about how Chrome’s local model details, its integration into Safe Browsing, how the local inference APIs are reachable by any website and how that could be abused for new traffic monetization schemes through a token-farming botnet, and how malware could sideload the local model and use local inference to power itself as it worms through a network.",
      "kind": "talk",
      "topics": [
       "new_surfaces",
@@ -5233,7 +5384,7 @@
      "id": "D2-S2-1445",
      "stage": "S2",
      "time": "14:45–15:10",
-     "title": "Pandora’s Dir – Hope at the bottom of ../",
+     "title": "Pandora’s Dir – Leaked Threat Actor Prompts, Rogue AI Agents & Hope at the Bottom of ../",
      "speakers": [
       {
        "n": "Rik Dolfing",
@@ -5246,7 +5397,7 @@
        "a": "Principal security analyst, Google"
       }
      ],
-     "abstract": "Everyone is speculating about how threat actors are using AI behind the scenes, but this telemetry is notoriously hard to come by. Unless however, threat actors leave their servers wide open. Armed with a scaled and targeted open-directory pipeline plus the hypothesis that exposed infrastructure holds the real story, we went hunting for the intersection of malicious activity and AI adoption. This presentation will jump into our findings, rabbit holes, time sinks, and that of a rainbow donkey. We’ll share qualitative real-world cases about weaponized AI assistants, an AI agent running an underground syndicate, and 23K hoarded API keys. We will break down our analysis and the trends we observed when cracking open these digital Pandora’s boxes. While we discovered mature AI setups for malicious use cases, we came to the conclusion that, at least for now, there is hope at the bottom of ../",
+     "abstract": "While public discussion often focuses on theoretical risks regarding how threat actors use AI behind the scenes, this telemetry is hard to come by. So, we started tracking threat actors who leave their servers wide open and expose these artifacts.\n\nArmed with a scaled open-directory pipeline and the hypothesis that exposed attacker infrastructure holds the real story, we went hunting for the intersection of malicious operations and AI adoption. Instead of guessing what attackers are doing with LLMs, we read their private prompts, custom agent skills, and failure logs firsthand.\n\nWe’ll share real-world cases straight from adversary servers: an AI agent moonlighting as a secretary for an underground gambling syndicate, attackers hijacking AI middleware to fight turf wars over enterprise GPUs, and operators using custom-jailbroken AI “hacking partners” to compromise government portals. However, OPSEC mistakes within their AI configurations allowed us to unmask their real darknet identities. While we discovered mature AI setups for malicious use cases, we came to the conclusion that, at least for now, there is hope at the bottom of ../",
      "kind": "talk",
      "topics": [
       "threat_intel"
@@ -5264,23 +5415,10 @@
       "defender",
       "researcher"
      ],
-     "summary": "Hunting exposed threat actor open directories to reveal real-world malicious AI use, including weaponized assistants and hoarded API keys.",
+     "summary": "Google threat analysts read attackers' own prompts, agent skills and logs from exposed servers to show real malicious AI use.",
      "hl": [
       {
-       "t": "Google threat intelligence hunted exposed attacker servers to see how threat actors actually use AI.",
-       "tp": [
-        "threat_intel"
-       ],
-       "fm": [
-        "original_research"
-       ],
-       "au": [
-        "defender",
-        "researcher"
-       ]
-      },
-      {
-       "t": "Real cases include weaponized AI assistants, an AI agent running an underground syndicate, and 23K hoarded API keys.",
+       "t": "Reads attackers' private prompts, custom agent skills and failure logs taken from their exposed servers.",
        "tp": [
         "threat_intel"
        ],
@@ -5292,24 +5430,59 @@
        ]
       },
       {
-       "t": "Uses a scaled, targeted open-directory pipeline to find where malicious activity and AI adoption intersect.",
+       "t": "Real cases include an AI agent working as a secretary for an underground gambling syndicate.",
        "tp": [
         "threat_intel"
        ],
-       "fm": [],
+       "fm": [
+        "case_study"
+       ],
        "au": [
-        "defender",
-        "researcher"
+        "defender"
        ]
       },
       {
-       "t": "Found mature malicious AI setups, yet concludes that for now there is still hope.",
+       "t": "Shows attackers hijacking AI middleware to fight turf wars over enterprise GPUs.",
+       "tp": [
+        "threat_intel",
+        "new_surfaces"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "Operators used custom-jailbroken AI hacking partners to compromise government portals.",
+       "tp": [
+        "threat_intel",
+        "prompt_injection"
+       ],
+       "fm": [],
+       "au": [
+        "defender"
+       ]
+      },
+      {
+       "t": "OPSEC mistakes in the attackers' AI configurations unmasked their real darknet identities.",
+       "tp": [
+        "threat_intel"
+       ],
+       "fm": [
+        "original_research"
+       ],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "From Google threat intelligence analysts tracking open attacker directories at scale.",
        "tp": [
         "threat_intel"
        ],
        "fm": [],
        "au": [
-        "leader",
         "defender"
        ]
       }
@@ -5333,7 +5506,7 @@
       {
        "n": "Jagannadh Mellacheruvu",
        "k": "Jagannadh Mellacheruvu",
-       "a": "AI Security and Policy, Columbia University"
+       "a": "AI Security and Policy, Mirror Security"
       }
      ],
      "abstract": "Confidential-computing hardware already signs a statement about itself: which chip, which firmware, debug on or off, whether the operator can see inside. Vendors use that proof to unlock keys for their own customers and rarely show it to anyone else. This demo shows what happens when an outsider keeps it. Live, with no cloud account, I fetch the attestation document a production confidential-inference service publishes and verify its AMD SEV-SNP report and certificate chain to AMD’s root with an open-source, dependency-free tool. The tool then grades the evidence against twelve governance checks and writes an auditor-readable report mapped to EU AI Act Art. 15 and Annex IV, SOC 2 CC6/CC7 and ISO 42001. Five checks pass on real hardware, six with a network-timing bound on where the machine is; the rest are unknown, and I show why: no vendor token carries location, compute or licence state, exactly what the Chip Security Act now asks silicon to provide.",
@@ -5706,22 +5879,22 @@
      ]
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "09:35–12:25",
-     "title": "Harness"
+     "title": "Harness",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "12:25–13:30",
-     "title": "Lunch break"
+     "title": "Lunch break",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "13:30–17:45",
-     "title": "Defense"
+     "title": "Defense",
+     "kind": "village"
     }
    ]
   },
@@ -5861,7 +6034,7 @@
      "id": "D3-S1-1000",
      "stage": "S1",
      "time": "10:00–10:25",
-     "title": "–Dangerously-Deploy-Sandboxes: a Story of Isolation and Alignment",
+     "title": "‐‐Dangerously-Deploy-Sandboxes: a Story of Isolation and Alignment",
      "speakers": [
       {
        "n": "Jackson Reed",
@@ -6394,7 +6567,7 @@
      "id": "D3-S1-1355",
      "stage": "S1",
      "time": "13:55–14:20",
-     "title": "AI Inference and its Privacy and Confidentiality challenges",
+     "title": "AI Inference and its Privacy and Confidentiality Challenges",
      "speakers": [
       {
        "n": "Yolan Romailler",
@@ -7175,7 +7348,7 @@
        "a": "Director of Product Security, Cigna"
       }
      ],
-     "abstract": "Software Bill of Materials (SBOM) standards answer one vital question:\n\nWhat binaries and open-source libraries are packed into this artifact? However, modern supply chain attacks—from compromise of CI runners to poisoned build dependencies—target the assembly mechanism itself. Knowing what is inside a container does not tell you how it was built, who approved the pipeline execution, or whether the build environment was tampered with in transit.\n\nTo solve this, we released the open Pipeline Bill of Materials (PBOM) Specification on GitHub. The PBOM specification establishes a standardized, machine-readable schema for capturing the complete execution context of a build pipeline—including runner identities, environment configurations, git lineage, active policy evaluations, and cryptographic signatures at every stage.",
+     "abstract": "Software Bill of Materials (SBOM) standards answer one vital question: What binaries and open-source libraries are packed into this artifact? However, modern supply chain attacks—from compromise of CI runners to poisoned build dependencies—target the assembly mechanism itself. Knowing what is inside a container does not tell you how it was built, who approved the pipeline execution, or whether the build environment was tampered with in transit. The same blind spot exists for AI: an SBOM doesn’t capture what was asked of a model or what it answered. To solve this, we released the open Prompt Bill of Materials (PBOM) Specification on GitHub. The PBOM specification establishes a standardized, machine-readable schema that records LLM interactions as hash-chained, tamper-evident records, capturing identity, prompt and response fingerprints, model and inference parameters, and pre-inference commitments.",
      "kind": "talk",
      "topics": [
       "ai_supply_chain",
@@ -7569,7 +7742,7 @@
       {
        "n": "Guy Elad",
        "k": "Guy Elad",
-       "a": ""
+       "a": "AI Science Tech Lead, AI Security, Intuit"
       }
      ],
      "abstract": "Production guardrails come in two flavors: LLM judges — a full autoregressive pass per check, and a judge that can itself be prompt-injected — and trained text classifiers: cheap, but blind to paraphrase, obfuscation, and image-borne attacks. This talk makes the case for a third path: generation-free guardrails. One forward pass through a small (2–4B) open-weight model, read its internal activations, classify them with lightweight probes — no tokens generated, no prompt to inject into, and the signal is what the model understood, not what the text says. We show how to build one: which signals to read, training probes with modest labeled data, and the engineering that makes it production-grade — activation extraction with early exit, cross-request GPU batching (~4.1s to under 820ms, bit-exact), calibration at sub-0.1% FPR. We compare against open detectors and frontier judges on 20+ public datasets, and share what broke on the way to production at a large fintech.",
@@ -8123,31 +8296,75 @@
      ]
     },
     {
-     "id": "D3-S2-1745",
+     "id": "D3-S2-1645",
      "stage": "S2",
-     "time": "17:45–17:00",
-     "title": "Mingling & Something sweet",
-     "speakers": [],
+     "time": "16:45–17:00",
+     "title": "Not a Boogeyman: The Autonomous Attacker Is Already Here",
+     "speakers": [
+      {
+       "n": "Hari Nagarajan",
+       "k": "Hari Nagarajan",
+       "a": ""
+      }
+     ],
      "abstract": "",
-     "kind": "fixed"
+     "kind": "talk",
+     "topics": [
+      "offensive_ai",
+      "threat_intel"
+     ],
+     "formats": {
+      "original_research": false,
+      "live_demo": false,
+      "open_source": false,
+      "case_study": false,
+      "vendor_flavour": false,
+      "debate_or_panel": false
+     },
+     "level": "intermediate",
+     "audience": [
+      "defender",
+      "leader"
+     ],
+     "summary": "A short closing session arguing that the autonomous attacker is already operating, not a future threat.",
+     "hl": [
+      {
+       "t": "Argues that the autonomous attacker is already here rather than a future threat.",
+       "tp": [
+        "offensive_ai",
+        "threat_intel"
+       ],
+       "fm": [],
+       "au": [
+        "defender",
+        "leader"
+       ]
+      },
+      {
+       "t": "A 15-minute session closing Day 3 on Stage 2.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ]
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "09:35–12:25",
-     "title": "Art"
+     "title": "Art",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "12:25–13:30",
-     "title": "Lunch break"
+     "title": "Lunch break",
+     "kind": "village"
     },
     {
-     "kind": "village",
      "stage": "Villages",
      "time": "13:30–17:10",
-     "title": "CTF"
+     "title": "CTF",
+     "kind": "village"
     }
    ]
   }
@@ -8237,7 +8454,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
   },
   {
    "id": "W-D1-1015-1",
@@ -8315,7 +8533,8 @@
       "defender"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D1-1015-2",
@@ -8404,7 +8623,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D1-1345-3",
@@ -8482,7 +8702,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D1-1345-4",
@@ -8567,7 +8788,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D1-1345-5",
@@ -8653,7 +8875,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
   },
   {
    "id": "W-D2-1015-6",
@@ -8744,7 +8967,8 @@
       "researcher"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D2-1015-7",
@@ -8848,7 +9072,8 @@
       "researcher"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
   },
   {
    "id": "W-D2-1015-8",
@@ -8928,7 +9153,8 @@
       "leader"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D2-1345-9",
@@ -9005,7 +9231,8 @@
       "researcher"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D2-1345-10",
@@ -9085,7 +9312,8 @@
       "researcher"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D2-1345-11",
@@ -9187,7 +9415,98 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
+  },
+  {
+   "id": "W-D2-1600-18",
+   "day": 2,
+   "time": "16:00–18:00",
+   "title": "Agents Attacking Agents: A Hands-On CTF in Red Teaming Agentic Systems",
+   "speakers": [
+    {
+     "n": "Gary Lopez",
+     "k": "Gary Lopez",
+     "a": "Founder, Tinycode"
+    }
+   ],
+   "details": "**Description:**\n\nThe fastest way to test an AI agent is to point another agent at it. This workshop is a hands-on, competitive CTF where participants use attacker agents to red team live targets: single agents, multi-agent systems, and infrastructure.\n\nIn this workshop, participants work through a scored challenge set. They start by driving an attacker agent against a chatbot to exfiltrate data, then move to multi-agent systems where they try to influence a swarm of agents, and lastly, they use agents to perform a pentest on a mix of traditional and AI infrastructure. Participants will also learn to score attacker-agent output at scale, measure attack success rate across repeated runs, and build evaluations that can’t be easily cheated by agents.\n\n**Prerequisites:**\n\n- Working knowledge of security fundamentals.\n- A general understanding of how agents work.\n\n**Participant Setup Requirements:**\n\n- A laptop with a current web browser and Wi-Fi\n- A GitHub, Gmail, or Outlook account to access the CTF\n- (Optional) Virtual machine to run red teaming agents and tools.",
+   "abstract": "Hands-on CTF on using attacker agents to red team chatbots, multi-agent systems, and AI infrastructure while measuring attack success and building robust evaluations.\n**Description:**\n\nThe fastest way to test an AI agent is to point another agent at it. This workshop is a hands-on, competitive CTF where participants use attacker agents to red team live targets: single agents, multi-agent systems, and infrastructure.\n\nIn this workshop, participants work through a scored challenge set. They start by driving an attacker agent against a chatbot to exfiltrate data, then move to multi-agent systems where they try to influence a swarm of agents, and lastly, they use agents to perform a pentest on a mix of traditional and AI infrastructure. Participants will also learn to score attacker-agent output at scale, measure attack success rate across repeated runs, and build evaluations that can’t be easily cheated by agents.\n\n**Prerequisites:**\n\n- Working knowledge of security fundamentals.\n- A general understanding of how agents work.\n\n**Participant Setup Requirements:**\n\n- A laptop with a current web browser and Wi-Fi\n- A GitHub, Gmail, or Outlook account to access the CTF\n- (Optional) Virtual machine to run red teaming agents and tools.",
+   "topics": [
+    "offensive_ai",
+    "evals",
+    "prompt_injection"
+   ],
+   "formats": {
+    "original_research": false,
+    "live_demo": false,
+    "open_source": false,
+    "case_study": false,
+    "vendor_flavour": false,
+    "debate_or_panel": false
+   },
+   "level": "Intermediate",
+   "audience": [
+    "researcher",
+    "builder"
+   ],
+   "summary": "Hands-on CTF on using attacker agents to red team chatbots, multi-agent systems, and AI infrastructure while measuring attack success and building robust evaluations.",
+   "hl": [
+    {
+     "t": "A scored CTF where attacker agents red team live chatbots, multi-agent systems and infrastructure.",
+     "tp": [
+      "offensive_ai"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Starts by driving an attacker agent to exfiltrate data from a chatbot.",
+     "tp": [
+      "offensive_ai",
+      "prompt_injection"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Moves on to influencing a swarm of agents in a multi-agent system.",
+     "tp": [
+      "offensive_ai",
+      "misalignment"
+     ],
+     "fm": [],
+     "au": [
+      "researcher"
+     ]
+    },
+    {
+     "t": "Teaches scoring attacker-agent output at scale and measuring attack success across repeated runs.",
+     "tp": [
+      "evals"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    },
+    {
+     "t": "Covers building evaluations that agents cannot easily cheat.",
+     "tp": [
+      "evals",
+      "misalignment"
+     ],
+     "fm": [],
+     "au": [
+      "builder"
+     ]
+    }
+   ],
+   "room": "Room 1, Floor 1"
   },
   {
    "id": "W-D3-1015-12",
@@ -9286,7 +9605,8 @@
       "leader"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D3-1015-13",
@@ -9368,7 +9688,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
   },
   {
    "id": "W-D3-1015-14",
@@ -9455,7 +9776,8 @@
       "defender"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D3-1345-15",
@@ -9538,7 +9860,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 3, Floor 2"
   },
   {
    "id": "W-D3-1345-16",
@@ -9618,7 +9941,8 @@
       "builder"
      ]
     }
-   ]
+   ],
+   "room": "Room 2, Floor 2"
   },
   {
    "id": "W-D3-1345-17",
@@ -9703,7 +10027,8 @@
       "defender"
      ]
     }
-   ]
+   ],
+   "room": "Room 1, Floor 1"
   }
  ],
  "speakers": {
@@ -9713,7 +10038,6 @@
     "Day 1 Stage 1 09:00–09:25: Opening Words",
     "Day 1 Stage 1 17:10–17:20: Closing Remarks",
     "Day 2 Stage 1 09:00–09:25: Opening Words",
-    "Day 2 Stage 1 16:20–16:45: Auto-Exploiter by Use of a Ratchet Loop, Code Understanding, and… Haiku",
     "Day 2 Stage 1 17:35–17:45: Closing Remarks",
     "Day 2 Stage 1 18:35–19:00: Debate: Burn Down the Playbook: Can Yesterday’s Defenses Stop Tomorrow’s Attacks?",
     "Day 3 Stage 1 09:00–09:25: Opening Words",
@@ -10988,6 +11312,41 @@
     "https://acsac.org/2023/program/final/s156.html"
    ]
   },
+  "Erlend Oftedal": {
+   "n": "Erlend Oftedal",
+   "sessions": [
+    "Day 1 Stage 2 14:45–15:10: Inside Cairn – Open Windows Into AI Attacks",
+    "Workshop Day 3 · 1:45p-3:45p: Fuzzing Native Node.js Dependencies with LLMs"
+   ],
+   "role": "AI and AppSec at NorForge (per conference listing)",
+   "bio": "Erlend Oftedal is an Oslo-based developer and security consultant with more than 20 years as a developer, security researcher and security engineer. He is the main author of Retire.js, a widely used open-source scanner that detects JavaScript libraries with known vulnerabilities, available as a CLI, browser extension, build plugin and Burp/OWASP ZAP plugin, and able to generate CycloneDX SBOMs. He has been chapter leader of OWASP Norway, and wrote early research scanning the Fortune 500, the Alexa top 100,000 and Norwegian sites for vulnerable JavaScript libraries (2014). His current affiliation is listed as AI and AppSec at NorForge, which could not be independently confirmed.",
+   "work": [
+    "Main author of Retire.js (github.com/RetireJS/retire.js)",
+    "OWASP Norway chapter leader",
+    "OWASP Top 10 for JavaScript blog series (2012)"
+   ],
+   "talks": [
+    {
+     "title": "RESTful Security",
+     "venue": "JavaZone",
+     "year": 2012,
+     "url": "https://vimeo.com/49483632"
+    }
+   ],
+   "links": {
+    "linkedin": "https://www.linkedin.com/in/erlendoftedal",
+    "website": "http://erlend.oftedal.no/blog",
+    "github": "https://github.com/eoftedal",
+    "x": "https://x.com/webtonull"
+   },
+   "sources": [
+    "https://sessionize.com/erlend-oftedal",
+    "https://api.github.com/users/eoftedal",
+    "https://github.com/RetireJS/retire.js",
+    "https://erlend.oftedal.no/blog/",
+    "https://libraries.io/npm/retire/3.1.0"
+   ]
+  },
   "Fatih Bulut": {
    "n": "Fatih Bulut",
    "sessions": [
@@ -11121,46 +11480,10 @@
     "https://siliconangle.com/2026/08/13/month-anthropics-mythos-left-rubrik-rethinking-remediation/"
    ]
   },
-  "Ari Herbert-Voss": {
-   "n": "Ari Herbert-Voss",
+  "Michael Brown": {
+   "n": "Michael Brown",
    "sessions": [
-    "Day 1 Stage 2 16:45–17:10: What Building Early Foundation Models Teaches Us About AI Safety Hype vs. Reality"
-   ],
-   "role": "CEO and Cofounder, RunSybil",
-   "bio": "Ari Herbert-Voss is CEO and cofounder of RunSybil, an AI offensive security platform he cofounded with Vlad Ionescu (formerly Meta offensive security) and which raised USD 40M led by Khosla Ventures in March 2026. He joined OpenAI in 2019 as its first security research hire, after leaving a Harvard Ph.D. in machine learning, and contributed to GPT-3 and Codex; he is a co-author of 'Language Models are Few-Shot Learners' and 'Evaluating Large Language Models Trained on Code'. He left OpenAI around 2022 and started RunSybil as a research project. He spoke on adversarial machine learning at DEF CON 26 (AI Village) and DEF CON 27 under the name Ariel Herbert-Voss.",
-   "work": [
-    "Co-author, GPT-3 paper 'Language Models are Few-Shot Learners' (2020)",
-    "Co-author, Codex paper 'Evaluating Large Language Models Trained on Code' (2021)",
-    "OpenAI's first security research hire (2019)",
-    "Cofounder of RunSybil (USD 40M raise, 2026)"
-   ],
-   "talks": [
-    {
-     "title": "Don't Red-Team AI Like a Chump",
-     "venue": "DEF CON 27",
-     "year": 2019,
-     "url": "https://media.defcon.org/DEF%20CON%2027/DEF%20CON%2027%20presentations/"
-    },
-    {
-     "title": "Machine Learning Model Hardening For Fun and Profit",
-     "venue": "DEF CON 26 AI Village",
-     "year": 2018,
-     "url": "https://media.defcon.org/DEF%20CON%2026/DEF%20CON%2026%20villages/"
-    }
-   ],
-   "links": {
-    "website": "https://www.runsybil.com/company"
-   },
-   "sources": [
-    "https://www.runsybil.com/company",
-    "https://www.runsybil.com/post/runsybil-raises-40m-to-build-the-ai-native-platform-for-offensive-security",
-    "https://www.runsybil.com/media",
-    "https://fortune.com/2026/03/18/exclusive-ai-cybersecurity-startup-runsybil-founded-by-openais-first-security-hire-raises-40-million-led-by-khosla-ventures/",
-    "https://arxiv.org/abs/2005.14165",
-    "https://arxiv.org/abs/2107.03374",
-    "https://media.defcon.org/DEF%20CON%2027/",
-    "https://media.defcon.org/DEF%20CON%2026/",
-    "https://unpromptedcon.org/agenda-10-2026/"
+    "Day 1 Stage 2 16:45–17:10: What Evaluating Early Foundation Model Capabilities Teaches Us About AI Safety Hype vs. Reality"
    ]
   },
   "Matt Suiche": {
@@ -11438,29 +11761,16 @@
     "Day 2 Stage 1 14:20–14:45: Memory Is the New Attack Surface: Benchmarking Poisoning Through Agent Memory"
    ]
   },
-  "Kamile Lukosiute": {
-   "n": "Kamile Lukosiute",
+  "Ryan Austin": {
+   "n": "Ryan Austin",
    "sessions": [
-    "Day 2 Stage 1 14:45–15:10: Building the Defender’s Advantage: Technical Solutions for AI Cyber Resilience"
-   ],
-   "role": "Program Officer (cyber resilience), OpenAI Foundation",
-   "bio": "Kamile Lukosiute (Kamilė Lukošiūtė) is a Program Officer at the OpenAI Foundation, building its cyber resilience workstream. Before that she was a Research Scholar at the Center for the Governance of AI (GovAI, July 2025 to August 2026), an AI Security Researcher at Cisco (June 2024 to June 2025) and a Resident Alignment Researcher at Anthropic (October 2022 to July 2023), where she co-authored 'Measuring Faithfulness in Chain-of-Thought Reasoning'. Her recent work includes 'LLM Cyber Evaluations Don't Capture Real-World Risk' (with Adam Swanda, 2025), 'Estimating Global Yearly Cybercrime Damage Costs: A Baseline for Frontier AI Risk Assessment' (2026) and 'Coding Agents Are Changing the Biosecurity Risk Landscape' (2026). She holds a BA in Physics from Wellesley College and an MSc in Physics from the University of Amsterdam.",
-   "work": [
-    "Co-author, Measuring Faithfulness in Chain-of-Thought Reasoning (Anthropic, 2023)",
-    "LLM Cyber Evaluations Don't Capture Real-World Risk (2025, with Adam Swanda)",
-    "Estimating Global Yearly Cybercrime Damage Costs: A Baseline for Frontier AI Risk Assessment (2026, with John Halstead and Luca Righetti)",
-    "Coding Agents Are Changing the Biosecurity Risk Landscape (2026)",
-    "Blog writing on AI cyber evals and lab visibility into AI cyber misuse"
-   ],
-   "talks": [],
-   "links": {
-    "linkedin": "https://www.linkedin.com/in/kamilelukosiute",
-    "website": "https://kamilelukosiute.com/",
-    "x": "https://x.com/kamilelukosiute"
-   },
-   "sources": [
-    "https://kamilelukosiute.com/",
-    "https://arxiv.org/abs/2307.13702"
+    "Day 2 Stage 1 14:45–15:10: PHPocalypse: Finding, Exploiting, and Disclosing php2shell"
+   ]
+  },
+  "Thai Duong": {
+   "n": "Thai Duong",
+   "sessions": [
+    "Day 2 Stage 1 14:45–15:10: PHPocalypse: Finding, Exploiting, and Disclosing php2shell"
    ]
   },
   "Yernat Yestekov": {
@@ -11499,33 +11809,10 @@
     "https://www.anthropic.com/research/cyber-competitions"
    ]
   },
-  "John Cartwright": {
-   "n": "John Cartwright",
+  "Joachim Schaeffer": {
+   "n": "Joachim Schaeffer",
    "sessions": [
-    "Day 2 Stage 1 16:20–16:45: Auto-Exploiter by Use of a Ratchet Loop, Code Understanding, and… Haiku"
-   ],
-   "role": "Reverse engineer (independent, per conference listing); [un]prompted CFP committee member (Track 2: Break)",
-   "bio": "John Cartwright is a UK-based reverse engineer best known as co-creator, with Len Rose, of the Full-Disclosure security mailing list, which he ran from July 2002 until he shut it down in March 2014 after a researcher's demand for large-scale archive deletions. He is one of the five credited authors of RAPTOR, the open-source Claude Code-based offensive and defensive security research framework, alongside Gadi Evron, Daniel Cuthbert, Thomas Dullien (Halvar Flake) and Michael Bargury; he turned Evron and Michal Kamensky's exploitation-validator pipeline into a RAPTOR skill and combined it with his binary exploitation module. He sits on the [un]prompted CFP board for Track 2 (Break) and at this edition co-presents with Gadi Evron an exploit-generation system built on Anthropic's Haiku model using a ratchet-style auto-research loop and code understanding.",
-   "work": [
-    "Co-creator and long-time operator of the Full-Disclosure mailing list (2002-2014)",
-    "Co-author of RAPTOR, autonomous offensive/defensive security research framework on Claude Code (github.com/gadievron/raptor)",
-    "Binary exploitation module and exploitation-validator skill in RAPTOR",
-    "[un]prompted October 2026 CFP committee, Track 2 (Break)",
-    "Auto-exploiter research with Gadi Evron (this conference)"
-   ],
-   "talks": [],
-   "links": {
-    "website": "https://grok.org.uk",
-    "github": "https://github.com/grokjc"
-   },
-   "sources": [
-    "https://unpromptedcon.org/committee/",
-    "https://unpromptedcon.org/agenda-10-2026/",
-    "https://github.com/grokjc",
-    "https://github.com/gadievron/raptor",
-    "https://github.com/gadievron/exploitation-validator",
-    "https://seclists.org/fulldisclosure/2014/Mar/332",
-    "https://www.theregister.com/2014/03/19/full_disclosure_closes/"
+    "Day 2 Stage 1 16:45–17:10: Stolen Thoughts: How Adversaries Steal Reasoning for Industrial-Scale Distillation"
    ]
   },
   "Jeremiah Grossman": {
@@ -11608,7 +11895,7 @@
     "https://www.blackhat.com/us-22/ciso-summit.html"
    ]
   },
-  "Tim Browm": {
+  "Tim Brown": {
    "n": "Tim Brown",
    "sessions": [
     "Day 2 Stage 1 18:35–19:00: Debate: Burn Down the Playbook: Can Yesterday’s Defenses Stop Tomorrow’s Attacks?"
@@ -11675,10 +11962,22 @@
     "https://www.solarwinds.com/company/newsroom/press-releases/solarwinds-chief-information-security-officer-tim-brown-to-present-at-black-hat-middle-east-and-africa"
    ]
   },
+  "Katie Moussouris": {
+   "n": "Katie Moussouris",
+   "sessions": [
+    "Day 2 Stage 1 19:00–19:25: Debate: Too big to jail: Do human attackers also get misalignment and act rogue?"
+   ]
+  },
+  "Stefano Zanero": {
+   "n": "Stefano Zanero",
+   "sessions": [
+    "Day 2 Stage 1 19:00–19:25: Debate: Too big to jail: Do human attackers also get misalignment and act rogue?"
+   ]
+  },
   "G Mark Hardy": {
    "n": "G Mark Hardy",
    "sessions": [
-    "Day 2 Stage 1 19:00–21:00: AI Hacker Jeopardy"
+    "Day 2 Stage 1 19:25–21:00: AI Hacker Jeopardy"
    ],
    "role": "Founder and President, National Security Corporation; co-host, CISO Tradecraft podcast",
    "bio": "G. Mark Hardy is founder and president of National Security Corporation, a cybersecurity consultancy, and co-hosts the CISO Tradecraft podcast with Ross Young. A retired U.S. Navy Captain who held nine commands, he served as wartime Director of the Joint Operations Center for US Pacific Command and as Assistant Director of Technology and Information Management for Naval Logistics in the Pentagon, with responsibility for INFOSEC and PKI. He holds a BS in Computer Science and BA in Mathematics from Northwestern University, an MBA and a master's in strategic studies, plus CISSP, CISM, CISA and GSLC certifications. He says he has spoken at more than 250 events, including DEF CON 16 and 18, ShmooCon, ToorCon and THOTCON, and has hosted Hacker Jeopardy (THOTCON 2019).",
@@ -12069,7 +12368,7 @@
   "Rik Dolfing": {
    "n": "Rik Dolfing",
    "sessions": [
-    "Day 2 Stage 2 14:45–15:10: Pandora’s Dir – Hope at the bottom of ../"
+    "Day 2 Stage 2 14:45–15:10: Pandora’s Dir – Leaked Threat Actor Prompts, Rogue AI Agents & Hope at the Bottom of ../"
    ],
    "role": "Senior Cyber Threat Intelligence Analyst (Mandiant), Google",
    "bio": "Rik Dolfing is a Senior Cyber Threat Intelligence analyst in Google's Mandiant organization, based in the Netherlands, and studied at Radboud University. Earlier profile entries associate him with The DFIR Report and a cyber security specialist role at another employer. He co-presents with Reef Ettedgui, a principal security analyst at Google, on 'Pandora's Dir', a talk on path traversal.",
@@ -12086,7 +12385,7 @@
   "Reef Ettedgui": {
    "n": "Reef Ettedgui",
    "sessions": [
-    "Day 2 Stage 2 14:45–15:10: Pandora’s Dir – Hope at the bottom of ../"
+    "Day 2 Stage 2 14:45–15:10: Pandora’s Dir – Leaked Threat Actor Prompts, Rogue AI Agents & Hope at the Bottom of ../"
    ]
   },
   "Jagannadh Mellacheruvu": {
@@ -12190,7 +12489,7 @@
   "Jackson Reed": {
    "n": "Jackson Reed",
    "sessions": [
-    "Day 3 Stage 1 10:00–10:25: –Dangerously-Deploy-Sandboxes: a Story of Isolation and Alignment"
+    "Day 3 Stage 1 10:00–10:25: ‐‐Dangerously-Deploy-Sandboxes: a Story of Isolation and Alignment"
    ],
    "role": "Founder and CEO, Barding Defense",
    "bio": "Jackson Reed is founder and CEO of Barding Defense, a startup building an AI-assisted intelligence platform for offensive security operations that captures red team tradecraft and measures how well organizations respond to intrusions. According to the company site, he is part of BT6, an AI red team that frontier labs use for pre-release security testing. The same source says he built an NSA/Cyber Command certified red team in the DoD space, built and led the red team of a Fortune 50 security program, and has a background in threat intelligence including attribution of nation-state groups. He writes the Twelve Tables blog on AI, security and governance, and gave a lightning talk at the March 2026 [un]prompted edition.",
@@ -12558,7 +12857,7 @@
   "Yolan Romailler": {
    "n": "Yolan Romailler",
    "sessions": [
-    "Day 3 Stage 1 13:55–14:20: AI Inference and its Privacy and Confidentiality challenges"
+    "Day 3 Stage 1 13:55–14:20: AI Inference and its Privacy and Confidentiality Challenges"
    ],
    "role": "Head of Security, Confidential AI",
    "bio": "Yolan Romailler is Head of Security at Confidential AI and an applied cryptographer based in Switzerland, with a mathematics bachelor's from EPFL. He is a core contributor to drand, a distributed publicly verifiable randomness beacon, and co-designed tlock, a practical timelock encryption scheme based on threshold BLS, presented at Real World Crypto 2023 and DEF CON 30. He is also a maintainer in the gopass password manager project. Earlier work includes CDF, a differential fuzzing tool for crypto software presented at Black Hat USA 2017, a practical fault attack on Ed25519/EdDSA (FDTC 2017), and large-scale key-breaking research presented at DEF CON 26.",
@@ -13390,6 +13689,12 @@
     "https://stealthstartupspy.substack.com/p/stealth-startup-spy-98"
    ]
   },
+  "Hari Nagarajan": {
+   "n": "Hari Nagarajan",
+   "sessions": [
+    "Day 3 Stage 2 16:45–17:00: Not a Boogeyman: The Autonomous Attacker Is Already Here"
+   ]
+  },
   "Graham Helton": {
    "n": "Graham Helton",
    "sessions": [
@@ -13924,6 +14229,12 @@
     "Workshop Day 2 · 1:45p-3:45p: Possession Is Not Permission: Hands-On Authority Control for Capable Agents"
    ]
   },
+  "Gary Lopez": {
+   "n": "Gary Lopez",
+   "sessions": [
+    "Workshop Day 2 · 4:00p-6:00p: Agents Attacking Agents: A Hands-On CTF in Red Teaming Agentic Systems"
+   ]
+  },
   "Ismael Valenzuela": {
    "n": "Ismael Valenzuela",
    "sessions": [
@@ -14095,40 +14406,6 @@
     "https://github.com/ritasabri/rita-cyber-ed",
     "https://github.com/ritasabri/SP1-gate",
     "https://api.github.com/users/ritasabri"
-   ]
-  },
-  "Erlend Oftedal": {
-   "n": "Erlend Oftedal",
-   "sessions": [
-    "Workshop Day 3 · 1:45p-3:45p: Fuzzing Native Node.js Dependencies with LLMs"
-   ],
-   "role": "AI and AppSec at NorForge (per conference listing)",
-   "bio": "Erlend Oftedal is an Oslo-based developer and security consultant with more than 20 years as a developer, security researcher and security engineer. He is the main author of Retire.js, a widely used open-source scanner that detects JavaScript libraries with known vulnerabilities, available as a CLI, browser extension, build plugin and Burp/OWASP ZAP plugin, and able to generate CycloneDX SBOMs. He has been chapter leader of OWASP Norway, and wrote early research scanning the Fortune 500, the Alexa top 100,000 and Norwegian sites for vulnerable JavaScript libraries (2014). His current affiliation is listed as AI and AppSec at NorForge, which could not be independently confirmed.",
-   "work": [
-    "Main author of Retire.js (github.com/RetireJS/retire.js)",
-    "OWASP Norway chapter leader",
-    "OWASP Top 10 for JavaScript blog series (2012)"
-   ],
-   "talks": [
-    {
-     "title": "RESTful Security",
-     "venue": "JavaZone",
-     "year": 2012,
-     "url": "https://vimeo.com/49483632"
-    }
-   ],
-   "links": {
-    "linkedin": "https://www.linkedin.com/in/erlendoftedal",
-    "website": "http://erlend.oftedal.no/blog",
-    "github": "https://github.com/eoftedal",
-    "x": "https://x.com/webtonull"
-   },
-   "sources": [
-    "https://sessionize.com/erlend-oftedal",
-    "https://api.github.com/users/eoftedal",
-    "https://github.com/RetireJS/retire.js",
-    "https://erlend.oftedal.no/blog/",
-    "https://libraries.io/npm/retire/3.1.0"
    ]
   },
   "Jordan Hubbard": {

@@ -394,6 +394,9 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     if (!s.talks.length) return null;
     return [...s.talks].sort((x, y) => sc(y).s - sc(x).s || x.stage.localeCompare(y.stage))[0].id;
   }
+  // A saved pick counts as the visitor's own only while it still names a talk in this slot (or "none");
+  // a pick of a talk the agenda replaced shows as the suggestion it falls back to
+  const isExplicit = s => { const v = state.picks[s.key]; return v === "none" || (v !== undefined && s.talks.some(t => t.id === v)); };
   function pickOf(s) {
     if (wsOf(s)) return "workshop";
     const v = state.picks[s.key];
@@ -446,7 +449,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
   const LINK_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>`;
   const linkBtn = it => `<button type="button" class="btn ghost icon" data-link="${esc(it.id)}" title="Send a link to this session" aria-label="Send a link to this session: ${esc(it.title)}">${LINK_ICON}</button>`;
   function talkCard(t, s, picked) {
-    const isPick = picked === t.id, explicit = state.picks[s.key] !== undefined, later = !!state.later[t.id];
+    const isPick = picked === t.id, explicit = isExplicit(s), later = !!state.later[t.id];
     const tag = isPick ? `<span class="tag ${explicit ? "" : "sugg"}">${explicit ? "Your pick" : "Suggested"}</span>` : "";
     const wc = whyChips(t);
     const focus = ui.focus === t.id;
@@ -501,7 +504,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
     return `<div class="slot${dim}"${slotAttrs(s)}><div class="t">${s.time}${nowTag(s)}${none ? `<div class="note" style="margin-top:6px">Free slot</div>` : ""}</div>
       <div><div class="pair${vis.length === 1 ? " one" : ""}">${vis.map(t => talkCard(t, s, picked)).join("") || `<div class="note">Only low-fit talks here (hidden).</div>`}</div>
       <div class="actions" style="margin-top:6px"><button type="button" class="btn ghost" data-pick="${s.key}" data-val="none" aria-pressed="${none}">${none ? "Slot left free" : "Leave this slot free"}</button>
-      ${state.picks[s.key] !== undefined ? `<button type="button" class="btn ghost" data-pick="${s.key}" data-val="__reset">Back to suggestion</button>` : ""}</div></div></div>`;
+      ${isExplicit(s) ? `<button type="button" class="btn ghost" data-pick="${s.key}" data-val="__reset">Back to suggestion</button>` : ""}</div></div></div>`;
   }
 
   function dayHtml(d) {
@@ -516,7 +519,7 @@ footer.foot .wrap { padding-block: 16px 28px; font-size: 13px; color: var(--mute
       <div class="extras">
         <h3>Workshops this day</h3>
         <p class="note">Two-hour hands-on sessions with their own registration. Mark the ones you hold a ticket for and their time block replaces the talks it overlaps.</p>
-        ${d.ws.map(w => `<details id="talk-${w.id}" class="ws${state.tickets[w.id] ? " mine" : ""}${ui.focus === w.id ? " focus" : ""}"${ui.focus === w.id ? " open" : ""}><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${recChip(w)}${ui.focus === w.id ? `<span class="sharedtag">Shared with you</span>` : ""}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
+        ${d.ws.map(w => `<details id="talk-${w.id}" class="ws${state.tickets[w.id] ? " mine" : ""}${ui.focus === w.id ? " focus" : ""}"${ui.focus === w.id ? " open" : ""}><summary><span class="wt">${w.time}</span><b>${esc(w.title)}</b>${w.room ? `<span class="wt">${esc(w.room)}</span>` : ""}${recChip(w)}${ui.focus === w.id ? `<span class="sharedtag">Shared with you</span>` : ""}${state.tickets[w.id] ? `<span class="tag" style="color:var(--good)">Your ticket</span>` : ""}</summary>
           <div class="body"><div class="actions" style="margin-bottom:8px"><button type="button" class="btn" data-ticket="${esc(w.id)}" aria-pressed="${!!state.tickets[w.id]}">${state.tickets[w.id] ? "I have a ticket (tap to remove)" : "I have a ticket"}</button>${linkBtn(w)}</div>
           ${w.speakers.length ? spkHtml(w.speakers) : ""}${whyChips(w) ? `<div class="chips" style="margin-block:6px">${whyChips(w)}</div>` : ""}
           ${w.summary ? `<p><b>Summary:</b> ${esc(w.summary)}</p>` : ""}${reasonsHtml(w)}${w.level ? `<p><b>Level:</b> ${esc(w.level)}</p>` : ""}${md(w.details)}</div></details>`).join("")}
