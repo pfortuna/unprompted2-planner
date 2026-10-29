@@ -56,6 +56,7 @@ This project is not affiliated with or endorsed by the [un]prompted organizers.
 index.html                  the planner, the file GitHub Pages serves (generated)
 build/
   build.py                  regenerates index.html
+  sync_agenda.py            compares the official agenda with planner-data.json
   template.html             page markup, styles and logic
   planner-data.json         agenda, tags and bios
   fonts.css                 embedded web fonts
@@ -77,6 +78,25 @@ Visitors' plans live in their browsers and reference session ids, slot times and
 - If the saved format ever has to change, bump `STATE_V` in `template.html` and migrate the stored object on load. The page never discards a plan it cannot read: it keeps a backup copy and stops saving for that visit.
 
 To try it locally, run `python3 -m http.server 8765` in the repository folder and open http://127.0.0.1:8765/, or simply open `index.html` in a browser.
+
+## Keeping the agenda in sync
+
+The organizers update the agenda during the event. To see what changed:
+
+```
+python3 build/sync_agenda.py
+```
+
+It downloads the official agenda and workshops pages, parses them, and lists every session that is new, gone or changed (title, speakers, abstract), plus new workshops and room changes. It exits with 0 when the planner is in sync and 1 when something needs attention. Differences the planner keeps on purpose (such as a long block split to line up with the other stage) are listed separately as intentional. Pass two saved HTML files instead of downloading, and `--save-json DIR` to keep the parsed data.
+
+The script only reports; applying a change is a decision:
+
+- **Same talk, new time:** update `time` and keep the `id`, so saved picks follow it.
+- **A talk replaced by another:** give the new talk a new `id`. Saved picks of the old talk then fall back to the slot's suggestion instead of showing a different talk as the visitor's pick.
+- **New sessions** need `topics`, `formats`, `level`, `audience`, `summary` and highlights (`hl`) before `build.py` accepts them. A session with no published content can be marked `"untagged": true` and rates neutral.
+- **New speakers** appear with the agenda's name and affiliation; add a bio only when their identity is confirmed by more than one source.
+
+Then run `python3 build/build.py` and commit the data together with `index.html`.
 
 ## Fonts
 
