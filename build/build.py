@@ -33,7 +33,8 @@ dupes = sorted({i for i in ids if ids.count(i) > 1})
 assert not dupes, f"duplicate ids: {dupes}"
 
 talks = sum(1 for d in data["days"] for it in d["items"] if it.get("kind") == "talk")
-missing = [it["id"] for d in data["days"] for it in d["items"] if it.get("kind") == "talk" and not it.get("topics")]
+# A talk with no published content (e.g. a lightning talks block) is marked "untagged" and rates neutral
+missing = [it["id"] for d in data["days"] for it in d["items"] if it.get("kind") == "talk" and not it.get("topics") and not it.get("untagged")]
 assert not missing, f"talks without topics: {missing}"
 
 (ROOT / "index.html").write_text(html, encoding="utf-8")

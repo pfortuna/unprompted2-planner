@@ -1,5 +1,5 @@
 {
- "asOf": "28 October 2026",
+ "asOf": "29 October 2026",
  "days": [
   {
    "label": "Tuesday 27 October 2026",
@@ -7516,22 +7516,76 @@
      ]
     },
     {
-     "id": "D3-S2-1110",
+     "id": "D3-S2-1110-lt",
      "stage": "S2",
      "time": "11:10–11:35",
-     "title": "TBA",
+     "title": "Lightning talks (part 1 of 2)",
      "speakers": [],
      "abstract": "",
-     "kind": "fixed"
+     "kind": "talk",
+     "topics": [],
+     "formats": {
+      "original_research": false,
+      "live_demo": false,
+      "open_source": false,
+      "case_study": false,
+      "vendor_flavour": false,
+      "debate_or_panel": false
+     },
+     "level": "",
+     "audience": [],
+     "summary": "A block of short lightning talks on Stage 2 from 11:10 to 12:00. The lineup was not published on the agenda.",
+     "hl": [
+      {
+       "t": "A block of short lightning talks; the lineup was not published on the agenda.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      },
+      {
+       "t": "Runs from 11:10 to 12:00 on Stage 2, so you can join for either half.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ],
+     "untagged": true
     },
     {
-     "id": "D3-S2-1135",
+     "id": "D3-S2-1135-lt",
      "stage": "S2",
      "time": "11:35–12:00",
-     "title": "TBA",
+     "title": "Lightning talks (part 2 of 2)",
      "speakers": [],
      "abstract": "",
-     "kind": "fixed"
+     "kind": "talk",
+     "topics": [],
+     "formats": {
+      "original_research": false,
+      "live_demo": false,
+      "open_source": false,
+      "case_study": false,
+      "vendor_flavour": false,
+      "debate_or_panel": false
+     },
+     "level": "",
+     "audience": [],
+     "summary": "A block of short lightning talks on Stage 2 from 11:10 to 12:00. The lineup was not published on the agenda.",
+     "hl": [
+      {
+       "t": "A block of short lightning talks; the lineup was not published on the agenda.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      },
+      {
+       "t": "Runs from 11:10 to 12:00 on Stage 2, so you can join for either half.",
+       "tp": [],
+       "fm": [],
+       "au": []
+      }
+     ],
+     "untagged": true
     },
     {
      "id": "D3-S2-1200",
